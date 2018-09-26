@@ -1,0 +1,20 @@
+{
+  "name": "gradrec",
+  "version": "1.0.0",
+  "description": "FUNCTION: Provides completely automaticand comprehensive annotation of microbial genomic sequences. The pipeline identifies protein, tRNA and rRNA genes, finds potential promoters, terminators and operons. Assign potential Functions to predicted proteins using comparison with a set of databases such as COG, KEEGG and NR. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rubencg195/GRADREC.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rubencg195/GRADREC/issues"
+  },
+  "homepage": "https://github.com/rubencg195/GRADREC#readme"
+}
