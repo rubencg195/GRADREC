@@ -1,4 +1,4 @@
-#GRADREC
+**GRADREC**
 
 **DESCRIPTION**
 
@@ -9,3 +9,4 @@ FUNCTION: Provides completely automaticand comprehensive annotation of microbial
 1. Install npm and nodejs
 2. Open CMD in the project home directory.
 3. Run the following command _npm install_
+
