@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/rubencg195/GRADREC/issues"
   },
-  "homepage": "https://github.com/rubencg195/GRADREC#readme"
+  "homepage": "https://github.com/rubencg195/GRADREC#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
