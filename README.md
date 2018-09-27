@@ -10,3 +10,6 @@ FUNCTION: Provides completely automaticand comprehensive annotation of microbial
 2. Open CMD in the project home directory.
 3. Run the following command _npm install_
 
+
+
+
