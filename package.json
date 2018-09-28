@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "node ./scripts/build",
+    "serve": "serve ./public"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,26 @@
   },
   "homepage": "https://github.com/rubencg195/GRADREC#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "front-matter": "^2.3.0",
+    "fs-extra": "^7.0.0",
+    "glob": "^7.1.3",
+    "gm": "^1.23.1",
+    "marked": "^0.5.1",
+    "mdbootstrap": "^4.5.11",
+    "mongodb": "^3.1.6",
+    "sharp": "^0.20.8"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.24.7",
+    "gulp": "^3.9.1",
+    "gulp-inline-css": "^3.3.0",
+    "gulp-pug": "^4.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sass": "^4.0.1",
+    "nodemon": "^1.18.4"
   }
 }
