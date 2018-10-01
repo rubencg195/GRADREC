@@ -1,25 +1,62 @@
 <!-- views/pages/index.ejs -->
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100vh">
+
 <head>
     <% include ../partials/mdhead %>
 </head>
+
 <body>
+    <!-- <header>
+        < include ../partials/header %>
+    </header> -->
+    <% include ../partials/navbar %>
+    <% include ../partials/mdheader %>
+    <main class="container">
+        <!--Grid row-->
+        <div class="row mb-5 pb-4">
 
-<header>
-    <% include ../partials/header %>
-    <% include ../partials/carousel %>
-</header>
+            <!--Grid column-->
+            <div class="col-md-4 text-center">
+                <h3 class="font-weight-bold light-blue-text my-5 py-4">
+                    Lorem ipsum dolor sit amet, consectetur quis
+                    elit.
+                </h3>
+                <p align="justify">Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro,
+                    cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit
+                    debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit.</p>
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-md-4 text-center">
+                <h3 class="font-weight-bold light-blue-text my-5 py-4">
+                    Lorem ipsum dolor sit amet, consectetur quis
+                    elit.
+                </h3>
+                <p align="justify">Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro,
+                    cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit
+                    debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit.</p>
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-md-4 text-center">
+                <h3 class="font-weight-bold light-blue-text my-5 py-4">
+                    Lorem ipsum dolor sit amet, consectetur quis
+                    elit.
+                </h3>
+                <p align="justify">Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro,
+                    cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit
+                    debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit.</p>
+            </div>
+            <!--Grid column-->
 
-<main  class="container">
-    <% include ../partials/jumbotron %>
-</main>
-
-<br/><br/>
+        </div>
+        <!--Grid row-->
+    </main>
+    <% include ../partials/mdscripts %>
+</body>
 <footer>
     <% include ../partials/footer %>
 </footer>
 
-</body>
 </html>

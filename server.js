@@ -3,6 +3,7 @@ const app     = express();
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
+app.use(express.static( 'assets', {root: __dirname }));
 
 // use res.render to load up an ejs view file
 app.listen(3000, function() {
@@ -14,10 +15,29 @@ app.get('/', function(req, res){
     res.render('pages/home');
 });
 
-app.get('/login', function(request, response){
-    response.send('Login');
+app.get('/login', function(req, res){
+    res.render('pages/login');
 });
 
-app.get('/signup', function(request, response){
-    response.send('Sign Up');
+app.get('/signup', function(rq, res){
+    res.render('pages/signup');
 });
+
+app.get('/about', function(rq, res){
+    res.render('pages/about');
+});
+
+app.get('/contact', function(rq, res){
+    res.render('pages/contact');
+});
+
+app.get('/dashboard', function(rq, res){
+    res.render('pages/dashboard');
+});
+
+
+app.get('/research', function(rq, res){
+    res.render('pages/research');
+});
+
+
