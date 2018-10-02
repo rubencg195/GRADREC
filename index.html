@@ -1,0 +1,114 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>COMP 6905 Assignment 1</title>
+    <meta name="description" content="COMP 6905 Assignment 1">
+    <meta name="author" content="Lucas Critch, Ruben Chevez, Carlos Salcedo, Tian Wang">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/css/mdb.min.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/js/mdb.min.js"></script>
+
+    <style>
+        .projectTitle {
+            text-align: center;
+            font-size: 150%;
+            text-decoration-line: underline;
+        }
+        #listTitle {
+            text-align: center;
+            font-size: 200%;
+        }
+        p { 
+            word-wrap: break-word; 
+        }  
+        .description {
+            text-align: center;
+        }  
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"> 
+            </div>
+            <div class="col-lg-8">
+                <p id="listTitle">List of Projects</p>
+                <ul class="list-group mb-2" id="researchList">
+                </ul>
+            </div>
+            <div class="col-lg-2"> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">   
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-primary m-1" id="addProject">Add</button>
+                <button type="button" class="btn btn-primary m-1" id="deleteResearch">Delete</button>
+            </div>
+            <div class="col-sm">
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-sm">      
+                </div>
+                <div id="newProjectForm" class="text-center border border-light p-5 col-md invisible mt-2"> 
+                    <input type="text" id="projectName" class="form-control mb-4" placeholder="Project Name">
+                    <textarea class="form-control rounded-0 mb-4" id="projectDescription" maxlength="150" rows="3" placeholder="Write description here"></textarea>
+                    <button class="btn btn-info" id="submitProject">Submit</button>
+                </div>
+                <div class="col-sm">    
+                </div>
+            </div>
+    </div>
+</body>
+
+<script>
+    $( document ).ready(function() {
+
+        $('#researchList').on('click','li',function(){
+            $('#researchList .list-group-item').removeClass("active");
+            $( this ).addClass('active');
+            $('#projectDescription').removeClass("invisible"); 
+        });
+
+        $('#deleteResearch').on('click', function() {
+            $('#researchList .list-group-item').remove('.active'); 
+        });
+
+        $('#addProject').on('click', function() {
+            $('#newProjectForm').removeClass('invisible');
+            $('#newProjectForm').addClass('visible'); 
+        });
+
+        $('#submitProject').on('click', function() {
+            $('#newProjectForm').removeClass('visible');
+            $('#newProjectForm').addClass('invisible'); 
+            if ( $('#projectName').val() != '' ) {
+
+                $("#researchList").append('<li class="list-group-item"><p class="projectTitle">' + $('#projectName').val() + 
+                '</p><p class="description">'  + $('#projectDescription').val() + '</p></li>');
+            }
+        });
+    });
+</script>
+</html>
