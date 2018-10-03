@@ -40,47 +40,67 @@
         .description {
             text-align: center;
         }  
+        body { 
+            padding-top: 65px; 
+        }
     </style>
-
 </head>
 
-<body>
+<header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark blue scrolling-navbar">
+        <a class="navbar-brand" href="#"><strong>COMP 6905 Assignment 1 webpage</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <!-- <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Opinions</a>
+                </li> -->
+            </ul>
+        </div>
+    </nav>
+</header>
 
+<body>
     <div class="container">
         <div class="row">
-            <div class="col-lg-2"> 
-            </div>
-            <div class="col-lg-8">
+            <div class="col-md mx-auto">
                 <p id="listTitle">List of Projects</p>
                 <ul class="list-group mb-2" id="researchList">
                 </ul>
             </div>
-            <div class="col-lg-2"> 
+        </div>
+        <div class="row">
+            <div class="btn-group mx-auto" role="group">
+                <button type="button" class="btn btn-info m-1" id="addProject">Add</button>
+                <button type="button" class="btn btn-info m-1" id="deleteResearch">Delete</button>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm">   
-            </div>
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-primary m-1" id="addProject">Add</button>
-                <button type="button" class="btn btn-primary m-1" id="deleteResearch">Delete</button>
-            </div>
-            <div class="col-sm">
+            <div id="newProjectForm" class="text-center border border-light p-5 col-sm invisible mx-auto"> 
+                <input type="text" id="projectName" class="form-control mb-4" placeholder="Project Name">
+                <textarea class="form-control mb-4" id="projectDescription" maxlength="150" rows="3" placeholder="Write description here"></textarea>
+                <button class="btn btn-info" id="submitProject">Submit</button>
             </div>
         </div>
-        <div class="row">
-                <div class="col-sm">      
-                </div>
-                <div id="newProjectForm" class="text-center border border-light p-5 col-md invisible mt-2"> 
-                    <input type="text" id="projectName" class="form-control mb-4" placeholder="Project Name">
-                    <textarea class="form-control rounded-0 mb-4" id="projectDescription" maxlength="150" rows="3" placeholder="Write description here"></textarea>
-                    <button class="btn btn-info" id="submitProject">Submit</button>
-                </div>
-                <div class="col-sm">    
-                </div>
-            </div>
     </div>
 </body>
+<footer class="page-footer font-small blue fixed-bottom">
+    <div class="page-footer text-center py-3">Lucas Critch, Ruben Chevez, Tian Wang, Carlos Salcedo
+    </div>
+</footer>
+
 
 <script>
     $( document ).ready(function() {
