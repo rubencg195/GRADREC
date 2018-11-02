@@ -23,12 +23,12 @@ app.get('/signup', function(rq, res){
     res.render('pages/signup');
 });
 
-app.get('/about', function(rq, res){
-    res.render('pages/about');
+app.get('/profile', function(rq, res){
+    res.render('pages/profile');
 });
 
-app.get('/contact', function(rq, res){
-    res.render('pages/contact');
+app.get('/projectCreation', function(rq, res){
+    res.render('pages/projectCreation');
 });
 
 app.get('/dashboard', function(rq, res){
