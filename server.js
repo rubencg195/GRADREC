@@ -40,4 +40,8 @@ app.get('/research', function(rq, res){
     res.render('pages/research');
 });
 
+app.get('/studentSurvey', function(rq, res){
+    res.render('pages/studentSurvey');
+});
+
 
