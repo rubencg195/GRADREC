@@ -1,0 +1,6 @@
+View
+    Pages = Main content
+        Inside body, insert partials this way:
+            <% include ../partials/navbar %>
+    Partials = reusable content
+
