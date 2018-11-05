@@ -24,6 +24,8 @@ Click on the following links to view the available content.
 Demo Web Page: http://sc-1.cs.mun.ca/ 
 
 
-
-
+## STEPS FOR RUNNING THE APP
+1. Install npm and nodejs
+2. Open CMD in the project home directory.
+3. Run the following command _npm install_
 
