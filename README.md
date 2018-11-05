@@ -18,12 +18,8 @@ Click on the following links to view the available content.
 1. Install npm and nodejs
 2. Open CMD in the project home directory.
 3. Run the following command _npm install_
+4. Run the command _node server.js_ to initiate the server
 
 ## DEMO
 
 Demo Web Page: http://sc-1.cs.mun.ca/ 
-
-
-
-
-
