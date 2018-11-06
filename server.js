@@ -6,8 +6,8 @@ app.set('view engine', 'ejs');
 app.use(express.static( 'assets', {root: __dirname }));
 
 // use res.render to load up an ejs view file
-app.listen(3000, function() {
-    console.log("Listening on 3000");
+app.listen(3331, function() {
+    console.log("Listening on 3331");
 });
 
 app.get('/', function(req, res){
@@ -43,5 +43,3 @@ app.get('/research', function(rq, res){
 app.get('/studentSurvey', function(rq, res){
     res.render('pages/studentSurvey');
 });
-
-
