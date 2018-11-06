@@ -13,28 +13,27 @@
     <% include ../partials/navbar %>
     <main class="container">
         <!-- Section: Contact v.3 -->
-        <section class="contact-section my-5">
+        <section class="contact-section my-5">   <!-- This is the beginning of the box containing the questionaire -->
 
             <!-- Form with header -->
-            <div class="card">
+            <div class="card"> <!-- This div creates a margin around our form -->
 
                 <!-- Grid row -->
-                <div class="row">
-
+                <div class="row">    <!-- I'm going to call this row A -->
                     <!-- Grid column -->
-                    <div class="col-lg-12">
+                    <div class="col-lg-12"><!-- I'm going to call this Col A -->
 
-                        <div class="card-body form">
+                        <div class="card-body form"> <!-- Just some decorations for the form -->
 
                             <!-- Header -->
-                            <h3 class="mt-4"><i class="fa fa-envelope pr-2"></i>Survey:</h3>
-                            <p>This will appear when account is created. </p>
+                            <h3 class="mt-4"><i class="fa fa-envelope pr-2"></i>Profile Information:</h3>
+                            <p>Please provide accurate and true information, as the system will take into consideration your answers for the project matchings. The list of your available projects will directly depend on your answers here.  </p>
 
                             <!-- Grid row -->
-                            <div class="row">
+                            <div class="row"> <!--  Row 1  -->
 
                                 <!-- Grid column -->
-                                <div class="col-md-6">
+                                <div class="col-md-6">  <!--  Row 1, Col 1  -->
                                     <div class="md-form mb-0">
                                         <input type="text" id="form-contact-name" class="form-control">
                                         <label for="form-contact-name" class="">Your name</label>
@@ -43,16 +42,26 @@
                                 <!-- Grid column -->
 
                                 <!-- Grid column -->
-                                <div class="col-md-6">
+                                <div class="col-md-3"> <!--  Row 1, Col 2  -->
                                     <div class="md-form mb-0">
                                         <input type="text" id="form-contact-email" class="form-control">
                                         <label for="form-contact-email" class="">Your email</label>
                                     </div>
                                 </div>
                                 <!-- Grid column -->
+                                <!-- Grid column -->
+                                <div class="col-md-3"> <!--  Row 1, Col 3  -->
+                                    <div class="md-form mb-0">
+                                        <input type="text" id="form-contact-DOB" class="form-control">
+                                        <label for="form-contact-DOB" class="">Your Date of Birth</label>
+                                    </div>
+                                </div>
+                                <!-- Grid column -->
 
-                            </div>
+                            </div> <!--  End of Row 1  -->
                             <!-- Grid row -->
+
+                            <!-- Form with header -->
 
                             <!-- Grid row -->
                             <div class="row">
@@ -120,22 +129,29 @@
                                 </div>
                                 <!-- Grid column -->
 
+
                             </div>
                             <!-- Grid row -->
 
                         </div>
 
-                    </div>
+                    </div> <!-- End of Column B -->
                     <!-- Grid column -->
-                </div>
+                </div> <!-- End of Row A -->
                 <!-- Grid row -->
 
-            </div>
-            <!-- Form with header -->
-            <a class="btn btn-primary" href="/home">Submit</a>
-            <a class="btn btn-primary" href="/home">Save for later</a>
+                    <div class="align-center text-center m-3">
+                      <a class="btn btn-primary" href="/home">Submit</a>
+                      <a class="btn btn-primary" href="/home">Save for later</a>
+                      <br />
+                    </div>
 
-        </section>
+        </div> <!-- This is the end of the div that creates the margin around the box -->
+
+
+
+
+        </section>  <!-- This would be the end of the box containing the questionaire -->
         <!-- Section: Contact v.3 -->
     </main>
     <% include ../partials/mdscripts %>
