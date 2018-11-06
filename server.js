@@ -5,7 +5,7 @@ const app     = express();
 app.set('view engine', 'ejs');
 app.use(express.static( 'assets', {root: __dirname }));
 
-// use res.render to load up an ejs view file
+//  use res.render to load up an ejs view file
 app.listen(3331, function() {
     console.log("Listening on 3331");
 });
