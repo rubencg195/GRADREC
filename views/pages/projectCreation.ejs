@@ -4,6 +4,7 @@
 
 <head>
     <% include ../partials/mdhead %>
+
 </head>
 
 <body>
@@ -73,13 +74,13 @@
                                 <!-- Grid column -->
                                 <div class="col-md-6"> <!-- row 3, col 2 -->
                                     <div class="md-form mb-0">
-                                          <select class="browser-default custom-select" id="form-contact-initial_collaborators">
-                                          <option selected>Collaborators</option>
+                                          <select class="mdb-select md-form" multiple searchable="Search here..">
+                                          <option value="" disabled selected>Choose other project collaborators</option>
                                           <option value="1">Fiech, Adrien</option>
                                           <option value="2">Mata-Montero, Manrique</option>
                                           <option value="3">Miklos, Bartha</option>
                                           <option value="4">Chen, Yuanzhu</option>
-                                          </select>
+                                        </select>
                                     </div>
                                 </div>
                                 <!-- Grid column -->
@@ -198,6 +199,12 @@
         <!-- Section: Contact v.3 -->
     </main>
     <% include ../partials/mdscripts %>
+
+    <script>
+      $(document).ready(function() {
+        $('.mdb-select').materialSelect();
+      });
+    </script>
 </body>
 <footer>
     <% include ../partials/footer %>
