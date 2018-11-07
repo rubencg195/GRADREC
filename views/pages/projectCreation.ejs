@@ -56,9 +56,7 @@
                             </div>
 
                             <div class="row"> <!-- row 3 - PM and Collaborators -->
-
-                                <!-- Grid column -->
-                                <div class="col-md-6"> <!-- row 3, col 1 -->
+                                <div class="col-md-4"> <!-- row 3, col 1 -->
                                     <div class="md-form mb-0">
                                       <select class="browser-default custom-select" id="form-contact-project_manager">
                                       <option selected>Project Manager</option>
@@ -69,10 +67,7 @@
                                       </select>
                                     </div>
                                 </div>
-                                <!-- Grid column -->
-
-                                <!-- Grid column -->
-                                <div class="col-md-6"> <!-- row 3, col 2 -->
+                                <div class="col-md-4"> <!-- row 3, col 2 -->
                                     <div class="md-form mb-0">
                                           <select class="mdb-select md-form" multiple searchable="Search here..">
                                           <option value="" disabled selected>Choose other project collaborators</option>
@@ -83,7 +78,17 @@
                                         </select>
                                     </div>
                                 </div>
-                                <!-- Grid column -->
+                                <div class="col-md-6"> <!-- row 3, col 3 -->
+                                    <div class="md-form mb-0">
+                                          <select class="mdb-select md-form" multiple searchable="Search here..">
+                                          <option value="" disabled selected>Stuent Collaborators</option>
+                                          <option value="1">Tian Wang</option>
+                                          <option value="2">Lucas Critch</option>
+                                          <option value="3">Ruben Chevez</option>
+                                          <option value="4">Carlos Salcedo</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                             </div>
 
@@ -146,17 +151,34 @@
                               </div>
                             </div>
 
-                            <div class="row"> <!-- row 6 -->
+                            <div class="row"> <!-- row 6 - Financil aid & Student skills -->
                               <div class="col-md-4"> <!-- row 6, col 1 -->
                                 <div class="md-form mb-0">
                                   <input type="text" id="form-contact-financial_aid" class="form-control">
                                   <label for="form-contact-financial_aid" class="">Available Financial Aid</label>
                                 </div>
                               </div>
+                              <div class="col-sm-2"> <!-- row 6, col 2 -->
+                                <div class="md-form mb-0">
+                                  <p>Ideal Candidate Skills:</p>
+                                </div>
+                              </div>
+                              <div class="col-md-4"> <!-- row 6, col 3 -->
+                                <div class="md-form mb-0">
+                                    <select class="mdb-select md-form" multiple searchable="Search here.." id="skills">
+                                    <option value="" disabled selected></option>
+                                    <option value="1">Python</option>
+                                    <option value="2">Java</option>
+                                    <option value="3">Web Development</option>
+                                    <option value="4">Mathematics</option>
+                                    <option value="5">Physics</option>
+                                    <option value="6">Microsoft Office</option>
+                                    </select>
+                                </div>
+                              </div>
                             </div>
 
-
-                            <div class="row"> <!-- row 7 -->
+                            <div class="row"> <!-- row 7 - additional_comments-->
                               <div class="col-md-12"> <!-- row 7, col 1 -->
                                 <div class="md-form mb-0">
                                     <input type="text" id="form-contact-additional_comments" class="form-control">
@@ -165,15 +187,14 @@
                               </div>
                             </div>
 
-                            <div class="row">  <!-- "Just a Divider Section" -->
+                            <div class="row">  <!-- "Just a Divider Section" - for project conclusion -->
                                 <div class="col-md-12">
                                   <hr>
                                   <p><b>Project Termination: The information below is only required once the project is finished, but feel free to fill out the fields at any time.</b></p>
                                 </div>
                             </div>
 
-
-                            <div class="row"> <!-- row 8 -->
+                            <div class="row"> <!-- row 8 - due dates -->
                               <div class="col-sm-4"> <!-- row 8, col 1 -->
                                 <div class="md-form mb-0">
                                   <input type="text" id="form-contact-est_duedate" class="form-control">
@@ -203,11 +224,43 @@
                                   </select>
                                 </div>
                               </div>
+                            </div> <!-- end of row 8 -->
+
+                            <div class="row"> <!-- row 9 - conclusion and results -->
+                              <div class="col-sm-6"> <!-- row 9, col 1 -->
+                                <div class="md-form mb-0">
+
+                                  <textarea type="text" id="form-contact-conclusion" class="form-control md-textarea"
+                                      rows="3"></textarea>
+                                  <label for="form-contact-conclusion">Conclusion</label>
+                                </div>
+                              </div>
+                              <div class="col-sm-6"> <!-- row 9, col 2 -->
+                                <div class="md-form mb-0">
+                                  <textarea type="text" id="form-contact-results" class="form-control md-textarea"
+                                      rows="3"></textarea>
+                                  <label for="form-contact-results">Results</label>
+                                </div>
+                              </div>
+                            </div> <!-- end of row 9 -->
+
+                            <div class="row"> <!-- row 10 - Special message-->
+                              <div class="col-sm-6"> <!-- row 10, col 1 -->
+                                <div class="md-form mb-0">
+
+                                  <textarea type="text" id="form-contact-thanks" class="form-control md-textarea"
+                                      rows="3"></textarea>
+                                  <label for="form-contact-thanks">Special Thanks/Mentions</label>
+                                </div>
+                              </div>
+
+
+                            </div> <!-- end of row 10 -->
 
 
 
 
-                          </div> <!-- end of row 8 -->
+
 
 
                               <!-- Some maybe usefull future code
