@@ -16,7 +16,7 @@
         <section class="contact-section my-5">
 
             <!-- Form with header -->
-            <div class="card">
+            <div class="card"> <!-- The "box" containing the questionaire -->
 
                 <!-- Grid row -->
                 <div class="row">
@@ -24,79 +24,128 @@
                     <!-- Grid column -->
                     <div class="col-lg-12">
 
-                        <div class="card-body form">
+                        <div class="card-body form"> <!-- This is where the border is created -->
 
                             <!-- Header -->
-                            <h3 class="mt-4"><i class="fa fa-envelope pr-2"></i>Project creation:</h3>
+                            <h3 class="mt-4"><i class="fa fa-envelope pr-2"></i>Create New/Edit Project:</h3>
 
-                            <!-- Grid row -->
-                            <div class="row">
-
+                            <div class="row"> <!-- row 1 -->
                                 <!-- Grid column -->
-                                <div class="col-md-6">
+                                <div class="col-md-12"> <!-- row 1, col 1 -->
                                     <div class="md-form mb-0">
-                                        <input type="text" id="form-contact-name" class="form-control">
-                                        <label for="form-contact-name" class="">Your name</label>
+                                        <input type="text" id="form-contact-project_title" class="form-control">
+                                        <label for="form-contact-project_title" class="">Project Title</label>
                                     </div>
                                 </div>
                                 <!-- Grid column -->
-
-                                <!-- Grid column -->
-                                <div class="col-md-6">
-                                    <div class="md-form mb-0">
-                                        <input type="text" id="form-contact-email" class="form-control">
-                                        <label for="form-contact-email" class="">Your email</label>
-                                    </div>
-                                </div>
-                                <!-- Grid column -->
-
                             </div>
-                            <!-- Grid row -->
 
-                            <!-- Grid row -->
-                            <div class="row">
+                            <div class="row"> <!-- row 2 -->
 
                                 <!-- Grid column -->
-                                <div class="col-md-6">
+                                <div class="col-md-12"> <!-- row 2, col 1 -->
                                     <div class="md-form mb-0">
-                                        <input type="text" id="form-contact-phone" class="form-control">
-                                        <label for="form-contact-phone" class="">Your phone</label>
-                                    </div>
-                                </div>
-                                <!-- Grid column -->
-
-                                <!-- Grid column -->
-                                <div class="col-md-6">
-                                    <div class="md-form mb-0">
-                                        <input type="text" id="form-contact-company" class="form-control">
-                                        <label for="form-contact-company" class="">Other</label>
-                                    </div>
-                                </div>
-                                <!-- Grid column -->
-
-                            </div>
-                            <!-- Grid row -->
-
-                            <!-- Grid row -->
-                            <div class="row">
-
-                                <!-- Grid column -->
-                                <div class="col-md-12">
-                                    <div class="md-form mb-0">
-                                        <textarea type="text" id="form-contact-message" class="form-control md-textarea"
+                                        <textarea type="text" id="form-contact-Abstract" class="form-control md-textarea"
                                             rows="3"></textarea>
-                                        <label for="form-contact-message">Project Description</label>
-                                        <a class="btn-floating btn-lg blue">
-                                            <i class="fa fa-send-o"></i>
-                                        </a>
+                                        <label for="form-contact-Abstract">Project Description (Abstract)</label>
                                     </div>
                                 </div>
                                 <!-- Grid column -->
 
                             </div>
-                            <!-- Grid row -->
 
-                        </div>
+                            <div class="row"> <!-- row 3 -->
+
+                                <!-- Grid column -->
+                                <div class="col-md-6"> <!-- row 3, col 1 -->
+                                    <div class="md-form mb-0">
+                                      <select class="browser-default custom-select" id="form-contact-possible_collaborators">
+                                      <option selected>Project Manager</option>
+                                      <option value="1">Fiech, Adrien</option>
+                                      <option value="2">Mata-Montero, Manrique</option>
+                                      <option value="3">Miklos, Bartha</option>
+                                      <option value="4">Chen, Yuanzhu</option>
+                                      </select>
+                                    </div>
+                                </div>
+                                <!-- Grid column -->
+
+                                <!-- Grid column -->
+                                <div class="col-md-6"> <!-- row 3, col 2 -->
+                                    <div class="md-form mb-0">
+                                          <select class="browser-default custom-select" id="form-contact-possible_collaborators">
+                                          <option selected>Collaborators</option>
+                                          <option value="1">Fiech, Adrien</option>
+                                          <option value="2">Mata-Montero, Manrique</option>
+                                          <option value="3">Miklos, Bartha</option>
+                                          <option value="4">Chen, Yuanzhu</option>
+                                          </select>
+                                    </div>
+                                </div>
+                                <!-- Grid column -->
+
+                            </div>
+
+                            <div class="row"> <!-- row 4 -->
+
+                              <!-- Grid column -->
+                              <div class="col-sm-2"> <!-- row 4, col 1 -->
+                                  <div class="md-form mb-0">
+                                        <p>MSc or PhD:</p>
+                                  </div>
+                              </div>
+                              <!-- Grid column -->
+                              <!-- Grid column -->
+                              <div class="col-sm-1"> <!-- row 4, col 2 -->
+                                  <div class="md-form mb-0">
+                                    <select class="browser-default custom-select" id="form-contact-msc_or_phd">
+                                    <option selected></option>
+                                    <option value="1">MSc</option>
+                                    <option value="2">PhD</option>
+                                    </select>
+                                  </div>
+                              </div>
+                              <!-- Grid column -->
+                              <!-- Grid column -->
+                              <div class="col-sm-2"> <!-- row 4, col 3 -->
+                                  <div class="md-form mb-0">
+                                        Program:
+                                  </div>
+                              </div>
+                              <!-- Grid column -->
+                              <!-- Grid column -->
+                              <div class="col-sm-2"> <!-- row 4, col 2 -->
+                                  <div class="md-form mb-0">
+                                    <select class="browser-default custom-select" id="form-contact-possible_collaborators">
+                                    <option selected></option>
+                                    <option value="1">Computer Science/Engineering</option>
+                                    <option value="2">Computational chemistry </option>
+                                    <option value="3">Physics</option>
+                                    <option value="4">Mathematics</option>
+                                    <option value="5">Marine Biology</option>
+
+                                    </select>
+                                  </div>
+                              </div>
+                              <!-- Grid column -->
+                            </div>
+
+                            <div class="row"> <!-- row 4 -->
+                              <div class="col-sm-1"> <!-- row n, col 2 -->
+                                <p></p>
+                                <hr>
+                                <a class="btn-floating btn-lg blue">
+                                    <i class="fa fa-send-o"></i>
+                                </a>
+                              </div>
+                            </div>
+
+
+
+
+
+
+                        </div> <!-- This div ends the border -->
 
                     </div>
                     <!-- Grid column -->
