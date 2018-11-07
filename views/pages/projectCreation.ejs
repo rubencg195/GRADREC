@@ -115,7 +115,7 @@
                               </div>
                               <!-- Grid column -->
                               <!-- Grid column -->
-                              <div class="col-sm-4"> <!-- row 4, col 2 -->
+                              <div class="col-sm-4"> <!-- row 4, col 4 -->
                                   <div class="md-form mb-0">
                                     <select class="browser-default custom-select" id="form-contact-program">
                                     <option selected></option>
@@ -156,12 +156,60 @@
                             </div>
 
 
-                            <div class="row"> <!-- row N -->
-                              <div class="col-md-12"> <!-- row n, col n -->
+                            <div class="row"> <!-- row 7 -->
+                              <div class="col-md-12"> <!-- row 7, col 1 -->
                                 <div class="md-form mb-0">
                                     <input type="text" id="form-contact-additional_comments" class="form-control">
                                     <label for="form-contact-additional_comments" class="">Additional Comments</label>
                                 </div>
+                              </div>
+                            </div>
+
+                            <div class="row">  <!-- "Just a Divider Section" -->
+                                <div class="col-md-12">
+                                  <hr>
+                                  <p><b>Project Termination: The information below is only required once the project is finished, but feel free to fill out the fields at any time.</b></p>
+                                </div>
+                            </div>
+
+
+                            <div class="row"> <!-- row 8 -->
+                              <div class="col-sm-4"> <!-- row 8, col 1 -->
+                                <div class="md-form mb-0">
+                                  <input type="text" id="form-contact-est_duedate" class="form-control">
+                                  <label for="form-contact-est_duedate" class="">Estimated Due Date (dd-mm-yyyy)</label>
+                                </div>
+                              </div>
+
+                              <div class="col-sm-4"> <!-- row 8, col 2 -->
+                                <div class="md-form mb-0">
+                                  <input type="text" id="form-contact-actual_due_date" class="form-control">
+                                  <label for="form-contact-actual_due_date" class="">Actual Due Date (dd-mm-yyyy)</label>
+                                </div>
+                              </div>
+
+                              <div class="col-sm-2"> <!-- row 8, col 3 -->
+                                <div class="md-form mb-0">
+                                  <p>Is the Project finished?</p>
+                                </div>
+                              </div>
+
+                              <div class="col-sm-2"> <!-- row 8, col 4 -->
+                                <div class="md-form mb-0">
+                                  <select class="mdb-select md-form">
+                                    <option value="" disabled selected>(Yes/No)</option>
+                                    <option value="1">Yes</option>
+                                    <option value="2">No</option>
+                                  </select>
+                                </div>
+                              </div>
+
+
+
+
+                          </div> <!-- end of row 8 -->
+
+
                               <!-- Some maybe usefull future code
                                 <p></p>
                                 <hr>
@@ -169,12 +217,6 @@
                                     <i class="fa fa-send-o"></i>
                                 </a>
                               -->
-                              </div>
-                            </div>
-
-
-
-
 
 
                         </div> <!-- This div ends the border -->
@@ -186,9 +228,10 @@
 
                 <!-- These are just the buttons to Submit or Save -->
                   <div class="align-center text-center m-3">
-                    <a class="btn btn-primary" href="/home">Submit</a>
+                    <a class="btn btn-primary" href="/home">Save</a>
                     <a class="btn btn-primary" href="/home">Delete</a>
-                    <a class="btn btn-primary" href="/home">Save for later</a>
+                    <a class="btn btn-primary" href="/home">End Project</a>
+                    <a class="btn btn-primary" href="/home">Save as Draft</a>
                     <br />
                   </div>
 
