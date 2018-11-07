@@ -59,7 +59,7 @@
                                 <!-- Grid column -->
                                 <div class="col-md-6"> <!-- row 3, col 1 -->
                                     <div class="md-form mb-0">
-                                      <select class="browser-default custom-select" id="form-contact-possible_collaborators">
+                                      <select class="browser-default custom-select" id="form-contact-project_manager">
                                       <option selected>Project Manager</option>
                                       <option value="1">Fiech, Adrien</option>
                                       <option value="2">Mata-Montero, Manrique</option>
@@ -73,7 +73,7 @@
                                 <!-- Grid column -->
                                 <div class="col-md-6"> <!-- row 3, col 2 -->
                                     <div class="md-form mb-0">
-                                          <select class="browser-default custom-select" id="form-contact-possible_collaborators">
+                                          <select class="browser-default custom-select" id="form-contact-initial_collaborators">
                                           <option selected>Collaborators</option>
                                           <option value="1">Fiech, Adrien</option>
                                           <option value="2">Mata-Montero, Manrique</option>
@@ -114,9 +114,9 @@
                               </div>
                               <!-- Grid column -->
                               <!-- Grid column -->
-                              <div class="col-sm-2"> <!-- row 4, col 2 -->
+                              <div class="col-sm-4"> <!-- row 4, col 2 -->
                                   <div class="md-form mb-0">
-                                    <select class="browser-default custom-select" id="form-contact-possible_collaborators">
+                                    <select class="browser-default custom-select" id="form-contact-program">
                                     <option selected></option>
                                     <option value="1">Computer Science/Engineering</option>
                                     <option value="2">Computational chemistry </option>
@@ -130,13 +130,30 @@
                               <!-- Grid column -->
                             </div>
 
-                            <div class="row"> <!-- row 4 -->
-                              <div class="col-sm-1"> <!-- row n, col 2 -->
+                            <div class="row"> <!-- row 5 -->
+                              <div class="col-md-4"> <!-- row n, col n -->
+                                <div class="md-form mb-0">
+                                  <input type="text" id="form-contact-num_of_students" class="form-control">
+                                  <label for="form-contact-num_of_students" class="">Number of Students</label>
+                                </div>
+                              </div>
+                            </div>
+
+
+
+                            <div class="row"> <!-- row N -->
+                              <div class="col-md-12"> <!-- row n, col n -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-additional_comments" class="form-control">
+                                    <label for="form-contact-additional_comments" class="">Additional Comments</label>
+                                </div>
+                              <!-- Some maybe usefull future code
                                 <p></p>
                                 <hr>
                                 <a class="btn-floating btn-lg blue">
                                     <i class="fa fa-send-o"></i>
                                 </a>
+                              -->
                               </div>
                             </div>
 
@@ -151,6 +168,14 @@
                     <!-- Grid column -->
                 </div>
                 <!-- Grid row -->
+
+                <!-- These are just the buttons to Submit or Save -->
+                  <div class="align-center text-center m-3">
+                    <a class="btn btn-primary" href="/home">Submit</a>
+                    <a class="btn btn-primary" href="/home">Delete</a>
+                    <a class="btn btn-primary" href="/home">Save for later</a>
+                    <br />
+                  </div>
 
             </div>
             <!-- Form with header -->
