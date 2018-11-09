@@ -13,157 +13,392 @@
     <% include ../partials/navbar %>
     <main class="container">
 
-        <!--Jumbotron-->
-        <div class="row mb-5">
-            <div class="col-md-12">
-                <div class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/forest2.jpg);">
-                    <div class="text-white text-center rgba-stylish-strong py-5 px-4">
-                        <div class="py-5">
+        <!--Card-->
+        <div class="card">
 
-                            <!--Content-->
-                            <h6 class="orange-text font-bold"><i class="fa fa-camera-retro"></i> GRADREC</h6>
-                            <h2 class="card-title pt-3 mb-5 font-bold">User Profile Page</h2>
-                            <p class="px-5 pb-4">This will show user information, like the survey and personal info.</p>
-                            <a class="btn peach-gradient"><i class="fa fa-clone left"></i> View project</a>
-                            <!--Content-->
-
-                        </div>
-                    </div>
-                </div>
+            <br />
+            <div class="avatar mx-auto">
+                <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg" class="rounded-circle z-depth-1"
+                    alt="Sample avatar">
             </div>
+
+            <!--Card content-->
+            <div class="card-body text-center mb-3">
+                <!--Title-->
+                <h3 class="card-title mt-2 pb-4"><strong>User #1</strong></h3>
+                <!--Text-->
+                <p class="card-text">This will be the page for detailed individual project information. It should only
+                    be accessed after a student is accepted.
+                </p>
+                <!-- <a href="#" class="btn red btn-rounded">Button</a> -->
+            </div>
+
         </div>
-        <!--Jumbotron-->
+        <!--/.Card-->
 
-        <!-- Projects section v.3 -->
-        <section class="my-5">
-
-            <!-- Section heading -->
-            <h2 class="h1-responsive font-weight-bold text-center my-5">User project(s)</h2>
-            <!-- Section description -->
-            <p class="grey-text text-center w-responsive mx-auto mb-5">This should show the project(s) the user is in, with links to them.</p>
+        <div class="card">
+            <!-- This div creates a margin around our form -->
 
             <!-- Grid row -->
             <div class="row">
-
+                <!-- I'm going to call this row A -->
                 <!-- Grid column -->
-                <div class="col-lg-5 mb-lg-0 mb-5">
-                    <!--Image-->
-                    <img src="https://mdbootstrap.com/img/Photos/Others/images/83.jpg" alt="Sample project image" class="img-fluid rounded z-depth-1">
-                </div>
-                <!-- Grid column -->
+                <div class="col-lg-12">
+                    <!-- I'm going to call this Col A -->
 
-                <!-- Grid column -->
-                <div class="col-lg-7">
+                    <div class="card-body form">
+                        <!-- Just some decorations for the form -->
 
-                    <!-- Grid row -->
-                    <div class="row mb-3">
-                        <div class="col-md-1 col-2">
-                            <i class="fa fa-book fa-2x cyan-text mt-5"></i>
+                        <!-- Header -->
+                        <h3 class="mt-4"><i class="fa fa-envelope pr-2"></i>Profile Information:</h3>
+                        <p>Please provide accurate and true information, as this information will influence your
+                            acceptance process. The list of your available projects will directly depend on your
+                            answers here, and keep in mind that the Project Managers(and/or Professors) will be
+                            able to view most of the information here. </p>
+                        <p></p>
+                        <!-- Grid row -->
+
+
+                        <div class="row">
+                            <!-- "Just a Divider Section" -->
+                            <div class="col-md-12">
+                                <hr>
+                                <p><b>Section 1: First Impressions</b></p>
+                            </div>
                         </div>
-                        <div class="col-md-11 col-10">
-                            <h5 class="font-weight-bold mb-3 mt-5">Project 1</h5>
-                            <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing. Reprehenderit
-                                maiores nam, aperiam minima elit assumenda voluptate velit.</p>
+
+
+                        <!-- Grid row -->
+                        <div class="row">
+                            <!-- beginning of row 1  -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-12">
+                                <!-- row 1, col 1 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-full_name" class="form-control">
+                                    <label for="form-contact-full_name" class="">Full Name</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+
+                        </div> <!-- end of row 1 -->
+                        <!-- Grid row -->
+
+                        <!-- Grid row -->
+                        <div class="row">
+                            <!--  Row 2  -->
+                            <!-- Grid column -->
+                            <div class="col-md-12">
+                                <!--  Row 2, Col 1  -->
+                                <div class="md-form mb-0">
+                                    <textarea type="text" id="form-contact-AboutMe" class="form-control md-textarea"
+                                        rows="3"></textarea>
+                                    <label for="form-contact-AboutMe">Summary or Profile (500 Char Max)</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+
+                        </div> <!--  End of Row 2  -->
+                        <!-- Grid row -->
+
+                        <div class="row">
+                            <!-- "Just a Divider Section" -->
+                            <div class="col-md-12">
+                                <hr>
+                                <p><b>Section 2: Important Contact Information</b></p>
+                            </div>
                         </div>
+
+                        <!-- Grid row -->
+                        <div class="row">
+                            <!-- row 3 -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-4">
+                                <!-- row 3, col 1 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-DoB" class="form-control">
+                                    <label for="form-contact-DoB" class="">Date of Birth (DD-MM-YYYY)</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-4">
+                                <!-- row 3, col 2 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-nationality" class="form-control">
+                                    <label for="form-contact-nationality" class="">Nationality</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-4">
+                                <!-- row 3, col 3 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-gender" class="form-control">
+                                    <label for="form-contact-gender" class="">Gender(Male,Female,Other)</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+
+                        </div> <!-- End of row 3 -->
+
+                        <div class="row">
+                            <!-- row 4 -->
+                            <!-- Grid column -->
+                            <div class="col-md-12">
+                                <!-- row 4, col 1 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-address" class="form-control">
+                                    <label for="form-contact-address" class="">Current Address </label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                        </div> <!-- end of row 4 -->
+
+                        <div class="row">
+                            <!-- row 5 -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-6">
+                                <!-- row 5, col 1 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-email" class="form-control">
+                                    <label for="form-contact-email" class="">E-mail</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-6">
+                                <!-- row 5, col 2 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-phone" class="form-control">
+                                    <label for="form-contact-phone" class="">Phone Number</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                        </div> <!-- end of row 5-->
+
+
+                        <div class="row">
+                            <!-- "Just a Divider Section" -->
+                            <div class="col-md-12">
+                                <hr>
+                                <p><b>Section 3: Educational Background</b></p>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <!-- row 6 -->
+                            <!-- Grid column -->
+                            <div class="col-md-6">
+                                <!-- row 6, col 1 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-degree" class="form-control">
+                                    <label for="form-contact-degree" class="">Highest Degree Obtained</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-md-6">
+                                <!-- row 6, col 2 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-university" class="form-control">
+                                    <label for="form-contact-university" class="">University</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                        </div> <!-- end of row 6 -->
+
+                        <div class="row">
+                            <!-- row 7-->
+                            <!-- Grid column -->
+                            <div class="col-md-12">
+                                <!-- row 7, col 1 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-certificates" class="form-control">
+                                    <label for="form-contact-certificates" class="">Other Certificates or Degrees</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                        </div> <!-- end of row 7 -->
+
+                        <div class="row">
+                            <!-- "Just a Divider Section" -->
+                            <div class="col-md-12">
+                                <hr>
+                                <p><b>Section 4: Work Experience</b></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- row 8 -->
+                            <!-- Grid column -->
+                            <div class="col-md-4">
+                                <!-- row 8, col 1 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-job1_employeer" class="form-control">
+                                    <label for="form-contact-job1_employeer" class="">Last Employeer</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-md-4">
+                                <!-- row 8, col 2 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-job1_title" class="form-control">
+                                    <label for="form-contact-job1_title" class="">Job Title</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-md-4">
+                                <!-- row 8, col 2 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-job1_duration" class="form-control">
+                                    <label for="form-contact-job1_duration" class="">Duration</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+
+                        </div> <!-- end of row 8 -->
+
+                        <div class="row">
+                            <!-- row 9 -->
+                            <!-- Grid column -->
+                            <div class="col-md-4">
+                                <!-- row 9, col 1 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-job2_employeer" class="form-control">
+                                    <label for="form-contact-job2_employeer" class="">Second to Last Employeer</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-md-4">
+                                <!-- row 9, col 2 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-job2_title" class="form-control">
+                                    <label for="form-contact-job2_title" class="">Job Title</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-md-4">
+                                <!-- row 9, col 2 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-job2_duration" class="form-control">
+                                    <label for="form-contact-job2_duration" class="">Duration</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+
+                        </div> <!-- end of row 9 -->
+
+                        <div class="row">
+                            <!-- "Just a Divider Section" -->
+                            <div class="col-md-12">
+                                <hr>
+                                <p><b>Section 5: Program Related Information</b></p>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <!-- row 10 -->
+                            <!-- Grid column -->
+                            <div class="col-md-12">
+                                <!-- row 10, col 1 -->
+                                <div class="md-form mb-0">
+
+                                    <select class="browser-default custom-select" id="form-contact-programs">
+                                        <option selected>Program you are applying for</option>
+                                        <option value="1">Computer Science (MSc)</option>
+                                        <option value="2">Computer Science (PhD)</option>
+                                        <option value="3">Mathematics (MSc)</option>
+                                        <option value="4">Mathematics (PhD)</option>
+                                        <option value="5">Computational Chemistry (MSc)</option>
+                                        <option value="6">Computational Chemistry (PhD)</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <!-- Grid column -->
+                        </div> <!-- end of row 10 -->
+
+                        <div class="row">
+                            <!-- row 11 -->
+                            <!-- Grid column -->
+                            <div class="col-md-12">
+                                <!-- row 11, col 1 -->
+                                <hr>
+                                <p> Skills: </p>
+                                <!-- Default inline 0-->
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                    <input type="checkbox" class="custom-control-input" id="physics">
+                                    <label class="custom-control-label" for="physics">Physics</label>
+                                </div>
+
+                                <!-- Default inline 1-->
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                    <input type="checkbox" class="custom-control-input" id="maths">
+                                    <label class="custom-control-label" for="maths">Mathematics</label>
+                                </div>
+
+                                <!-- Default inline 2-->
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                    <input type="checkbox" class="custom-control-input" id="python">
+                                    <label class="custom-control-label" for="python">Python</label>
+                                </div>
+
+                                <!-- Default inline 3-->
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                    <input type="checkbox" class="custom-control-input" id="Web_Development">
+                                    <label class="custom-control-label" for="Web_Development">Web Development</label>
+                                </div>
+
+                            </div>
+                            <!-- Grid column -->
+                        </div> <!-- end of row 11 -->
+
+
+                        <!--      <div class="row">  <!-- row N -->
+                        <!-- Grid column -->
+                        <!--          <div class="col-md-12">  <!-- row N, col M -->
+                        <!--              <div class="md-form mb-0">
+                                    <input type="text" id="form-contact-sample" class="form-control">
+                                    <label for="form-contact-sample" class="">Just a default field</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                        <!--      </div> <!-- end of row N -->
+
+                        <!-- Grid row -->
+
                     </div>
-                    <!-- Grid row -->
 
-                    <!-- Grid row -->
-                    <!-- <div class="row mb-3">
-                        <div class="col-md-1 col-2">
-                            <i class="fa fa-code fa-2x red-text"></i>
-                        </div>
-                        <div class="col-md-11 col-10">
-                            <h5 class="font-weight-bold mb-3">Technology</h5>
-                            <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing. Reprehenderit
-                                maiores nam, aperiam minima elit assumenda voluptate velit.</p>
-                        </div>
-                    </div> -->
-                    <!-- Grid row -->
-
-                    <!-- Grid row -->
-                    <!-- <div class="row">
-                        <div class="col-md-1 col-2">
-                            <i class="fa fa-money fa-2x deep-purple-text"></i>
-                        </div>
-                        <div class="col-md-11 col-10">
-                            <h5 class="font-weight-bold mb-3">Finance</h5>
-                            <p class="grey-text mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing.
-                                Reprehenderit maiores nam, aperiam minima elit assumenda voluptate velit.</p>
-                        </div>
-                    </div> -->
-                    <!-- Grid row -->
-
-                </div>
+                </div> <!-- End of Column B -->
                 <!-- Grid column -->
+            </div> <!-- End of Row A -->
+            <!-- Grid row -->
 
+            <!-- These are just the buttons to Submit or Save -->
+            <div class="align-center text-center m-3">
+                <a class="btn red" href="/home">Submit</a>
+                <a class="btn red" href="/home">Save for later</a>
+                <br />
             </div>
-            <!-- Grid row -->
 
-            <hr class="my-5">
-
-            <!-- Grid row -->
-            <div class="row">
-
-                <!-- Grid column -->
-                <div class="col-lg-7">
-
-                    <!-- Grid row -->
-                    <div class="row mb-3">
-                        <div class="col-md-1 col-2">
-                            <i class="fa fa-bar-chart fa-2x indigo-text mt-5"></i>
-                        </div>
-                        <div class="col-md-11 col-10">
-                            <h5 class="font-weight-bold mb-3 mt-5">Project 2</h5>
-                            <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing. Reprehenderit
-                                maiores nam, aperiam minima elit assumenda voluptate velit.</p>
-                        </div>
-                    </div>
-                    <!-- Grid row -->
-
-                    <!-- Grid row -->
-                    <!-- <div class="row mb-3">
-                        <div class="col-md-1 col-2">
-                            <i class="fa fa-music fa-2x pink-text"></i>
-                        </div>
-                        <div class="col-md-11 col-10">
-                            <h5 class="font-weight-bold mb-3">Entertainment</h5>
-                            <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing. Reprehenderit
-                                maiores nam, aperiam minima elit assumenda voluptate velit.</p>
-                        </div>
-                    </div> -->
-                    <!-- Grid row -->
-
-                    <!-- Grid row -->
-                    <!-- <div class="row mb-lg-0 mb-5">
-                        <div class="col-md-1 col-2">
-                            <i class="fa fa-smile-o fa-2x blue-text"></i>
-                        </div>
-                        <div class="col-md-11 col-10">
-                            <h5 class="font-weight-bold mb-3">Communication</h5>
-                            <p class="grey-text mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing.
-                                Reprehenderit maiores nam, aperiam minima elit assumenda voluptate velit.</p>
-                        </div>
-                    </div> -->
-                    <!-- Grid row -->
-
-                </div>
-                <!-- Grid column -->
-
-                <!-- Grid column -->
-                <div class="col-lg-5">
-                    <!--Image-->
-                    <img src="https://mdbootstrap.com/img/Photos/Others/images/82.jpg" alt="Sample project image" class="img-fluid rounded z-depth-1">
-                </div>
-                <!-- Grid column -->
-
-            </div>
-            <!-- Grid row -->
-
-        </section>
-        <!-- Projects section v.3 -->
+        </div>
 
     </main>
+
+    <br/>
     <% include ../partials/mdscripts %>
 </body>
 <footer>
