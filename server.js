@@ -12,7 +12,7 @@ app.listen(3331, function() {
 
 app.get('/', function(req, res){
     //response.sendFile('pages/home/index.html' , { root : __dirname});
-    res.render('pages/home');
+    res.render('pages/dashboard');
 });
 
 app.get('/login', function(req, res){
