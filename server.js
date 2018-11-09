@@ -37,22 +37,22 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     app.get('/login', function (req, res) {
         res.render('pages/login');
     });
-    app.get('/signup', function (rq, res) {
+    app.get('/signup', function (req, res) {
         res.render('pages/signup');
     });
-    app.get('/profile', function (rq, res) {
+    app.get('/profile', function (req, res) {
         res.render('pages/profile', {query : req.query});
     });
-    app.get('/projectCreation', function (rq, res) {
+    app.get('/projectCreation', function (req, res) {
         res.render('pages/projectCreation', {query : req.query});
     });
-    app.get('/dashboard', function (rq, res) {
+    app.get('/dashboard', function (req, res) {
         res.render('pages/dashboard', {query : req.query});
     });
-    app.get('/research', function (rq, res) {  // GET /research?id=5
+    app.get('/research', function (req, res) {  // GET /research?id=5
         res.render('pages/research', {query : req.query});
     });
-    app.get('/studentSurvey', function (rq, res) {
+    app.get('/studentSurvey', function (req, res) {
         res.render('pages/studentSurvey', {query : req.query});
     });
     //===========================================================
@@ -213,7 +213,7 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     });
     //==============================================================
 
-    
+
 
 });
 
