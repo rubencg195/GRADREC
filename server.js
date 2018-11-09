@@ -11,6 +11,11 @@ app.set('view engine', 'ejs');
 app.use(express.static('assets', { root: __dirname }));
 app.use(bodyParser.json());
 
+function handleError(res, stacktrace, msg) {
+    console.log(stacktrace, msg);
+    res.status(200).json(stacktrace+msg).end();
+}
+
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 // Connect to the database before starting the application server.
 var db;
@@ -94,6 +99,18 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
             }
         });
     });
+    app.put("/users/:id", function (req, res) {
+        var updateDoc = req.body;
+        delete updateDoc._id;
+
+        db.collection("users").updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to update User");
+            } else {
+                res.status(204).end();
+            }
+        });
+    });
     //===========================================================
 
 
@@ -130,6 +147,18 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
                 handleError(res, err.message, "Failed to create new contact.");
             } else {
                 res.status(201).json(doc.ops[0]);
+            }
+        });
+    });
+    app.put("/projects/:id", function (req, res) {
+        var updateDoc = req.body;
+        delete updateDoc._id;
+
+        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to update User");
+            } else {
+                res.status(204).end();
             }
         });
     });
@@ -172,6 +201,18 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
             }
         });
     });
+    app.put("/notifications/:id", function (req, res) {
+        var updateDoc = req.body;
+        delete updateDoc._id;
+
+        db.collection("notifications").updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to update User");
+            } else {
+                res.status(204).end();
+            }
+        });
+    });
     //===============================================================
 
 
@@ -208,6 +249,18 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
                 handleError(res, err.message, "Failed to create new contact.");
             } else {
                 res.status(201).json(doc.ops[0]);
+            }
+        });
+    });
+    app.put("/messages/:id", function (req, res) {
+        var updateDoc = req.body;
+        delete updateDoc._id;
+
+        db.collection("messages").updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to update User");
+            } else {
+                res.status(204).end();
             }
         });
     });
