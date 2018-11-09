@@ -21,51 +21,202 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     }
 
     // Save database object from the callback for reuse.
-    db = database;
+    db = database.db('gradrec');
     console.log("Database connection ready");
 
-    //  use res.render to load up an ejs view file
+
     app.listen(3331, function () {
         console.log("Listening on 3331");
     });
 
-    app.get('/', function (req, res) {
-        //response.sendFile('pages/home/index.html' , { root : __dirname});
-        res.render('pages/dashboard');
-    });
 
+    //=============WEB PAGES=======================================
+    app.get('/', function (req, res) {
+        res.render('pages/dashboard', {query : req.query});
+    });
     app.get('/login', function (req, res) {
         res.render('pages/login');
     });
-
     app.get('/signup', function (rq, res) {
         res.render('pages/signup');
     });
-
     app.get('/profile', function (rq, res) {
-        res.render('pages/profile');
+        res.render('pages/profile', {query : req.query});
     });
-
     app.get('/projectCreation', function (rq, res) {
-        res.render('pages/projectCreation');
+        res.render('pages/projectCreation', {query : req.query});
     });
-
     app.get('/dashboard', function (rq, res) {
-        res.render('pages/dashboard');
+        res.render('pages/dashboard', {query : req.query});
     });
-
-
-    app.get('/research', function (rq, res) {
-        res.render('pages/research');
+    app.get('/research', function (rq, res) {  // GET /research?id=5
+        res.render('pages/research', {query : req.query});
     });
-
     app.get('/studentSurvey', function (rq, res) {
-        res.render('pages/studentSurvey');
+        res.render('pages/studentSurvey', {query : req.query});
     });
+    //===========================================================
+
+
+
+    //=============USER DB ENDPOINTS==============================
+    app.get("/users", function (req, res) {
+        db.collection("users").find({}).toArray(function (err, docs) {
+            if (err) {
+                handleError(res, err.message, "Failed to get contacts.");
+            } else {
+                res.status(200).json(docs);
+            }
+        });
+    });
+    app.get("/users/:id", function (req, res) {
+        db.collection("users").findOne({ _id: new ObjectID(req.params.id) }, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to get contact");
+            } else {
+                res.status(200).json(doc);
+            }
+        });
+    });
+    app.post("/users", function (req, res) {
+        var newContact = req.body;
+        newContact.createDate = new Date();
+
+        if (!(req.body.firstName || req.body.lastName)) {
+            handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
+        }
+
+        db.collection("users").insertOne(newContact, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to create new contact.");
+            } else {
+                res.status(201).json(doc.ops[0]);
+            }
+        });
+    });
+    //===========================================================
+
+
+
+    //===============PROJECTS DB ENDPOINTS========================
+    app.get("/projects", function (req, res) {
+        db.collection("projects").find({}).toArray(function (err, docs) {
+            if (err) {
+                handleError(res, err.message, "Failed to get contacts.");
+            } else {
+                res.status(200).json(docs);
+            }
+        });
+    });
+    app.get("/projects/:id", function (req, res) {
+        db.collection("projects").findOne({ _id: new ObjectID(req.params.id) }, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to get contact");
+            } else {
+                res.status(200).json(doc);
+            }
+        });
+    });
+    app.post("/projects", function (req, res) {
+        var newContact = req.body;
+        newContact.createDate = new Date();
+
+        if (!(req.body.firstName || req.body.lastName)) {
+            handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
+        }
+
+        db.collection("projects").insertOne(newContact, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to create new contact.");
+            } else {
+                res.status(201).json(doc.ops[0]);
+            }
+        });
+    });
+    //===============================================================
+
+
+
+    //=================NOTIFICATIONS DB ENDPOINTS====================
+    app.get("/notifications", function (req, res) {
+        db.collection("notifications").find({}).toArray(function (err, docs) {
+            if (err) {
+                handleError(res, err.message, "Failed to get contacts.");
+            } else {
+                res.status(200).json(docs);
+            }
+        });
+    });
+    app.get("/notifications/:id", function (req, res) {
+        db.collection("notifications").findOne({ _id: new ObjectID(req.params.id) }, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to get contact");
+            } else {
+                res.status(200).json(doc);
+            }
+        });
+    });
+    app.post("/notifications", function (req, res) {
+        var newContact = req.body;
+        newContact.createDate = new Date();
+
+        if (!(req.body.firstName || req.body.lastName)) {
+            handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
+        }
+
+        db.collection("notifications").insertOne(newContact, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to create new contact.");
+            } else {
+                res.status(201).json(doc.ops[0]);
+            }
+        });
+    });
+    //===============================================================
+
+
+
+    //==================MESSAGES DB ENDPOINTS========================
+    app.get("/messages", function (req, res) {
+        db.collection("messages").find({}).toArray(function (err, docs) {
+            if (err) {
+                handleError(res, err.message, "Failed to get contacts.");
+            } else {
+                res.status(200).json(docs);
+            }
+        });
+    });
+    app.get("/messages/:id", function (req, res) {
+        db.collection("notifications").findOne({ _id: new ObjectID(req.params.id) }, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to get contact");
+            } else {
+                res.status(200).json(doc);
+            }
+        });
+    });
+    app.post("/messages", function (req, res) {
+        var newContact = req.body;
+        newContact.createDate = new Date();
+
+        if (!(req.body.firstName || req.body.lastName)) {
+            handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
+        }
+
+        db.collection("messages").insertOne(newContact, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to create new contact.");
+            } else {
+                res.status(201).json(doc.ops[0]);
+            }
+        });
+    });
+    //==============================================================
+
 
 });
 
 
 module.export = {
-  db : db
+    db: db
 }
