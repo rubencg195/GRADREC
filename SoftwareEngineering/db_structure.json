@@ -1,0 +1,51 @@
+{
+  "StudentName":"FirstName M LastName",
+  "email":"FMLastName@memorialU.ca",
+  "StudentID":"MUN12345678GR",
+  "Summary":"I just want to study at MUN",
+  "DateOfBirth":"DD-MM-YYYY",
+  "Nationality":"Martian",
+  "Gender":"Apache Attack Helicopter",
+  "CurrentAddress":"123 Sesame St., St. John's, NL, Canada",
+  "PhoneNumber":"123-456-7890",
+  "HighestDegree":"BCs in Computer Science",
+  "University":"MUN",
+  "OtherCertificates":"CCNA,RHCSA,etc.",
+  "WorkExperience": [
+      {"Employer":"A Great Company",
+      "JobTitle":"Developer",
+      "Duration":"6 Months"},
+      {"Employer":"A Good Company",
+      "JobTitle":"Entry Level Developer",
+      "Duration":"6 Months"}
+      ],
+  "Program":"MSc in Computer Science",
+  "Skills":["JavaScript","HTML","CSS"],
+  "Project":"This would be null until the student got into a project",
+  "Supervisor":"It would the Project Manager of the Project"
+}
+{
+  "ProjectTitle":"Human Teleportation",
+  "Abstract":"We will teleport humans to the moon",
+  "ProjectManager":"Someone SuperSmart",
+  "Collaborators": ["Professor A","Professor B"],
+  "MSc_PhD":true,
+  "Program":"Computer Science",
+  "ResearchArea":"Impossible Physics",
+  "AvailableSpots":3,
+  "FinancialAid":1200,
+  "Skills":["JavaScript","HTML","CSS"],
+  "Comments":"
+  * The available options for skills here should also be the availbe options for students to choose.
+  * MSc_PhD, since there are only 2 possible values, I guess it can be treated as a boolean, MSc=True, PhD=false, or viceversa
+  * The option to upload documents should probably be available somewhere.
+  ",
+  "Est_DueDate":"DD-MM-YYYY",
+  "Real_DueDate":"DD-MM-YYYY",
+  "ProjectFinished":false,
+  "Conclusion":"We discovered that teleporting people was fun",
+  "Results":"30 Imaginary people were teleported successfully",
+  "SpecialThanks":"Special thanks to Lucas, Ruben and Jessie, as I've had fun working with you guys this semester :)",
+  "Participants":["Lucas","Jessie","Ruben","Dasaed"],
+  "Attachments":"__dirname/../../../../projectFiles/*"
+}
