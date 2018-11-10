@@ -27,8 +27,7 @@
                 <!--Title-->
                 <h3 class="card-title mt-2 pb-4"><strong id="titleName">User #1</strong></h3>
                 <!--Text-->
-                <p class="card-text">This will be the page for detailed individual project information. It should only
-                    be accessed after a student is accepted.
+                <p class="card-text">Welcome to GradRec
                 </p>
                 <!-- <a href="#" class="btn red btn-rounded">Button</a> -->
             </div>
@@ -73,11 +72,20 @@
                             <!-- beginning of row 1  -->
 
                             <!-- Grid column -->
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <!-- row 1, col 1 -->
                                 <div class="md-form mb-0">
-                                    <input type="text" placeholder="First Name" id="form-contact-full_name" class="form-control">
-                                    <label for="form-contact-full_name" class="">Full Name</label>
+                                    <input type="text" placeholder="First Name" id="form-contact-firstName" class="form-control">
+                                    <label for="form-contact-firstName" class="">First Name</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-md-6">
+                                <!-- row 1, col 1 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" placeholder="First Name" id="form-contact-lastName" class="form-control">
+                                    <label for="form-contact-lastName" class="">Last Name</label>
                                 </div>
                             </div>
                             <!-- Grid column -->
@@ -430,30 +438,30 @@
                         sessionStorage.setItem('curentUser', JSON.stringify(data[0]));
 
                         var currUser = data[0];
-                        var _name = $('input#form-contact-full_name');
-                        var _lastname = $('input#defaultRegisterFormLastName');
+                        var _name = $('input#form-contact-firstName'); //variables en el html
+                        var _lastname = $('input#form-contact-lastName');
                         var _email = $('input#defaultRegisterFormEmail');
                         var _password = $('input#defaultRegisterFormPassword');
-            
-            
-            
-                        _name.val(currUser.username);
-            
+
+
+
+                        _name.val(currUser.username); //cambiamos los valores del html con los que estan en la base de datos
+
                         $("img#userImage").attr("src", currUser.imgURL);
                         $("#titleName").html(currUser.username);
-            
-            
+
+
                         $("#submitBtn").click(function (event) {
                             event.preventDefault();
-            
+
                             if (!_name || !_lastname || !_email || !_password) {
                                 console.log("EMPYT");
                                 $("p#errorSpace").html("Fill up the fields");
                                 return;
                             }
-            
+
                             print("ENVIANDO ", _name, _lastname, _email, _password);
-            
+
                             return;
                             $.ajax
                                 ({
@@ -485,7 +493,7 @@
                                                         sessionStorage.setItem('curentUser', JSON.stringify(user));
                                                         window.currUser = sessionStorage.getItem('curentUser');
                                                         console.log("Retrieving from User Local Session ", JSON.parse(currUser));
-            
+
                                                         window.location.href = '../';
                                                     },
                                                     error: function (request, status, error) {
@@ -493,8 +501,8 @@
                                                     }
                                                 });
                                         }
-            
-            
+
+
                                     }
                                 });
                         });
