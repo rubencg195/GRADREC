@@ -17,7 +17,7 @@
 
             <!--Card image-->
             <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(134).jpg" class="img-fluid" alt="">
+                <img id="projectImage" src="https://mdbootstrap.com/img/Photos/Slides/img%20(134).jpg" class="img-fluid" alt="">
                 <a href="#">
                     <div class="mask rgba-white-slight"></div>
                 </a>
@@ -29,6 +29,7 @@
                 <h3 class="card-title mt-2 pb-4"><strong id="titleDiv">PROJECT NOT FOUND</strong></h3>
                 <!--Text-->
                 <p class="card-text" id="abstractDiv" ></p>
+                <p class="card-text" >Financial Aid Available: <span id="financialAid">0</span></p>
                 <a href="#" class="btn red btn-rounded">APPLY</a>
                 <a class="btn grey btn-rounded white-text" id="sendMsgBtn">Send a Message</a>
             </div>
@@ -277,6 +278,9 @@
                         //});
                         $("#titleDiv").html(project.title);
                         $("#abstractDiv").html(project.abstract);
+                        $("#financialAid").html(project.financialAid);
+                        $("#projectImage").attr("src", project.imgURL);
+
                     },
                     error: function (request, status, error) {
                         $("p#errorSpace").html(request.responseText);
