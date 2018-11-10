@@ -117,7 +117,7 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
             if (err) {
                 handleError(res, err.message, "Failed to update User");
             } else {
-                res.status(204).end();
+                res.status(201).json(doc.ops[0]);
             }
         });
     });
@@ -162,14 +162,12 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
         });
     });
     app.put("/projects/:id", function (req, res) {
-        var updateDoc = req.body;
-        delete updateDoc._id;
-
-        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, function (err, doc) {
+        console.log("Update projects", req.body);
+        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, {  $set: req.body }, function (err, doc) {
             if (err) {
-                handleError(res, err.message, "Failed to update User");
+                handleError(res, err.message, "Failed to update projects");
             } else {
-                res.status(204).end();
+                res.status(201).json(doc);
             }
         });
     });
@@ -284,6 +282,8 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     });
 
 });
+
+
 
 
 module.export = {

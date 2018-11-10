@@ -63,7 +63,6 @@
                                 <div class="col-sm-4">
                                     <div class="md-form mb-0">
                                         <select class="browser-default custom-select" id="form-contact-program">
-                                            <option selected></option>
                                             <option value="1">Computer Science/Engineering</option>
                                             <option value="2">Computational chemistry </option>
                                             <option value="3">Physics</option>
@@ -127,7 +126,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><br/>
+                            </div><br />
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="md-form mb-0">
@@ -160,21 +159,14 @@
                                         <label for="form-contact-actual_due_date" class="">Actual Due Date (dd-mm-yyyy)</label>
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
-                                    <div class="md-form mb-0">
-                                        <p>Is the Project finished?</p>
+                                <div class="col-sm-4">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="form-project-finished">
+                                        <label class="custom-control-label" for="form-project-finished">Is the Project
+                                            Finished</label>
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
-                                    <div class="md-form mb-0">
-                                        <select class="mdb-select md-form">
-                                            <option value="" disabled selected>(Yes/No)</option>
-                                            <option value="1">Yes</option>
-                                            <option value="2">No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div> 
+                            </div>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="md-form mb-0">
@@ -190,7 +182,7 @@
                                         <label for="form-contact-results">Results</label>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="md-form mb-0">
@@ -206,15 +198,15 @@
                                             have contributed to the system </p>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="align-center text-center m-3">
-                    <a class="btn red" href="/home">Save</a>
-                    <a class="btn red" href="/home">Delete</a>
-                    <a class="btn red" href="/home">End Project</a>
-                    <a class="btn red" href="/home">Save as Draft</a>
+                    <a class="btn red white-text" href="/home">Save</a>
+                    <a class="btn red white-text" href="/home">Delete</a>
+                    <a class="btn red white-text" href="/home">End Project</a>
+                    <a class="btn red white-text" id="updateBtn">Save as Draft</a>
                     <br />
                 </div>
             </div>
@@ -248,118 +240,127 @@
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
-
         $("#sendMsgBtn").click(function () {
             $("html, body").animate({ scrollTop: $("#contactSection").offset().top }, 500);
             return true;
         });
+        var projectId = getParameterByName('id');
+        $.ajax
+            ({
+                url: `/projects/${projectId}`,
+                data: {},
+                type: 'get',
+                success: function (data) {
+                    console.log("Projects GET Response", data);
+                    window.currProj = data;
+                    if (!window.currProj) {
+                        console.log("Project not exist");
+                    } else {
+                        var currProj = window.currProj;
+                        var projTitle = $("#form-contact-project_title");
+                        var projAbstract = $("#form-contact-Abstract");
+                        var projImg = $("#form-contact-project_img");
+                        var projResArea = $("#form-contact-specific_research_area");
+                        var projStudent = $("#form-contact-num_of_students");
+                        var projAid = $("#form-contact-financial_aid");
+                        var projComments = $("#form-contact-additional_comments");
+                        var projThanks = $("#form-contact-thanks");
+                        var projConcl = $("#form-contact-conclusion");
+                        var projRes = $("#form-contact-results");
+                        var projStart = $("#form-contact-est_duedate");
+                        var projEnd = $("#form-contact-actual_due_date");
+                        var _english = $('#english');
+                        var _maths = $('#maths');
+                        var _comp = $('#comp');
+                        var _music = $('#music');
+                        var _noSkills = $('#noSkills');
+                        var isPHD = $("#form-contact-msc_or_phd");
+                        var _program = $("#form-contact-program");
+                        var _programFinished = $("#form-project-finished");
 
-        $("#updateBtn").click(function () {
+                        projTitle.val(currProj.title);
+                        projAbstract.val(currProj.abstract);
+                        projImg.val(currProj.imgURL);
+                        projResArea.val(currProj.researchArea);
+                        projStudent.val(currProj.availableSpots);
+                        projAid.val(currProj.financialAid);
+                        projComments.val(currProj.comments);
+                        projThanks.val(currProj.specialThanks);
+                        projConcl.val(currProj.conclusion);
+                        projRes.val(currProj.results);
+                        projStart.val( currProj.startDate);
+                        projEnd.val( currProj.endDate);
+                        _english.prop('checked',         (!currProj.skills) ? false : JSON.parse(currProj.skills.english));
+                        _maths.prop('checked  ',         (!currProj.skills) ? false : JSON.parse(currProj.skills.maths));
+                        _comp.prop('checked',            (!currProj.skills) ? false : JSON.parse(currProj.skills.comp));
+                        _music.prop('checked',           (!currProj.skills) ? false : JSON.parse(currProj.skills.music));
+                        _noSkills.prop('checked',        (!currProj.skills) ? false : JSON.parse(currProj.skills.noSkills));
+                        _programFinished.prop('checked', JSON.parse(currProj.finished));
+                        isPHD.val( (JSON.parse(currProj.PhD)) ? 1 : 2);
+                        if ((currProj.program) == "Computer Science/Engineering") {
+                            _program.val(1);
+                        } else if ((currProj.program) == "Computational chemistry") {
+                            _program.val(2);
+                        } else if ((currProj.program) == "Physics") {
+                            _program.val(3);
+                        } else if ((currProj.program) == "Mathematics") {
+                            _program.val(4);
+                        } else if ((currProj.program) == "Marine Biology") {
+                            _program.val(5);
+                        }
+                    }
+                    $(document).ready(function () {
+                        $("#updateBtn").click(function () {
 
-            if (!projectId) {
-                console.log("Project not exist");
-                window.location.href = '/';
-            } else {
-                $(document).ready(function () {
-                    console.log("ready!");
-                    $.ajax
-                        ({
-                            url: `/projects/${projectId}`,
-                            data: {},
-                            type: 'get',
-                            success: function (project) {
-                                console.log("Projects GET Response", project);
-                                window.project = project;
-                                $.ajax
-                                    ({
-                                        url: `/users/${project.managerId}`,
-                                        data: {},
-                                        type: 'get',
-                                        success: function (manager) {
-                                            console.log("Projects GET Response", project);
-                                            window.project.manager = manager;
-
-                                            $("#ProjectManager").html(manager.username);
-                                            $("#PMSummary").html(manager.summary);
-
-                                        },
-                                        error: function (request, status, error) {
-                                            $("p#errorSpace").html(request.responseText);
-                                        }
-                                    });
-                                $("#titleDiv").html(project.title);
-                                $("#abstractDiv").html(project.abstract);
-                                $("#projectImage").attr("src", project.imgURL);
-                                for (i = 0; i < project.skills.length; i++) {
-                                    var skillList = document.getElementById(wantedSkills);
-                                    $("#wantedSkills").append("<li>" + project.skills[i] + "</li>");
+                            var newProjData = {
+                                "title": projTitle.val(),
+                                "abstract": projAbstract.val(),
+                                "imgURL": projImg.val(),
+                                "managerId": currUser._id,
+                                "collaborators": [],
+                                "PhD": isPHD.val() == 1 ? true : false,
+                                "program": $("#form-contact-program option:selected").text(),
+                                "researchArea": projResArea.val(),
+                                "availableSpots": projStudent.val(),
+                                "financialAid": projAid.val(),
+                                "comments": projComments.val(),
+                                "finished": _programFinished.is(':checked'),
+                                "conclusion": projConcl.val(),
+                                "results": projRes.val(),
+                                "specialThanks": projThanks.val(),
+                                "participants": [],
+                                "startDate": projStart.val(),
+                                "endDate": projEnd.val(),
+                                "notifications": [],
+                                "skills": {
+                                    "english": _english.is(':checked'),
+                                    "maths": _maths.is(':checked'),
+                                    "comp": _comp.is(':checked'),
+                                    "music": _music.is(':checked'),
+                                    "noSkills": _noSkills.is(':checked')
                                 }
-                                $("#projectComments").html(project.comments);
-                                $("#numStudents").html(project.availableSpots);
-                                $("#financialAid").html(project.financialAid);
-                                if (project.managerId === window.currUser._id) {
-                                    $("#introSection").append($(`<a class="btn grey lighten-1 btn-rounded white-text" onclick="goTo('/projectCreation?id=${project._id}')" >Edit Project</a>`));
-                                }
-
-
-                            },
-                            error: function (request, status, error) {
-                                $("p#errorSpace").html(request.responseText);
                             }
+                            console.log("UPDATING PROJECT!", newProjData);
+                            $.ajax
+                                ({
+                                    url: `/projects/${projectId}`,
+                                    data: newProjData,
+                                    type: 'put',
+                                    success: function (newProject) {
+                                        console.log("SUCCESS", newProject);
+                                    },
+                                    error: function (request, status, error) {
+                                        $("p#errorSpace").html(request.responseText);
+                                    }
+                                });
                         });
-                });
-            }
-        });
+                    });
+                },
+                error: function (request, status, error) {
+                    $("p#errorSpace").html(request.responseText);
+                }
+            });
 
-        //var projectId = getParameterByName('id');
-        window.currProj = sessionStorage.getItem('curentProj');
-
-        if (!window.currProj) {
-            console.log("Project not exist");
-        } else {
-            window.currProj = JSON.parse(window.currProj);
-            var currProj = window.currProj;
-            console.log("Edit Project", currProj);
-
-            var projTitle = $("#form-contact-project_title");
-            projTitle.val(currProj.title);
-
-            var projAbstract = $("#form-contact-Abstract");
-            projAbstract.val(currProj.abstract);
-
-            var projImg = $("#form-contact-project_img");
-            projImg.val(currProj.imgURL);
-
-            var projResArea = $("#form-contact-specific_research_area");
-            projResArea.val(currProj.researchArea);
-
-            var projStudent = $("#form-contact-num_of_students");
-            projStudent.val(currProj.availableSpots);
-
-            var projAid = $("#form-contact-financial_aid");
-            projAid.val(currProj.financialAid);
-
-            var projAid = $("#form-contact-additional_comments");
-            projAid.val(currProj.comments);
-
-            var projThanks = $("#form-contact-thanks");
-            projThanks.val(currProj.specialThanks);
-
-            var projConcl = $("#form-contact-conclusion");
-            projConcl.val(currProj.conclusion);
-
-            var projRes = $("#form-contact-results");
-            projRes.val(currProj.results);
-
-            var projStart = $("#form-contact-est_duedate");
-            projStart.val(new Date(currProj.startDate).toLocaleDateString("en-US"));
-
-            var projEnd = $("#form-contact-actual_due_date");
-            projEnd.val(new Date(currProj.endDate).toLocaleDateString("en-US"));
-
-
-
-        }
 
     </script>
     <script>

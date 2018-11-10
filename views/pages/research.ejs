@@ -298,9 +298,12 @@
                             $("#titleDiv").html(project.title);
                             $("#abstractDiv").html(project.abstract);
                             $("#projectImage").attr("src",project.imgURL);
-                            for (i=0; i<project.skills.length; i++){
+                            for ( var key in  project.skills ){
                                var skillList = document.getElementById(wantedSkills);
-                               $("#wantedSkills").append("<li>"+project.skills[i]+"</li>");
+                               console.log(project.skills[key], key );
+                               if(project.skills[key] == true ){
+                                   $("#wantedSkills").append("<li>"+key+"</li>");
+                               }
                             }
                             $("#projectComments").html(project.comments);
                             $("#numStudents").html(project.availableSpots);
