@@ -249,7 +249,8 @@
                             <div class="col-md-4">
                                 <!-- row 8, col 1 -->
                                 <div class="md-form mb-0">
-                                    <input type="text" id="form-contact-job1_employeer" class="form-control" placeholder="Last Employeer">
+                                    <input type="text" id="form-contact-job1_employeer" class="form-control"
+                                        placeholder="Last Employeer">
                                     <label for="form-contact-job1_employeer" class="">Last Employeer</label>
                                 </div>
                             </div>
@@ -281,7 +282,8 @@
                             <div class="col-md-4">
                                 <!-- row 9, col 1 -->
                                 <div class="md-form mb-0">
-                                    <input type="text" id="form-contact-job2_employeer" class="form-control" placeholder="Second to Last Employeer">
+                                    <input type="text" id="form-contact-job2_employeer" class="form-control"
+                                        placeholder="Second to Last Employeer">
                                     <label for="form-contact-job2_employeer2" class="">Second to Last Employeer</label>
                                 </div>
                             </div>
@@ -315,45 +317,50 @@
                             </div>
                         </div>
 
-                        <div class="row"> <!-- row 10 - Program and Field of Study -->
+                        <div class="row">
+                            <!-- row 10 - Program and Field of Study -->
 
-                          <!-- Grid column -->
-                          <div class="col-sm-2"> <!-- row 10, col 1 -->
-                              <div class="md-form mb-0">
+                            <!-- Grid column -->
+                            <div class="col-sm-2">
+                                <!-- row 10, col 1 -->
+                                <div class="md-form mb-0">
                                     <p>MSc or PhD:</p>
-                              </div>
-                          </div>
-                          <!-- Grid column -->
-                          <!-- Grid column -->
-                          <div class="col-sm-1"> <!-- row 10, col 2 -->
-                              <div class="md-form mb-0">
-                                <select class="browser-default custom-select" id="form-contact-msc_or_phd">
-                                <option selected value="1">MSc</option>
-                                <option value="2">PhD</option>
-                                </select>
-                              </div>
-                          </div>
-                          <!-- Grid column -->
-                          <!-- Grid column -->
-                          <div class="col-sm-2"> <!-- row 10, col 3 -->
-                              <div class="md-form mb-0">
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-sm-1">
+                                <!-- row 10, col 2 -->
+                                <div class="md-form mb-0">
+                                    <select class="browser-default custom-select" id="form-contact-msc_or_phd">
+                                        <option selected value="1">MSc</option>
+                                        <option value="2">PhD</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-sm-2">
+                                <!-- row 10, col 3 -->
+                                <div class="md-form mb-0">
                                     Program:
-                              </div>
-                          </div>
-                          <!-- Grid column -->
-                          <!-- Grid column -->
-                          <div class="col-sm-4"> <!-- row 10, col 4 -->
-                              <div class="md-form mb-0">
-                                <select class="browser-default custom-select" id="form-contact-program">
-                                <option selected  value="1">Computer Science/Engineering</option>
-                                <option value="2">Computational chemistry </option>
-                                <option value="3">Physics</option>
-                                <option value="4">Mathematics</option>
-                                <option value="5">Marine Biology</option>
-                                </select>
-                              </div>
-                          </div>
-                          <!-- Grid column -->
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-sm-4">
+                                <!-- row 10, col 4 -->
+                                <div class="md-form mb-0">
+                                    <select class="browser-default custom-select" id="form-contact-program">
+                                        <option selected value="1">Computer Science/Engineering</option>
+                                        <option value="2">Computational chemistry </option>
+                                        <option value="3">Physics</option>
+                                        <option value="4">Mathematics</option>
+                                        <option value="5">Marine Biology</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
                         </div> <!-- end of row 10 -->
 
                         <div class="row">
@@ -420,10 +427,11 @@
             <!-- These are just the buttons to Submit or Save -->
             <div class="align-center text-center m-3">
                 <a class="btn red" href="/home">Submit</a>
-                <a class="btn red" href="/home">Save for later</a>
+                <a class="btn red" href="/home" id="saveLaterBtn">Save for later</a>
                 <br />
             </div>
 
+            <p class="red-text" id="errorSpace"></p>
         </div>
 
     </main>
@@ -456,77 +464,76 @@
                         console.log("Saving User Local Session ", data[0]);
                         sessionStorage.setItem('curentUser', JSON.stringify(data[0]));
                         var currUser = data[0];
+
                         var _username = $('strong#username'); //username
-                        _username.html(currUser.username); //cambiamos los valores del html con los que estan en la base de datos
                         var _firstname = $('input#form-contact-firstName'); //firstName
-                         _firstname.val(currUser.firstName);
                         var _lastname = $('input#form-contact-lastName'); //lastName
-                        _lastname.val(currUser.lastName);
                         var _summary = $('textarea#form-contact-AboutMe'); //summary
-                        _summary.val(currUser.summary);
                         var _email = $('input#form-contact-email'); //email
-                        _email.val(currUser.email);
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         var _dob = $('input#form-contact-DoB'); //dob
-                        _dob.val( new Date(currUser.dob).toLocaleDateString("en-US"));
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         var _nationality = $('input#form-contact-nationality'); //nationality
-                        _nationality.val(currUser.nationality);
                         var _gender = $('input#form-contact-gender'); //gender
-                        _gender.val(currUser.gender);
                         var _address = $('input#form-contact-address'); //address
-                        _address.val(currUser.address);
                         var _phone = $('input#form-contact-phone'); //phone
-                        _phone.val(currUser.phone);
                         var _degree = $('input#form-contact-degree'); //degree
-                        _degree.val(currUser.degree);
                         var _university = $('input#form-contact-university'); //university
-                        _university.val(currUser.university);
                         var _certificates = $('input#form-contact-certificates'); //otherCert
-                        _certificates.val(currUser.otherCert);
                         var _employer1 = $('input#form-contact-job1_employeer'); //employer1
-                        _employer1.val(currUser.employer1);
                         var _title1 = $('input#form-contact-job1_title'); //title1
-                        _title1.val(currUser.title1);
                         var _duration1 = $('input#form-contact-job1_duration'); //duration1
-                        _duration1.val(currUser.duration1);
                         var _employer2 = $('input#form-contact-job2_employeer'); //employer2
-                        _employer2.val(currUser.employer2);
                         var _title2 = $('input#form-contact-job2_title'); //title2
-                        _title2.val(currUser.title2);
                         var _duration2 = $('input#form-contact-job2_duration'); //duration2
+                        var _msc_or_phd = $('#form-contact-msc_or_phd'); //PhD
+                        var _english = $('#english');
+                        var _maths = $('#maths');
+                        var _comp = $('#comp');
+                        var _music = $('#music');
+                        var _noSkills = $('#noSkills');
+                        var _program = $('#form-contact-program'); //program
+
+                        _username.html(currUser.username); //cambiamos los valores del html con los que estan en la base de datos
+                        _firstname.val(currUser.firstName);
+                        _lastname.val(currUser.lastName);
+                        _summary.val(currUser.summary);
+                        _email.val(currUser.email);
+                        _dob.val(new Date(currUser.dob).toLocaleDateString("en-US"));
+                        _nationality.val(currUser.nationality);
+                        _gender.val(currUser.gender);
+                        _address.val(currUser.address);
+                        _phone.val(currUser.phone);
+                        _degree.val(currUser.degree);
+                        _university.val(currUser.university);
+                        _certificates.val(currUser.otherCert);
+                        _employer1.val(currUser.employer1);
+                        _title1.val(currUser.title1);
+                        _duration1.val(currUser.duration1);
+                        _employer2.val(currUser.employer2);
+                        _title2.val(currUser.title2);
                         _duration2.val(currUser.duration2);
 
-                        //////////////////////////////////////////////////////////
-                        var _msc_or_phd = $('#form-contact-msc_or_phd'); //PhD
-                        if ( (currUser.PhD) == true) {
+                        if ((currUser.PhD) == true) {
                             _msc_or_phd.val(2);
-                         }else{
-                           _msc_or_phd.val(1);
-                         };
-                         var _program = $('#form-contact-program'); //program
-                         if ( (currUser.program) == "Computer Science/Engineering") {
-                             _program.val(1);
-                          }else if ((currUser.program) == "Computational chemistry"){
+                        } else {
+                            _msc_or_phd.val(1);
+                        };
+                        if ((currUser.program) == "Computer Science/Engineering") {
+                            _program.val(1);
+                        } else if ((currUser.program) == "Computational chemistry") {
                             _program.val(2);
-                          }else if ((currUser.program) == "Physics"){
+                        } else if ((currUser.program) == "Physics") {
                             _program.val(3);
-                          }else if ((currUser.program) == "Mathematics"){
+                        } else if ((currUser.program) == "Mathematics") {
                             _program.val(4);
-                          }else if ((currUser.program) == "Marine Biology"){
+                        } else if ((currUser.program) == "Marine Biology") {
                             _program.val(5);
-                          }
+                        }
 
-                         /////////////////////////////////////////////////////////
-                        var _english = $('#english');
+                        /////////////////////////////////////////////////////////
                         _english.prop('checked', currUser.skills.english);
-                        var _maths = $('#maths');
                         _maths.prop('checked', currUser.skills.maths);
-                        var _comp = $('#comp');
                         _comp.prop('checked', currUser.skills.comp);
-                        var _music = $('#music');
                         _music.prop('checked', currUser.skills.music);
-                        var _noSkills = $('#noSkills');
                         _noSkills.prop('checked', currUser.skills.noSkills);
                         //_username.html(currUser.username); //cambiamos los valores del html con los que estan en la base de datos
                         $("img#userImage").attr("src", currUser.imgURL);
@@ -534,61 +541,64 @@
                         // $("#form-contact-firstName").val(currUser.firstName);
 
 
-                        $("#submitBtn").click(function (event) {
+                        $("#saveLaterBtn").click(function (event) {
                             event.preventDefault();
-                            if (!_name || !_lastname || !_email || !_password) {
-                                console.log("EMPYT");
-                                $("p#errorSpace").html("Fill up the fields");
-                                return;
-                            }
-                            print("ENVIANDO ", _name, _lastname, _email, _password);
-
-
-                            //QUITAAR
-                            return;
-
-
+                            //if (!_name || !_lastname || !_email || !_password) {
+                            //    console.log("EMPYT");
+                            //    $("p#errorSpace").html("Fill up the fields");
+                            //    return;
+                            //}
+                            console.log("ENVIANDO ");
 
                             $.ajax
                                 ({
-                                    url: '/users',
-                                    data: {
-                                        email: _email
+                                    url: `/users/${currUser._id}`,
+                                    data: { 
+                                    username: "admin", 
+                                    email: "admin@mun.ca", 
+                                    firstName: "Super", 
+                                    lastName: "Admin", 
+                                    password: "admin", 
+                                    imgURL: "https://krourke.org/img/md_avatar_wizard.svg", 
+                                    name: "Adrian", 
+                                    isProf: true, 
+                                    surveyDone: false, 
+                                    summary: "I am good professor with multiple PhDs and a passion for science and technology. I like to work with students and give them challenging and interesting assignments that will test and improve their cognitive and technical skills, all while having fun and learning to be better professionals. ", 
+                                    dob: "1994-12-22T03:30:00.000Z", 
+                                    nationality: "Martian", 
+                                    gender: "apache attack helicopter", 
+                                    address: "123 Sesame Street, St. John's NL, Canada", 
+                                    phone: "7091234567", 
+                                    degree: "PhD. in Advanced Robotics", 
+                                    university: "University of Mars", 
+                                    otherCert: "MSc in Computer Science, CCNA, RHCSA, AJAX, etc.", 
+                                    employer1: "MUN", "title1": "Tenured Professor", 
+                                    duration1: "2 years", 
+                                    employer2: "MUN", 
+                                    title2: "Assistant Professor", 
+                                    duration2: "2 years", 
+                                    PhD: true, 
+                                    program: "Physics", 
+                                    skills: { 
+                                        "english": false, 
+                                        "maths": true, 
+                                        "comp": true, 
+                                        "music": false, 
+                                        "noSkills": false
+                                    }},
+                                    type: 'put',
+                                    success: function (user) {
+                                        console.log("USER SAVED", user);
+                                        alert("USER SAVED");
+                                        //window.location.href = '/';
                                     },
-                                    type: 'get',
-                                    success: function (data) {
-                                        if (data.length > 0) {
-                                            $("p#errorSpace").html(`User with email ${_email} Already Exists`);
-                                        } else {
-                                            $.ajax
-                                                ({
-                                                    url: '/users',
-                                                    data: {
-                                                        username: _name + " " + _lastname,
-                                                        name: _name,
-                                                        lastname: _lastname,
-                                                        email: _email,
-                                                        password: _password,
-                                                        isProf: false,
-                                                        surveyDone: false,
-                                                    },
-                                                    type: 'post',
-                                                    success: function (user) {
-                                                        console.log("Projects GET Response", user);
-                                                        console.log("Saving User Local Session ", user);
-                                                        sessionStorage.setItem('curentUser', JSON.stringify(user));
-                                                        window.currUser = sessionStorage.getItem('curentUser');
-                                                        console.log("Retrieving from User Local Session ", JSON.parse(currUser));
-
-                                                        window.location.href = '/';
-                                                    },
-                                                    error: function (request, status, error) {
-                                                        $("p#errorSpace").html(request.responseText);
-                                                    }
-                                                });
-                                        }
+                                    error: function (request, status, error) {
+                                        $("p#errorSpace").html(request.responseText);
                                     }
                                 });
+
+
+
                         });
                     }
                 });
