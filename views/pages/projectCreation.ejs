@@ -8,293 +8,217 @@
 </head>
 
 <body style="background-color: rgb(230, 230, 230);">
-    <!-- <header>
-        < include ../partials/header %>
-    </header> -->
     <% include ../partials/navbar %>
     <main class="container">
-        <!-- Section: Contact v.3 -->
         <section class="contact-section my-5">
-
-            <!-- Form with header -->
-            <div class="card"> <!-- The "box" containing the questionaire -->
-
-                <!-- Grid row -->
+            <div class="card">
                 <div class="row">
-
-                    <!-- Grid column -->
                     <div class="col-lg-12">
-
-                        <div class="card-body form"> <!-- This is where the border is created -->
-
-                            <!-- Header -->
+                        <div class="card-body form">
                             <h3 class="mt-4"><i class="fa fa-envelope pr-2"></i>Create New/Edit Project:</h3>
-
-                            <div class="row"> <!-- row 1 - project title -->
-                                <!-- Grid column -->
-                                <div class="col-md-12"> <!-- row 1, col 1 -->
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="md-form mb-0">
-                                        <input type="text" id="form-contact-project_title" class="form-control">
+                                        <input placeholder="Title" type="text" id="form-contact-project_title" class="form-control">
                                         <label for="form-contact-project_title" class="">Project Title</label>
                                     </div>
                                 </div>
-                                <!-- Grid column -->
                             </div>
-
-                            <div class="row"> <!-- row 2 - project description -->
-
-                                <!-- Grid column -->
-                                <div class="col-md-12"> <!-- row 2, col 1 -->
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="md-form mb-0">
                                         <textarea type="text" id="form-contact-Abstract" class="form-control md-textarea"
-                                            rows="3"></textarea>
+                                            rows="8"></textarea>
                                         <label for="form-contact-Abstract">Project Description (Abstract)</label>
                                     </div>
                                 </div>
-                                <!-- Grid column -->
-
                             </div>
-
-                            <div class="row"> <!-- row 2.1 - project Image -->
-                                <!-- Grid column -->
-                                <div class="col-md-12"> <!-- row 2.1, col 1 -->
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="md-form mb-0">
-                                        <input type="text" id="form-contact-project_img" class="form-control">
+                                        <input placeholder="http://" type="text" id="form-contact-project_img" class="form-control">
                                         <label for="form-contact-project_img" class="">Image URL</label>
                                     </div>
                                 </div>
-                                <!-- Grid column -->
                             </div>
-
-                            <div class="row"> <!-- row 3 - PM and Collaborators -->
-                                <div class="col-md-6"> <!-- row 3, col 1 -->
+                            <div class="row">
+                                <div class="col-sm-3">
                                     <div class="md-form mb-0">
-                                      <select class="browser-default custom-select" id="form-contact-project_manager">
-                                      <option selected>Project Manager</option>
-                                      <option value="1">Fiech, Adrien</option>
-                                      <option value="2">Mata-Montero, Manrique</option>
-                                      <option value="3">Miklos, Bartha</option>
-                                      <option value="4">Chen, Yuanzhu</option>
-                                      </select>
+                                        <p>MSc or PhD:</p>
                                     </div>
                                 </div>
-                                <div class="col-md-6"> <!-- row 3, col 2 -->
+                                <div class="col-sm-3">
                                     <div class="md-form mb-0">
-                                          <select class="mdb-select md-form" multiple searchable="Search here..">
-                                          <option value="" disabled selected>Choose other project collaborators</option>
-                                          <option value="1">Fiech, Adrien</option>
-                                          <option value="2">Mata-Montero, Manrique</option>
-                                          <option value="3">Miklos, Bartha</option>
-                                          <option value="4">Chen, Yuanzhu</option>
+                                        <select class="browser-default custom-select" id="form-contact-msc_or_phd">
+                                            <option selected value="1">MSc</option>
+                                            <option value="2">PhD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="md-form mb-0">
+                                        Program:
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="md-form mb-0">
+                                        <select class="browser-default custom-select" id="form-contact-program">
+                                            <option selected></option>
+                                            <option value="1">Computer Science/Engineering</option>
+                                            <option value="2">Computational chemistry </option>
+                                            <option value="3">Physics</option>
+                                            <option value="4">Mathematics</option>
+                                            <option value="5">Marine Biology</option>
+
                                         </select>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row"> <!-- row 4 - Program and Field of Study -->
-
-                              <!-- Grid column -->
-                              <div class="col-sm-2"> <!-- row 4, col 1 -->
-                                  <div class="md-form mb-0">
-                                        <p>MSc or PhD:</p>
-                                  </div>
-                              </div>
-                              <!-- Grid column -->
-                              <!-- Grid column -->
-                              <div class="col-sm-1"> <!-- row 4, col 2 -->
-                                  <div class="md-form mb-0">
-                                    <select class="browser-default custom-select" id="form-contact-msc_or_phd">
-                                    <option selected></option>
-                                    <option value="1">MSc</option>
-                                    <option value="2">PhD</option>
-                                    </select>
-                                  </div>
-                              </div>
-                              <!-- Grid column -->
-                              <!-- Grid column -->
-                              <div class="col-sm-2"> <!-- row 4, col 3 -->
-                                  <div class="md-form mb-0">
-                                        Program:
-                                  </div>
-                              </div>
-                              <!-- Grid column -->
-                              <!-- Grid column -->
-                              <div class="col-sm-4"> <!-- row 4, col 4 -->
-                                  <div class="md-form mb-0">
-                                    <select class="browser-default custom-select" id="form-contact-program">
-                                    <option selected></option>
-                                    <option value="1">Computer Science/Engineering</option>
-                                    <option value="2">Computational chemistry </option>
-                                    <option value="3">Physics</option>
-                                    <option value="4">Mathematics</option>
-                                    <option value="5">Marine Biology</option>
-
-                                    </select>
-                                  </div>
-                              </div>
-                              <!-- Grid column -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="md-form mb-0">
+                                        <input placeholder="Robotics" type="text" id="form-contact-specific_research_area"
+                                            class="form-control">
+                                        <label for="form-contact-specific_research_area" class="">Specific Research
+                                            Area (robotics, DNA splicing, etc.)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="md-form mb-0">
+                                        <input placeholder="3" type="text" id="form-contact-num_of_students" class="form-control">
+                                        <label for="form-contact-num_of_students" class="">Number of Students</label>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="row"> <!-- row 5 - Specific area of research -->
-                              <div class="col-md-6"> <!-- row 5, col 1 -->
-                                <div class="md-form mb-0">
-                                  <input type="text" id="form-contact-specific_research_area" class="form-control">
-                                  <label for="form-contact-specific_research_area" class="">Specific Research Area (robotics, DNA splicing, etc.)</label>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="md-form mb-0">
+                                        <input placeholder="1200" type="text" id="form-contact-financial_aid" class="form-control">
+                                        <label for="form-contact-financial_aid" class="">Financial Aid</label>
+                                    </div>
                                 </div>
-                              </div>
-                              <div class="col-md-4"> <!-- row 5, col 1 -->
-                                <div class="md-form mb-0">
-                                  <input type="text" id="form-contact-num_of_students" class="form-control">
-                                  <label for="form-contact-num_of_students" class="">Number of Students</label>
+                                <div class="col-sm-12 col-md-12">
+                                    <div class="md-form mb-0">
+                                        <p>Ideal Candidate Skills:</p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="english">
+                                                <label class="custom-control-label" for="english">English</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="maths">
+                                                <label class="custom-control-label" for="maths">Mathematics</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="comp">
+                                                <label class="custom-control-label" for="comp">Computer Skills</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="music">
+                                                <label class="custom-control-label" for="music">Music</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="noSkills">
+                                                <label class="custom-control-label" for="noSkills">None</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
-                            </div>
-
-                            <div class="row"> <!-- row 6 - Financil aid & Student skills -->
-                              <div class="col-md-4"> <!-- row 6, col 1 -->
-                                <div class="md-form mb-0">
-                                  <input type="text" id="form-contact-financial_aid" class="form-control">
-                                  <label for="form-contact-financial_aid" class="">Available Financial Aid</label>
-                                </div>
-                              </div>
-                              <div class="col-sm-4 col-md-4"> <!-- row 6, col 2 -->
-                                <div class="md-form mb-0">
-                                  <p>Ideal Candidate Skills:</p>
-                                </div>
-                              </div>
-                              <div class="col-md-4"> <!-- row 6, col 3 -->
-                                <div class="md-form mb-0">
-                                    <select class="mdb-select md-form" multiple searchable="Search here.." id="skills">
-                                    <option value="" disabled selected></option>
-                                    <option value="1">Python</option>
-                                    <option value="2">Java</option>
-                                    <option value="3">Web Development</option>
-                                    <option value="4">Mathematics</option>
-                                    <option value="5">Physics</option>
-                                    <option value="6">Microsoft Office</option>
-                                    </select>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="row"> <!-- row 7 - additional_comments-->
-                              <div class="col-md-12"> <!-- row 7, col 1 -->
-                                <div class="md-form mb-0">
-                                    <input type="text" id="form-contact-additional_comments" class="form-control">
-                                    <label for="form-contact-additional_comments" class="">Additional Project Related Information</label>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="row">  <!-- "Just a Divider Section" - for project conclusion -->
+                            </div><br/>
+                            <div class="row">
                                 <div class="col-md-12">
-                                  <hr>
-                                  <p><b>Project Termination: The information below is only required once the project is finished, but feel free to fill out the fields at any time.</b></p>
+                                    <div class="md-form mb-0">
+                                        <input placeholder="Additional Information" type="text" id="form-contact-additional_comments"
+                                            class="form-control">
+                                        <label for="form-contact-additional_comments" class="">Additional Project
+                                            Related Information</label>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="row"> <!-- row 8 - due dates -->
-                              <div class="col-sm-4"> <!-- row 8, col 1 -->
-                                <div class="md-form mb-0">
-                                  <input type="text" id="form-contact-est_duedate" class="form-control">
-                                  <label for="form-contact-est_duedate" class="">Estimated Due Date (dd-mm-yyyy)</label>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <hr>
+                                    <p><b>Project Termination: The information below is only required once the project
+                                            is finished, but feel free to fill out the fields at any time.</b></p>
                                 </div>
-                              </div>
-
-                              <div class="col-sm-4"> <!-- row 8, col 2 -->
-                                <div class="md-form mb-0">
-                                  <input type="text" id="form-contact-actual_due_date" class="form-control">
-                                  <label for="form-contact-actual_due_date" class="">Actual Due Date (dd-mm-yyyy)</label>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="md-form mb-0">
+                                        <input placeholder="dd-mm-yyyy" type="text" id="form-contact-est_duedate" class="form-control">
+                                        <label for="form-contact-est_duedate" class="">Estimated Due Date (dd-mm-yyyy)</label>
+                                    </div>
                                 </div>
-                              </div>
-
-                              <div class="col-sm-2"> <!-- row 8, col 3 -->
-                                <div class="md-form mb-0">
-                                  <p>Is the Project finished?</p>
+                                <div class="col-sm-4">
+                                    <div class="md-form mb-0">
+                                        <input placeholder="dd-mm-yyyy" type="text" id="form-contact-actual_due_date"
+                                            class="form-control">
+                                        <label for="form-contact-actual_due_date" class="">Actual Due Date (dd-mm-yyyy)</label>
+                                    </div>
                                 </div>
-                              </div>
-
-                              <div class="col-sm-2"> <!-- row 8, col 4 -->
-                                <div class="md-form mb-0">
-                                  <select class="mdb-select md-form">
-                                    <option value="" disabled selected>(Yes/No)</option>
-                                    <option value="1">Yes</option>
-                                    <option value="2">No</option>
-                                  </select>
+                                <div class="col-sm-2">
+                                    <div class="md-form mb-0">
+                                        <p>Is the Project finished?</p>
+                                    </div>
                                 </div>
-                              </div>
-                            </div> <!-- end of row 8 -->
-
-                            <div class="row"> <!-- row 9 - conclusion and results -->
-                              <div class="col-sm-6"> <!-- row 9, col 1 -->
-                                <div class="md-form mb-0">
-
-                                  <textarea type="text" id="form-contact-conclusion" class="form-control md-textarea"
-                                      rows="3"></textarea>
-                                  <label for="form-contact-conclusion">Conclusion</label>
+                                <div class="col-sm-2">
+                                    <div class="md-form mb-0">
+                                        <select class="mdb-select md-form">
+                                            <option value="" disabled selected>(Yes/No)</option>
+                                            <option value="1">Yes</option>
+                                            <option value="2">No</option>
+                                        </select>
+                                    </div>
                                 </div>
-                              </div>
-                              <div class="col-sm-6"> <!-- row 9, col 2 -->
-                                <div class="md-form mb-0">
-                                  <textarea type="text" id="form-contact-results" class="form-control md-textarea"
-                                      rows="3"></textarea>
-                                  <label for="form-contact-results">Results</label>
+                            </div> 
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="md-form mb-0">
+                                        <textarea type="text" id="form-contact-conclusion" class="form-control md-textarea"
+                                            rows="3"></textarea>
+                                        <label for="form-contact-conclusion">Conclusion</label>
+                                    </div>
                                 </div>
-                              </div>
-                            </div> <!-- end of row 9 -->
-
-                            <div class="row"> <!-- row 10 - Special message & participants-->
-                              <div class="col-sm-6"> <!-- row 10, col 1 -->
-                                <div class="md-form mb-0">
-                                  <textarea type="text" id="form-contact-thanks" class="form-control md-textarea"
-                                      rows="3"></textarea>
-                                  <label for="form-contact-thanks">Special Thanks/Mentions</label>
+                                <div class="col-sm-6">
+                                    <div class="md-form mb-0">
+                                        <textarea type="text" id="form-contact-results" class="form-control md-textarea"
+                                            rows="3"></textarea>
+                                        <label for="form-contact-results">Results</label>
+                                    </div>
                                 </div>
-                              </div>
-
-                              <div class="col-sm-6"> <!-- row 10, col 1 -->
-                                  <div class="md-form mb-0">
-                                    <p>This section will include a list of the project's participants (ie the students, other professors, stakeholders, or other related entities that have contributed to the system </p>
-                                  </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="md-form mb-0">
+                                        <textarea type="text" id="form-contact-thanks" class="form-control md-textarea"
+                                            rows="3"></textarea>
+                                        <label for="form-contact-thanks">Special Thanks/Mentions</label>
+                                    </div>
                                 </div>
-                           </div> <!-- end of row 10 -->
-
-
-
-
-
-
-
-                              <!-- Some maybe usefull future code
-                                <p></p>
-                                <hr>
-                                <a class="btn-floating btn-lg blue">
-                                    <i class="fa fa-send-o"></i>
-                                </a>
-                              -->
-
-
-                        </div> <!-- This div ends the border -->
-
+                                <div class="col-sm-12">
+                                    <div class="md-form mb-0">
+                                        <p>This section will include a list of the project's participants (ie the
+                                            students, other professors, stakeholders, or other related entities that
+                                            have contributed to the system </p>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
                     </div>
-                    <!-- Grid column -->
                 </div>
-                <!-- Grid row -->
-
-                <!-- These are just the buttons to Submit or Save -->
-                  <div class="align-center text-center m-3">
+                <div class="align-center text-center m-3">
                     <a class="btn red" href="/home">Save</a>
                     <a class="btn red" href="/home">Delete</a>
                     <a class="btn red" href="/home">End Project</a>
                     <a class="btn red" href="/home">Save as Draft</a>
                     <br />
-                  </div>
-
+                </div>
             </div>
-            <!-- Form with header -->
-
         </section>
-        <!-- Section: Contact v.3 -->
     </main>
     <% include ../partials/mdscripts %>
     <script>
@@ -306,9 +230,142 @@
         }
     </script>
     <script>
-      $(document).ready(function() {
-        $('.mdb-select').materialSelect();
-      });
+        function goTo(addr) {
+            window.location.href = addr;
+        }
+        function scrollIntoView(eleID) {
+            var e = document.getElementById(eleID);
+            if (!!e && e.scrollIntoView) {
+                e.scrollIntoView();
+            }
+        }
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        $("#sendMsgBtn").click(function () {
+            $("html, body").animate({ scrollTop: $("#contactSection").offset().top }, 500);
+            return true;
+        });
+
+        $("#updateBtn").click(function () {
+
+            if (!projectId) {
+                console.log("Project not exist");
+                window.location.href = '/';
+            } else {
+                $(document).ready(function () {
+                    console.log("ready!");
+                    $.ajax
+                        ({
+                            url: `/projects/${projectId}`,
+                            data: {},
+                            type: 'get',
+                            success: function (project) {
+                                console.log("Projects GET Response", project);
+                                window.project = project;
+                                $.ajax
+                                    ({
+                                        url: `/users/${project.managerId}`,
+                                        data: {},
+                                        type: 'get',
+                                        success: function (manager) {
+                                            console.log("Projects GET Response", project);
+                                            window.project.manager = manager;
+
+                                            $("#ProjectManager").html(manager.username);
+                                            $("#PMSummary").html(manager.summary);
+
+                                        },
+                                        error: function (request, status, error) {
+                                            $("p#errorSpace").html(request.responseText);
+                                        }
+                                    });
+                                $("#titleDiv").html(project.title);
+                                $("#abstractDiv").html(project.abstract);
+                                $("#projectImage").attr("src", project.imgURL);
+                                for (i = 0; i < project.skills.length; i++) {
+                                    var skillList = document.getElementById(wantedSkills);
+                                    $("#wantedSkills").append("<li>" + project.skills[i] + "</li>");
+                                }
+                                $("#projectComments").html(project.comments);
+                                $("#numStudents").html(project.availableSpots);
+                                $("#financialAid").html(project.financialAid);
+                                if (project.managerId === window.currUser._id) {
+                                    $("#introSection").append($(`<a class="btn grey lighten-1 btn-rounded white-text" onclick="goTo('/projectCreation?id=${project._id}')" >Edit Project</a>`));
+                                }
+
+
+                            },
+                            error: function (request, status, error) {
+                                $("p#errorSpace").html(request.responseText);
+                            }
+                        });
+                });
+            }
+        });
+
+        //var projectId = getParameterByName('id');
+        window.currProj = sessionStorage.getItem('curentProj');
+
+        if (!window.currProj) {
+            console.log("Project not exist");
+        } else {
+            window.currProj = JSON.parse(window.currProj);
+            var currProj = window.currProj;
+            console.log("Edit Project", currProj);
+
+            var projTitle = $("#form-contact-project_title");
+            projTitle.val(currProj.title);
+
+            var projAbstract = $("#form-contact-Abstract");
+            projAbstract.val(currProj.abstract);
+
+            var projImg = $("#form-contact-project_img");
+            projImg.val(currProj.imgURL);
+
+            var projResArea = $("#form-contact-specific_research_area");
+            projResArea.val(currProj.researchArea);
+
+            var projStudent = $("#form-contact-num_of_students");
+            projStudent.val(currProj.availableSpots);
+
+            var projAid = $("#form-contact-financial_aid");
+            projAid.val(currProj.financialAid);
+
+            var projAid = $("#form-contact-additional_comments");
+            projAid.val(currProj.comments);
+
+            var projThanks = $("#form-contact-thanks");
+            projThanks.val(currProj.specialThanks);
+
+            var projConcl = $("#form-contact-conclusion");
+            projConcl.val(currProj.conclusion);
+
+            var projRes = $("#form-contact-results");
+            projRes.val(currProj.results);
+
+            var projStart = $("#form-contact-est_duedate");
+            projStart.val(new Date(currProj.startDate).toLocaleDateString("en-US"));
+
+            var projEnd = $("#form-contact-actual_due_date");
+            projEnd.val(new Date(currProj.endDate).toLocaleDateString("en-US"));
+
+
+
+        }
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.mdb-select').materialSelect();
+        });
     </script>
 </body>
 <footer>

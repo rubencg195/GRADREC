@@ -24,7 +24,7 @@
             </div>
 
             <!--Card content-->
-            <div class="card-body text-center mb-3">
+            <div class="card-body text-center mb-3" id="introSection">
                 <!--Title-->
                 <h3 class="card-title mt-2 pb-4"><strong id="titleDiv">PROJECT NOT FOUND</strong></h3>
                 <!--Text-->
@@ -229,8 +229,18 @@
         </section>
     </main>
     <% include ../partials/mdscripts %>
-
     <script>
+        if (window.currUser) {
+            console.log("Exist");
+        } else {
+            console.log("not login");
+            window.location.href = '/login';
+        }
+    </script>
+    <script>
+        function goTo(addr){
+            window.location.href = addr;
+        }
         function scrollIntoView(eleID) {
             var e = document.getElementById(eleID);
             if (!!e && e.scrollIntoView) {
@@ -254,53 +264,62 @@
 
         var projectId = getParameterByName('id');
 
-        $(document).ready(function () {
-            console.log("ready!");
-
-            $.ajax
-                ({
-                    url: `/projects/${projectId}`,
-                    data: {},
-                    type: 'get',
-                    success: function (project) {
-                        console.log("Projects GET Response", project);
-                        window.project = project;
-                        $.ajax
-                            ({
-                                url: `/users/${project.managerId}`,
-                                data: {},
-                                type: 'get',
-                                success: function (manager) {
-                                    console.log("Projects GET Response", project);
-                                    window.project.manager = manager;
-
-                                    $("#ProjectManager").html(manager.username);
-                                    $("#PMSummary").html(manager.summary);
-
-                                },
-                                error: function (request, status, error) {
-                                    $("p#errorSpace").html(request.responseText);
-                                }
-                            });
-                        $("#titleDiv").html(project.title);
-                        $("#abstractDiv").html(project.abstract);
-                        $("#projectImage").attr("src",project.imgURL);
-                        for (i=0; i<project.skills.length; i++){
-                           var skillList = document.getElementById(wantedSkills);
-                           $("#wantedSkills").append("<li>"+project.skills[i]+"</li>");
+        if (!projectId){
+            console.log("Project not exist");
+            window.location.href = '/';
+        }else{
+            $(document).ready(function () {
+                console.log("ready!");
+                $.ajax
+                    ({
+                        url: `/projects/${projectId}`,
+                        data: {},
+                        type: 'get',
+                        success: function (project) {
+                            console.log("Projects GET Response", project);
+                            window.project = project;
+                            $.ajax
+                                ({
+                                    url: `/users/${project.managerId}`,
+                                    data: {},
+                                    type: 'get',
+                                    success: function (manager) {
+                                        console.log("Projects GET Response", project);
+                                        window.project.manager = manager;
+    
+                                        $("#ProjectManager").html(manager.username);
+                                        $("#PMSummary").html(manager.summary);
+    
+                                    },
+                                    error: function (request, status, error) {
+                                        $("p#errorSpace").html(request.responseText);
+                                    }
+                                });
+                            $("#titleDiv").html(project.title);
+                            $("#abstractDiv").html(project.abstract);
+                            $("#projectImage").attr("src",project.imgURL);
+                            for (i=0; i<project.skills.length; i++){
+                               var skillList = document.getElementById(wantedSkills);
+                               $("#wantedSkills").append("<li>"+project.skills[i]+"</li>");
+                            }
+                            $("#projectComments").html(project.comments);
+                            $("#numStudents").html(project.availableSpots);
+                            $("#financialAid").html(project.financialAid);
+                            if(project.managerId === window.currUser._id){
+                                $("#introSection").append($(`<a class="btn grey lighten-1 btn-rounded white-text" onclick="goTo('/projectCreation?id=${project._id}')" >Edit Project</a>`));
+                            }
+    
+    
+                        },
+                        error: function (request, status, error) {
+                            $("p#errorSpace").html(request.responseText);
                         }
-                        $("#projectComments").html(project.comments);
-                        $("#numStudents").html(project.availableSpots);
-                        $("#financialAid").html(project.financialAid);
+                    });
+            });
+        }
+            
 
 
-
-                    },
-                    error: function (request, status, error) {
-                        $("p#errorSpace").html(request.responseText);
-                    }
-                });
-        });
 
     </script>
 </body>

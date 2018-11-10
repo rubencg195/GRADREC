@@ -44,9 +44,25 @@
     </main>
     <% include ../partials/mdscripts %>
     <script>
+        if (window.currUser) {
+            console.log("Exist");
+        } else {
+            console.log("not login");
+            window.location.href = '/login';
+        }
+    </script>
+    <script>
+        function goTo(addr, projId){
+            window.projects.forEach(function(proj){
+                if(proj._id == projId){
+                    console.log("Saving User Local Session ", proj);
+                    sessionStorage.setItem('curentProj', JSON.stringify(proj) );
+                    window.location.href = addr;
+                }
+            });
+        }
         console.log("Dash User", window.currUser);
         if (!window.currUser) {
-            window.location.href = '/login';
         }else{
             $(document).ready(function () {
                 console.log("ready!");
@@ -62,14 +78,15 @@
                                     $( "main" ).prepend( $("<h1>Projects Not Available<h1/>") );
                                         return;
                                 }
+                                window.projects = projects;
                                 projects.forEach(function(proj){
-                                    var $newCard = $( `<div class="card mb-3 text-center hoverable">
+                                    var $newCard = $( `<div class="card mb-3 text-center hoverable" onclick="goTo('/research?id=${proj._id}', '${proj._id}'  )">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-md-4 offset-md-1 mx-3 my-3">
                                                         <!--Featured image-->
                                                         <div class="view overlay">
-                                                            <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid" alt="Sample image for first version of blog listing">
+                                                            <img src="${proj.imgURL}" class="img-fluid" alt="Sample image for first version of blog listing">
                                                             <a>
                                                                 <div class="mask rgba-white-slight"></div>
                                                             </a>
@@ -82,7 +99,7 @@
                                                         <h4 class="mb-4"><strong> ${proj.title} </strong></h4>
                                                         <p> ${proj.abstract} </p>
                                                         <p><a><strong>${new Date(proj.startDate).toLocaleDateString("en-US")} - ${new Date(proj.endDate).toLocaleDateString("en-US")}</strong></a></p>
-                                                        <a class="btn red" href="/research?id=${proj._id}">APPLY</a>
+                                                        <a class="btn red white-text" onclick="goTo('/research?id=${proj._id}', '${proj._id}')" >APPLY</a>
                                                     </div>
                                                 </div>
                                             </div>

@@ -427,42 +427,35 @@
                     type: 'get',
                     success: function (data) {
                         console.log("Updating User Local Session ", data);
-
                         if (!data || data.length == 0) {
                             console.log("User does not exist");
                             return;
                         }
-
-                        // Save data to sessionStorage
                         console.log("Saving User Local Session ", data[0]);
                         sessionStorage.setItem('curentUser', JSON.stringify(data[0]));
-
                         var currUser = data[0];
                         var _name = $('input#form-contact-firstName'); //variables en el html
                         var _lastname = $('input#form-contact-lastName');
                         var _email = $('input#defaultRegisterFormEmail');
                         var _password = $('input#defaultRegisterFormPassword');
-
-
-
                         _name.val(currUser.username); //cambiamos los valores del html con los que estan en la base de datos
-
                         $("img#userImage").attr("src", currUser.imgURL);
                         $("#titleName").html(currUser.username);
-
-
                         $("#submitBtn").click(function (event) {
                             event.preventDefault();
-
                             if (!_name || !_lastname || !_email || !_password) {
                                 console.log("EMPYT");
                                 $("p#errorSpace").html("Fill up the fields");
                                 return;
                             }
-
                             print("ENVIANDO ", _name, _lastname, _email, _password);
 
+
+                            //QUITAAR
                             return;
+
+
+
                             $.ajax
                                 ({
                                     url: '/users',
@@ -475,41 +468,37 @@
                                             $("p#errorSpace").html(`User with email ${_email} Already Exists`);
                                         } else {
                                             $.ajax
-                                                ({
-                                                    url: '/users',
-                                                    data: {
-                                                        username: _name + " " + _lastname,
-                                                        name: _name,
-                                                        lastname: _lastname,
-                                                        email: _email,
-                                                        password: _password,
-                                                        isProf: false,
-                                                        surveyDone: false,
-                                                    },
-                                                    type: 'post',
-                                                    success: function (user) {
-                                                        console.log("Projects GET Response", user);
-                                                        console.log("Saving User Local Session ", user);
-                                                        sessionStorage.setItem('curentUser', JSON.stringify(user));
-                                                        window.currUser = sessionStorage.getItem('curentUser');
-                                                        console.log("Retrieving from User Local Session ", JSON.parse(currUser));
-            
-                                                        window.location.href = '/';
-                                                    },
-                                                    error: function (request, status, error) {
-                                                        $("p#errorSpace").html(request.responseText);
-                                                    }
-                                                });
+                                            ({
+                                                url: '/users',
+                                                data: {
+                                                    username: _name + " " + _lastname,
+                                                    name: _name,
+                                                    lastname: _lastname,
+                                                    email: _email,
+                                                    password: _password,
+                                                    isProf: false,
+                                                    surveyDone: false,
+                                                },
+                                                type: 'post',
+                                                success: function (user) {
+                                                    console.log("Projects GET Response", user);
+                                                    console.log("Saving User Local Session ", user);
+                                                    sessionStorage.setItem('curentUser', JSON.stringify(user));
+                                                    window.currUser = sessionStorage.getItem('curentUser');
+                                                    console.log("Retrieving from User Local Session ", JSON.parse(currUser));
+        
+                                                    window.location.href = '/';
+                                                },
+                                                error: function (request, status, error) {
+                                                    $("p#errorSpace").html(request.responseText);
+                                                }
+                                            });
                                         }
-
-
                                     }
                                 });
                         });
                     }
                 });
-
-
         });
     </script>
 </body>
