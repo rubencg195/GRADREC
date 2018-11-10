@@ -282,7 +282,7 @@
                                 <!-- row 9, col 1 -->
                                 <div class="md-form mb-0">
                                     <input type="text" id="form-contact-job2_employeer" class="form-control" placeholder="Second to Last Employeer">
-                                    <label for="form-contact-job2_employeer" class="">Second to Last Employeer</label>
+                                    <label for="form-contact-job2_employeer2" class="">Second to Last Employeer</label>
                                 </div>
                             </div>
                             <!-- Grid column -->
@@ -467,19 +467,21 @@
                         var _university = $('input#form-contact-university'); //university
                         _university.val(currUser.university);
                         var _certificates = $('input#form-contact-certificates'); //otherCert
-                        _certificates.val(currUser.certificates);
+                        _certificates.val(currUser.otherCert);
                         var _employer1 = $('input#form-contact-job1_employeer'); //employer1
                         _employer1.val(currUser.employer1);
                         var _title1 = $('input#form-contact-job1_title'); //title1
                         _title1.val(currUser.title1);
                         var _duration1 = $('input#form-contact-job1_duration'); //duration1
                         _duration1.val(currUser.duration1);
-                        var _employer2 = $('input#form-contact-job2_employer'); //employer2
+                        var _employer2 = $('input#form-contact-job2_employeer'); //employer2
                         _employer2.val(currUser.employer2);
                         var _title2 = $('input#form-contact-job2_title'); //title2
                         _title2.val(currUser.title2);
                         var _duration2 = $('input#form-contact-job2_duration'); //duration2
                         _duration2.val(currUser.duration2);
+
+                        //////////////////////////////////////////////////////////
                         var _program = $('#form-contact-programs'); //program
                         _program.val(currUser.program);
                         var _english = $('#english');
