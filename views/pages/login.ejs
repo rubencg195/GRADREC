@@ -76,17 +76,28 @@
                     ({
                         url: '/users',
                         data: {
-                            "email": _username
+                            email: _username
                         },
                         type: 'get',
                         success: function (data) {
-                            console.log("Response", data);
+                            console.log("GET Response", data);
 
+                            if(!data || data.length == 0){
+                                $("p#errorSpace").html("User does not exist");
+                                return;
+                            }
+
+                            if(data[0].password != _password){
+                                $("p#errorSpace").html("Password Incorrect");
+                                return;
+                            }
                             // Save data to sessionStorage
-                            sessionStorage.setItem('key', 'value');
+                            console.log("Saving User Local Session ",  data[0]);
+                            sessionStorage.setItem('curentUser', JSON.stringify(data[0]) );
 
                             // Get saved data from sessionStorage
-                            var data = sessionStorage.getItem('key');
+                            var currUser = sessionStorage.getItem('curentUser');
+                            console.log("Retrieving from User Local Session ",  JSON.parse(currUser) );
 
                             // Remove saved data from sessionStorage
                             //sessionStorage.removeItem('key');
@@ -97,8 +108,8 @@
 
                         }
                     });
-
             });
+        });
 
 
 
