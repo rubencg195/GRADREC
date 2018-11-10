@@ -17,11 +17,14 @@
             <p class="h4 mb-4">Sign in</p>
 
             <!-- Email -->
-            <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+            <input type="email" name="defaultLoginFormEmail" id="defaultLoginFormEmail" class="form-control mb-4"
+                placeholder="E-mail">
 
             <!-- Password -->
-            <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+            <input type="password" name="defaultLoginFormPassword" id="defaultLoginFormPassword" class="form-control mb-4"
+                placeholder="Password">
 
+            <p class="red-text" id="errorSpace"></p> <br />
             <div class="d-flex justify-content-around">
                 <div>
                     <!-- Remember me -->
@@ -55,47 +58,47 @@
     </main>
     <% include ../partials/mdscripts %>
     <script>
-        // Save data to sessionStorage
-        sessionStorage.setItem('key', 'value');
-
-        // Get saved data from sessionStorage
-        var data = sessionStorage.getItem('key');
-
-        // Remove saved data from sessionStorage
-        //sessionStorage.removeItem('key');
-
-        // Remove all saved data from sessionStorage
-        //sessionStorage.clear();
-        //var _username = document.getElementById('input#defaultLoginFormEmail').value ;
 
         $(document).ready(function () {
             console.log("ready!");
 
-            var _username = $('input#defaultLoginFormEmail')[0];
-            var _password = $('defaultLoginFormPassword').val();
-            
-            console.log("Vals", _username, _password, new FormData(document.querySelector('form')));
-            _username = (_username != null) ? _username[0].val() : "empty";
-        
-            $('#submitBtn').click(function () {
-                //var book_id = $(this).parent().data('id'),  result = "Book #" + book_id + " has been reserved.";
-                /*
+            $("#submitBtn").click(function (event) {
+                event.preventDefault();
+                var _username = $('input#defaultLoginFormEmail').val();
+                var _password = $('input#defaultLoginFormPassword').val();
+
+                if (!_username || !_password) {
+                    console.log("EMPYT");
+                    $("p#errorSpace").html("Fill up the fields");
+                    return;
+                }
                 $.ajax
                     ({
-                        url: 'reservebook.php',
-                        data: "book_id=" + book_id,
-                        type: 'post',
-                        success: function () {
-                            $('.modal-box').text(result).fadeIn(700, function () {
-                                setTimeout(function () {
-                                    $('.modal-box').fadeOut();
-                                }, 2000);
-                            });
+                        url: '/users',
+                        data: {
+                            "email": _username
+                        },
+                        type: 'get',
+                        success: function (data) {
+                            console.log("Response", data);
+
+                            // Save data to sessionStorage
+                            sessionStorage.setItem('key', 'value');
+
+                            // Get saved data from sessionStorage
+                            var data = sessionStorage.getItem('key');
+
+                            // Remove saved data from sessionStorage
+                            //sessionStorage.removeItem('key');
+
+                            // Remove all saved data from sessionStorage
+                            //sessionStorage.clear();
+                            //var _username = document.getElementById('input#defaultLoginFormEmail').value ;
+
                         }
                     });
-                */
+
             });
-        });
 
 
 
