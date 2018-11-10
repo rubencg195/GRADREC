@@ -114,11 +114,11 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     app.put("/users/:id", function (req, res) {
         console.log("Update User", req.body);
         db.collection("users").updateOne({ _id: new ObjectID(req.params.id) }, {  $set: req.body }, function (err, doc) {
-            if (err) {
-                handleError(res, err.message, "Failed to update User");
-            } else {
-                res.status(201).json(doc.ops[0]);
-            }
+          if (err) {
+              handleError(res, err.message, "Failed to get contact");
+          } else {
+              res.status(200).json(doc);
+          }
         });
     });
     //===========================================================
@@ -278,7 +278,7 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     app.post("/signup", function (req, res) {
         var postBody = req.body;
         console.log(postBody);
-        
+
     });
 
 });

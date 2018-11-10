@@ -67,6 +67,21 @@
                         </div>
 
 
+
+                        <div class="row"> <!-- beginning of row 0  -->
+
+
+                            <!-- Grid column -->
+                            <div class="col-md-12">
+                                <!-- row 1, col 1 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" placeholder="Image URL" id="form-contact-imageURL" class="form-control">
+                                    <label for="form-contact-imageURL" class="">A link to the image you wish to use for your profile</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                        </div>
+
                         <!-- Grid row -->
                         <div class="row">
                             <!-- beginning of row 1  -->
@@ -126,7 +141,7 @@
                             <div class="col-md-4">
                                 <!-- row 3, col 1 -->
                                 <div class="md-form mb-0">
-                                    <input type="text" id="form-contact-DoB" class="form-control" placeholder="Date of Birth (DD-MM-YYYY)">
+                                    <input type="text" id="form-contact-DoB" class="form-control" placeholder="Date of Birth (DD/MM/YYYY)">
                                     <label for="form-contact-DoB" class="">Date of Birth (DD/MM/YYYY)</label>
                                 </div>
                             </div>
@@ -464,7 +479,7 @@
                         console.log("Saving User Local Session ", data[0]);
                         sessionStorage.setItem('curentUser', JSON.stringify(data[0]));
                         var currUser = data[0];
-
+                        var _imageURL =$('input#form-contact-imageURL')//profile image
                         var _username = $('strong#username'); //username
                         var _firstname = $('input#form-contact-firstName'); //firstName
                         var _lastname = $('input#form-contact-lastName'); //lastName
@@ -493,11 +508,12 @@
                         var _program = $('#form-contact-program'); //program
 
                         _username.html(currUser.username); //cambiamos los valores del html con los que estan en la base de datos
+                        _imageURL.val(currUser.imgURL); //profile image
                         _firstname.val(currUser.firstName);
                         _lastname.val(currUser.lastName);
                         _summary.val(currUser.summary);
                         _email.val(currUser.email);
-                        _dob.val(new Date(currUser.dob).toLocaleDateString("en-US"));
+                        _dob.val( (!currUser.dob) ? "" : currUser.dob );
                         _nationality.val(currUser.nationality);
                         _gender.val(currUser.gender);
                         _address.val(currUser.address);
@@ -530,11 +546,11 @@
                         }
 
                         /////////////////////////////////////////////////////////
-                        _english.prop('checked', currUser.skills.english);
-                        _maths.prop('checked', currUser.skills.maths);
-                        _comp.prop('checked', currUser.skills.comp);
-                        _music.prop('checked', currUser.skills.music);
-                        _noSkills.prop('checked', currUser.skills.noSkills);
+                        _english.prop('checked', (!currUser.skills)? false : currUser.skills.english);
+                        _maths.prop('checked',(!currUser.skills)? false :  currUser.skills.maths);
+                        _comp.prop('checked', (!currUser.skills)? false : currUser.skills.comp);
+                        _music.prop('checked',(!currUser.skills)? false : currUser.skills.music);
+                        _noSkills.prop('checked', (!currUser.skills)? false :currUser.skills.noSkills);
                         //_username.html(currUser.username); //cambiamos los valores del html con los que estan en la base de datos
                         $("img#userImage").attr("src", currUser.imgURL);
                         //$("#username").html(currUser.username);
@@ -548,44 +564,44 @@
                             //    $("p#errorSpace").html("Fill up the fields");
                             //    return;
                             //}
-                            console.log("ENVIANDO ");
+                            var newInfo = {
+                            username: _username.html(),
+                            email:_email.val(),
+                            firstName: _firstname.val(),
+                            lastName: _lastname.val(),
+                            imgURL: _imageURL.val(),
+                            surveyDone: false,
+                            summary: _summary.val(),
+                            dob: _dob.val(),
+                            nationality: _nationality.val(),
+                            gender: _gender.val(),
+                            address: _address.val(),
+                            phone: _phone.val(),
+                            degree: _degree.val(),
+                            university: _university.val(),
+                            otherCert: _certificates.val(),
+                            employer1: _employer1.val(),
+                            title1: _title1.val(),
+                            duration1: _duration1.val(),
+                            employer2: _employer2.val(),
+                            title2: _title2.val(),
+                            duration2: _duration2.val(),
+                            PhD: _msc_or_phd.val(),
+                            program: _program.val(),
+                            skills: {
+                                "english": (!currUser.skills)? false : currUser.skills.english,
+                                "maths":  (!currUser.skills)? false : currUser.skills.maths,
+                                "comp":  (!currUser.skills)? false : currUser.skills.comp,
+                                "music":  (!currUser.skills)? false : currUser.skills.music,
+                                "noSkills":  (!currUser.skills)? false : currUser.skills.noSkills
+                            }};
+
+                            console.log("ENVIANDO ", newInfo);
 
                             $.ajax
                                 ({
                                     url: `/users/${currUser._id}`,
-                                    data: { 
-                                    username: "admin", 
-                                    email: "admin@mun.ca", 
-                                    firstName: "Super", 
-                                    lastName: "Admin", 
-                                    password: "admin", 
-                                    imgURL: "https://krourke.org/img/md_avatar_wizard.svg", 
-                                    name: "Adrian", 
-                                    isProf: true, 
-                                    surveyDone: false, 
-                                    summary: "I am good professor with multiple PhDs and a passion for science and technology. I like to work with students and give them challenging and interesting assignments that will test and improve their cognitive and technical skills, all while having fun and learning to be better professionals. ", 
-                                    dob: "1994-12-22T03:30:00.000Z", 
-                                    nationality: "Martian", 
-                                    gender: "apache attack helicopter", 
-                                    address: "123 Sesame Street, St. John's NL, Canada", 
-                                    phone: "7091234567", 
-                                    degree: "PhD. in Advanced Robotics", 
-                                    university: "University of Mars", 
-                                    otherCert: "MSc in Computer Science, CCNA, RHCSA, AJAX, etc.", 
-                                    employer1: "MUN", "title1": "Tenured Professor", 
-                                    duration1: "2 years", 
-                                    employer2: "MUN", 
-                                    title2: "Assistant Professor", 
-                                    duration2: "2 years", 
-                                    PhD: true, 
-                                    program: "Physics", 
-                                    skills: { 
-                                        "english": false, 
-                                        "maths": true, 
-                                        "comp": true, 
-                                        "music": false, 
-                                        "noSkills": false
-                                    }},
+                                    data: newInfo,
                                     type: 'put',
                                     success: function (user) {
                                         console.log("USER SAVED", user);
