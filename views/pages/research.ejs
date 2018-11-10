@@ -64,7 +64,7 @@
                             <!--Excerpt-->
                             <div class="card-body pb-0">
                                 <h4 class="font-weight-bold my-3">Required Skills</h4>
-                                <p class="grey-text">
+                                <p class="grey-text">If you excel at the following skills, you should consider signing up or looking into this project.
                                   <ul id="wantedSkills">
                                   </ul>
                                 </p>
@@ -83,9 +83,8 @@
                     </div> -->
                             <!--Excerpt-->
                             <div class="card-body pb-0">
-                                <h4 class="font-weight-bold my-3">Needed positions</h4>
-                                <p class="grey-text">Temporibus autem quibusdam et aut officiis debitis aut rerum
-                                    necessitatibus saepe eveniet ut et voluptates repudiandae.
+                                <h4 class="font-weight-bold my-3">About the positions</h4>
+                                <p class="grey-text">There are <span id="numStudents">1</span> availbe spots for students. As far as available financial aid, this project was assigned <span id="financialAid">0</span> CAD. However, if needed, additional fundraising activities can be done by the Project Manager and the Participants as the semesters progress to help ensure a successful project delivery.
                                 </p>
                             </div>
                         </div>
@@ -102,8 +101,8 @@
                     </div> -->
                             <!--Excerpt-->
                             <div class="card-body pb-0">
-                                <h4 class="font-weight-bold my-3">Additioanl Project Information</h4>
-                                <p class="grey-text" id="projectComments">This is additional information that the Project Manager may wish to communicate about the project. However, if you would still like to learn a little more about the Project, please continue to the contact section below. <p>
+                                <h4 class="font-weight-bold my-3">Additional Project Information</h4>
+                                <p class="grey-text" id="projectComments">This area was originally inteded for additional information that the Project Manager may wish to communicate about the project. However, if you would still like to learn a little more about the Project, please continue to the contact section below. </p>
                             </div>
                         </div>
                         <!-- Grid column -->
@@ -291,6 +290,8 @@
                            $("#wantedSkills").append("<li>"+project.skills[i]+"</li>");
                         }
                         $("#projectComments").html(project.comments);
+                        $("#numStudents").html(project.availableSpots);
+                        $("#financialAid").html(project.financialAid);
 
 
 
