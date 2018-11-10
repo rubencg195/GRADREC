@@ -4,7 +4,7 @@
 
 <head>
     <% include ../partials/mdhead %>
-    
+
     <script>
         console.log("Dash User", window.currUser);
         if (!window.currUser) {
@@ -21,7 +21,7 @@
     <main class="container pb-3">
         <% for(var i=0; i < 5 ; i++) { %>
         <!--News card-->
-        
+
         <!--News card-->
         <% } %>
 
@@ -69,7 +69,7 @@
         }else{
             $(document).ready(function () {
                 console.log("ready!");
-    
+
                 $.ajax
                         ({
                             url: '/projects',
@@ -95,7 +95,7 @@
                                                         <a href="" class="green-text">
                                                             <h6 class="font-bold pb-1"><i class="fa fa-desktop"> PROJECT </i>  </h6>
                                                         </a>
-                                                        <h4 class="mb-4"><strong> ${proj.title} <%- i %> </strong></h4>
+                                                        <h4 class="mb-4"><strong> ${proj.title}  </strong></h4>
                                                         <p> ${proj.abstract} </p>
                                                         <p><a><strong>${new Date(proj.startDate).toLocaleDateString("en-US")} - ${new Date(proj.endDate).toLocaleDateString("en-US")}</strong></a></p>
                                                         <a class="btn red" href="/research?id=${proj._id}">APPLY</a>
