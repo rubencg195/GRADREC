@@ -20,7 +20,7 @@
       "Duration":"6 Months"}
       ],
   "Program":"MSc in Computer Science",
-  "Skills":["JavaScript","HTML","CSS"],
+  "Skills":["JavaScript","HTML","CSS","NodeJS"],
   "Project":["This would be null until the student got into a project,  null if this is the information for a professor who is not a project manager","This is array because a Professor can be a Project Manager for multiple projects","in the case of students, this array would contain a single value"],
   "Supervisor":"It would the Project Manager of the Project in the case of a student, or the head of the department in the case of a professor",
   "isProjectManager":false,
