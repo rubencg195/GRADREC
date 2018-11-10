@@ -7,8 +7,6 @@
 </head>
 
 <body style="background-color: rgb(230, 230, 230);">
-    <header>
-    </header>
     <% include ../partials/navbar %>
     <main class="flex-center flex-column animated fadeIn mb-4">
         <!-- Default form login -->
@@ -58,6 +56,14 @@
     </main>
     <% include ../partials/mdscripts %>
     <script>
+        if (window.currUser) {
+            console.log("Exist");
+            window.location.href = '../';
+        } else {
+            console.log("not");
+        }
+    </script>
+    <script>
 
         $(document).ready(function () {
             console.log("ready!");
@@ -82,23 +88,24 @@
                         success: function (data) {
                             console.log("GET Response", data);
 
-                            if(!data || data.length == 0){
+                            if (!data || data.length == 0) {
                                 $("p#errorSpace").html("User does not exist");
                                 return;
                             }
 
-                            if(data[0].password != _password){
+                            if (data[0].password != _password) {
                                 $("p#errorSpace").html("Password Incorrect");
                                 return;
                             }
                             // Save data to sessionStorage
-                            console.log("Saving User Local Session ",  data[0]);
-                            sessionStorage.setItem('curentUser', JSON.stringify(data[0]) );
+                            console.log("Saving User Local Session ", data[0]);
+                            sessionStorage.setItem('curentUser', JSON.stringify(data[0]));
 
                             // Get saved data from sessionStorage
-                            var currUser = sessionStorage.getItem('curentUser');
-                            console.log("Retrieving from User Local Session ",  JSON.parse(currUser) );
+                            window.currUser = sessionStorage.getItem('curentUser');
+                            console.log("Retrieving from User Local Session ", JSON.parse(currUser));
 
+                            window.location.href = '/';
                             // Remove saved data from sessionStorage
                             //sessionStorage.removeItem('key');
 
@@ -106,6 +113,9 @@
                             //sessionStorage.clear();
                             //var _username = document.getElementById('input#defaultLoginFormEmail').value ;
 
+                        },
+                        error: function (request, status, error) {
+                            $("p#errorSpace").html(request.responseText);
                         }
                     });
             });

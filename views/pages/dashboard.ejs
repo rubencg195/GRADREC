@@ -4,6 +4,13 @@
 
 <head>
     <% include ../partials/mdhead %>
+    
+    <script>
+        console.log("Dash User", window.currUser);
+        if (!window.currUser) {
+            //window.location.href = '/login';
+        }
+    </script>
 </head>
 
 <body style="background-color: rgb(230, 230, 230);">
@@ -14,39 +21,7 @@
     <main class="container pb-3">
         <% for(var i=0; i < 5 ; i++) { %>
         <!--News card-->
-        <div class="card mb-3 text-center hoverable">
-            <div class="card-body">
-                <!--Grid row-->
-                <div class="row">
-
-                    <!--Grid column-->
-                    <div class="col-md-4 offset-md-1 mx-3 my-3">
-                        <!--Featured image-->
-                        <div class="view overlay">
-                            <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid" alt="Sample image for first version of blog listing">
-                            <a>
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-md-7 text-left ml-3 mt-3">
-                        <!--Excerpt-->
-                        <a href="" class="green-text">
-                            <h6 class="font-bold pb-1"><i class="fa fa-desktop"></i> Project</h6>
-                        </a>
-                        <h4 class="mb-4"><strong>Project <%- i %> </strong></h4>
-                        <p>Project <%- i %> is about really cool stuff and you'll learn a lot and help out in doing Project <%- i %> it'll be fun.</p>
-                        <p>by <a><strong>Sp0oky Ghost</strong></a>, 31/10/2018</p>
-                        <a class="btn red" href="/research">APPLY</a>
-                    </div>
-                    <!--Grid column-->
-                </div>
-                <!--Grid row-->
-            </div>
-        </div>
+        
         <!--News card-->
         <% } %>
 
@@ -87,6 +62,58 @@
         </nav>
     </main>
     <% include ../partials/mdscripts %>
+    <script>
+        console.log("Dash User", window.currUser);
+        if (!window.currUser) {
+            window.location.href = '/login';
+        }else{
+            $(document).ready(function () {
+                console.log("ready!");
+    
+                $.ajax
+                        ({
+                            url: '/projects',
+                            data: {},
+                            type: 'get',
+                            success: function (projects) {
+                                console.log("Projects GET Response", projects);
+
+                                projects.forEach(function(proj){
+                                    var $newCard = $( `<div class="card mb-3 text-center hoverable">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-4 offset-md-1 mx-3 my-3">
+                                                        <!--Featured image-->
+                                                        <div class="view overlay">
+                                                            <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid" alt="Sample image for first version of blog listing">
+                                                            <a>
+                                                                <div class="mask rgba-white-slight"></div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7 text-left ml-3 mt-3">
+                                                        <a href="" class="green-text">
+                                                            <h6 class="font-bold pb-1"><i class="fa fa-desktop"> PROJECT </i>  </h6>
+                                                        </a>
+                                                        <h4 class="mb-4"><strong> ${proj.title} <%- i %> </strong></h4>
+                                                        <p> ${proj.abstract} </p>
+                                                        <p><a><strong>${new Date(proj.startDate).toLocaleDateString("en-US")} - ${new Date(proj.endDate).toLocaleDateString("en-US")}</strong></a></p>
+                                                        <a class="btn red" href="/research?id=${proj._id}">APPLY</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>`);
+                                    $( "main" ).prepend( $newCard );
+                                });
+
+                            },
+                            error: function (request, status, error) {
+                                $("p#errorSpace").html(request.responseText);
+                            }
+                        });
+            });
+        }
+    </script>
 </body>
 <footer>
     <% include ../partials/footer %>

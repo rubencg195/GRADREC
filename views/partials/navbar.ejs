@@ -1,11 +1,15 @@
+<script>
+    window.currUser = sessionStorage.getItem('curentUser');
+    window.currUser = JSON.parse(window.currUser);
+    console.log("Retrieving from User Local Session ", window.currUser);
+</script>
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-light  grey lighten-5">
 
     <!-- Navbar brand -->
     <a class="navbar-brand" href="/">
-        <img src="https://clf.mun.ca/favicon/favicon-192x192.png" height="30" class="d-inline-block align-top"
-      alt="mdb logo">         
-      GRADREC
+        <img src="https://clf.mun.ca/favicon/favicon-192x192.png" height="30" class="d-inline-block align-top" alt="mdb logo">
+        GRADREC
     </a>
 
     <!-- Collapse button -->
@@ -51,15 +55,10 @@
             </li> -->
 
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item">
-                <a class="nav-link" href="login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/signup">Signup</a>
-            </li>
+        <ul class="nav navbar-nav navbar-right" id="navSignList">
+
         </ul>
-        
+
         <!-- Links -->
 
         <!-- <form class="form-inline">
@@ -72,3 +71,38 @@
 
 </nav>
 <!--/.Navbar-->
+
+<script>
+
+     console.log(window.location.href); 
+    
+
+    function logout() {
+
+        // Remove saved data from sessionStorage
+        sessionStorage.removeItem('curentUser');
+        window.location.href = '/login';
+    }
+    var ul = document.getElementById("navSignList");
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.setAttribute("class", "nav-link");
+
+    if (!currUser) {
+        a.setAttribute("href", "/login");
+        a.appendChild(document.createTextNode("Login"));
+        li.appendChild(a);
+        li.setAttribute("id", "loginBtn"); // added line
+        li.setAttribute("class", "nav-item");
+    } else {
+        a.setAttribute('onclick', 'logout();'); // for FF
+        a.onclick = function () { logout(); }; 
+        a.appendChild(document.createTextNode("Logout"));
+        li.appendChild(a);
+        li.setAttribute("id", "logoutBtn");
+        li.setAttribute("class", "nav-item");
+    }
+
+    ul.appendChild(li);
+
+</script>

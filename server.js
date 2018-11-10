@@ -119,7 +119,8 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
 
     //===============PROJECTS DB ENDPOINTS========================
     app.get("/projects", function (req, res) {
-        db.collection("projects").find({}).toArray(function (err, docs) {
+        console.log("Project Query" , req.query);
+        db.collection("projects").find(req.query).toArray(function (err, docs) {
             if (err) {
                 handleError(res, err.message, "Failed to get contacts.");
             } else {
