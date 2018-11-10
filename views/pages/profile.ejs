@@ -67,6 +67,21 @@
                         </div>
 
 
+
+                        <div class="row"> <!-- beginning of row 0  -->
+
+
+                            <!-- Grid column -->
+                            <div class="col-md-12">
+                                <!-- row 1, col 1 -->
+                                <div class="md-form mb-0">
+                                    <input type="text" placeholder="Image URL" id="form-contact-imageURL" class="form-control">
+                                    <label for="form-contact-imageURL" class="">A link to the image you wish to use for your profile</label>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+                        </div>
+
                         <!-- Grid row -->
                         <div class="row">
                             <!-- beginning of row 1  -->
@@ -464,6 +479,7 @@
                         console.log("Saving User Local Session ", data[0]);
                         sessionStorage.setItem('curentUser', JSON.stringify(data[0]));
                         var currUser = data[0];
+                        var _imageURL =$('input#form-contact-imageURL')//profile image
                         var _username = $('strong#username'); //username
                         var _firstname = $('input#form-contact-firstName'); //firstName
                         var _lastname = $('input#form-contact-lastName'); //lastName
@@ -492,11 +508,12 @@
                         var _program = $('#form-contact-program'); //program
 
                         _username.html(currUser.username); //cambiamos los valores del html con los que estan en la base de datos
+                        _imageURL.val(currUser.imgURL); //profile image
                         _firstname.val(currUser.firstName);
                         _lastname.val(currUser.lastName);
                         _summary.val(currUser.summary);
                         _email.val(currUser.email);
-                        _dob.val( (!currUser.dob) ? "" : new Date(currUser.dob).toLocaleDateString("en-US") );
+                        _dob.val( (!currUser.dob) ? "" : currUser.dob );
                         _nationality.val(currUser.nationality);
                         _gender.val(currUser.gender);
                         _address.val(currUser.address);
@@ -529,9 +546,9 @@
                         }
 
                         /////////////////////////////////////////////////////////
-                        _english.prop('checked', (!currUser.skills)? false :currUser.skills.english);
-                        _maths.prop('checked',(!currUser.skills)? false : currUser.skills.maths);
-                        _comp.prop('checked', (!currUser.skills)? false :currUser.skills.comp);
+                        _english.prop('checked', (!currUser.skills)? false : currUser.skills.english);
+                        _maths.prop('checked',(!currUser.skills)? false :  currUser.skills.maths);
+                        _comp.prop('checked', (!currUser.skills)? false : currUser.skills.comp);
                         _music.prop('checked',(!currUser.skills)? false : currUser.skills.music);
                         _noSkills.prop('checked', (!currUser.skills)? false :currUser.skills.noSkills);
                         //_username.html(currUser.username); //cambiamos los valores del html con los que estan en la base de datos
@@ -547,42 +564,44 @@
                             //    $("p#errorSpace").html("Fill up the fields");
                             //    return;
                             //}
-                            console.log("ENVIANDO ");
+                            var newInfo = {
+                            username: _username.html(),
+                            email:_email.val(),
+                            firstName: _firstname.val(),
+                            lastName: _lastname.val(),
+                            imgURL: _imageURL.val(),
+                            surveyDone: false,
+                            summary: _summary.val(),
+                            dob: _dob.val(),
+                            nationality: _nationality.val(),
+                            gender: _gender.val(),
+                            address: _address.val(),
+                            phone: _phone.val(),
+                            degree: _degree.val(),
+                            university: _university.val(),
+                            otherCert: _certificates.val(),
+                            employer1: _employer1.val(),
+                            title1: _title1.val(),
+                            duration1: _duration1.val(),
+                            employer2: _employer2.val(),
+                            title2: _title2.val(),
+                            duration2: _duration2.val(),
+                            PhD: _msc_or_phd.val(),
+                            program: _program.val(),
+                            skills: {
+                                "english": (!currUser.skills)? false : currUser.skills.english,
+                                "maths":  (!currUser.skills)? false : currUser.skills.maths,
+                                "comp":  (!currUser.skills)? false : currUser.skills.comp,
+                                "music":  (!currUser.skills)? false : currUser.skills.music,
+                                "noSkills":  (!currUser.skills)? false : currUser.skills.noSkills
+                            }};
+
+                            console.log("ENVIANDO ", newInfo);
 
                             $.ajax
                                 ({
                                     url: `/users/${currUser._id}`,
-                                    data: {
-                                    username: currUser.username,
-                                    email: "admin@mun.ca",
-                                    firstName: currUser.firstName,
-                                    lastName: currUser.lastName,
-                                    imgURL: currUser.imgURL,
-                                    name: "This is just a test field. We'll delete before turning in the final project",
-                                    surveyDone: false,
-                                    summary: currUser.summary,
-                                    nationality: currUser.nationality,
-                                    gender: currUser.gender,
-                                    address: currUser.address,
-                                    phone: currUser.phone,
-                                    degree: currUser.degree,
-                                    university: currUser.university,
-                                    otherCert: currUser.otherCert,
-                                    employer1: currUser.employer1,
-                                    title1: currUser.title1,
-                                    duration1: currUser.duration1,
-                                    employer2: currUser.employer2,
-                                    title2: currUser.title2,
-                                    duration2: currUser.duration2,
-                                    PhD: currUser.PhD,
-                                    program: currUser.program,
-                                    skills: {
-                                        "english": (!currUser.skills)? false : currUser.skills.english,
-                                        "maths":  (!currUser.skills)? false : currUser.skills.maths,
-                                        "comp":  (!currUser.skills)? false : currUser.skills.comp,
-                                        "music":  (!currUser.skills)? false : currUser.skills.music,
-                                        "noSkills":  (!currUser.skills)? false : currUser.skills.noSkills
-                                    }},
+                                    data: newInfo,
                                     type: 'put',
                                     success: function (user) {
                                         console.log("USER SAVED", user);
