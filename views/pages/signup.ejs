@@ -11,7 +11,7 @@
     <% include ../partials/navbar %>
     <main class="flex-center flex-column animated fadeIn mb-4">
         <!-- Default form register -->
-        <form class="text-center border border-light p-5" style="background-color:white;">
+        <form action="/signup" method="post" class="text-center border border-light p-5" style="background-color:white;">
 
             <p class="h4 mb-4">Sign up</p>
 
@@ -37,7 +37,7 @@
             </small>
 
             <!-- Sign up button  type="submit" -->
-            <a id="submitBtn" class="btn red my-4 btn-block" href="/dashboard" >Sign up</a>
+            <a id="submitBtn" type="submit" class="btn red my-4 btn-block">Sign up</a>
 
             <br>
             <br>
