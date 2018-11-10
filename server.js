@@ -10,6 +10,7 @@ var ObjectID = mongodb.ObjectID;
 app.set('view engine', 'ejs');
 app.use(express.static('assets', { root: __dirname }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 function handleError(res, stacktrace, msg) {
     console.log(stacktrace, msg);
@@ -267,7 +268,11 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     });
     //==============================================================
 
-
+    app.post("/signup", function (req, res) {
+        var postBody = req.body;
+        console.log(postBody);
+        
+    });
 
 });
 
