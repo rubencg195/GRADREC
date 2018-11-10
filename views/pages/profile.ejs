@@ -127,7 +127,7 @@
                                 <!-- row 3, col 1 -->
                                 <div class="md-form mb-0">
                                     <input type="text" id="form-contact-DoB" class="form-control" placeholder="Date of Birth (DD-MM-YYYY)">
-                                    <label for="form-contact-DoB" class="">Date of Birth (DD-MM-YYYY)</label>
+                                    <label for="form-contact-DoB" class="">Date of Birth (DD/MM/YYYY)</label>
                                 </div>
                             </div>
                             <!-- Grid column -->
@@ -315,27 +315,45 @@
                             </div>
                         </div>
 
+                        <div class="row"> <!-- row 10 - Program and Field of Study -->
 
-                        <div class="row">
-                            <!-- row 10 -->
-                            <!-- Grid column -->
-                            <div class="col-md-12">
-                                <!-- row 10, col 1 -->
-                                <div class="md-form mb-0">
-
-                                    <select class="browser-default custom-select" id="form-contact-programs">
-                                        <option selected>Program you are applying for</option>
-                                        <option value="1">Computer Science (MSc)</option>
-                                        <option value="2">Computer Science (PhD)</option>
-                                        <option value="3">Mathematics (MSc)</option>
-                                        <option value="4">Mathematics (PhD)</option>
-                                        <option value="5">Computational Chemistry (MSc)</option>
-                                        <option value="6">Computational Chemistry (PhD)</option>
-                                    </select>
-                                </div>
-
-                            </div>
-                            <!-- Grid column -->
+                          <!-- Grid column -->
+                          <div class="col-sm-2"> <!-- row 10, col 1 -->
+                              <div class="md-form mb-0">
+                                    <p>MSc or PhD:</p>
+                              </div>
+                          </div>
+                          <!-- Grid column -->
+                          <!-- Grid column -->
+                          <div class="col-sm-1"> <!-- row 10, col 2 -->
+                              <div class="md-form mb-0">
+                                <select class="browser-default custom-select" id="form-contact-msc_or_phd">
+                                <option selected value="1">MSc</option>
+                                <option value="2">PhD</option>
+                                </select>
+                              </div>
+                          </div>
+                          <!-- Grid column -->
+                          <!-- Grid column -->
+                          <div class="col-sm-2"> <!-- row 10, col 3 -->
+                              <div class="md-form mb-0">
+                                    Program:
+                              </div>
+                          </div>
+                          <!-- Grid column -->
+                          <!-- Grid column -->
+                          <div class="col-sm-4"> <!-- row 10, col 4 -->
+                              <div class="md-form mb-0">
+                                <select class="browser-default custom-select" id="form-contact-program">
+                                <option selected  value="1">Computer Science/Engineering</option>
+                                <option value="2">Computational chemistry </option>
+                                <option value="3">Physics</option>
+                                <option value="4">Mathematics</option>
+                                <option value="5">Marine Biology</option>
+                                </select>
+                              </div>
+                          </div>
+                          <!-- Grid column -->
                         </div> <!-- end of row 10 -->
 
                         <div class="row">
@@ -452,8 +470,10 @@
                         _summary.val(currUser.summary);
                         var _email = $('input#form-contact-email'); //email
                         _email.val(currUser.email);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         var _dob = $('input#form-contact-DoB'); //dob
-                        _dob.val(currUser.dob);
+                        _dob.val( new Date(currUser.dob).toLocaleDateString("en-US"));
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         var _nationality = $('input#form-contact-nationality'); //nationality
                         _nationality.val(currUser.nationality);
                         var _gender = $('input#form-contact-gender'); //gender
@@ -482,18 +502,36 @@
                         _duration2.val(currUser.duration2);
 
                         //////////////////////////////////////////////////////////
-                        var _program = $('#form-contact-programs'); //program
-                        _program.val(currUser.program);
+                        var _msc_or_phd = $('#form-contact-msc_or_phd'); //PhD
+                        if ( (currUser.PhD) == true) {
+                            _msc_or_phd.val(2);
+                         }else{
+                           _msc_or_phd.val(1);
+                         };
+                         var _program = $('#form-contact-program'); //program
+                         if ( (currUser.program) == "Computer Science/Engineering") {
+                             _program.val(1);
+                          }else if ((currUser.program) == "Computational chemistry"){
+                            _program.val(2);
+                          }else if ((currUser.program) == "Physics"){
+                            _program.val(3);
+                          }else if ((currUser.program) == "Mathematics"){
+                            _program.val(4);
+                          }else if ((currUser.program) == "Marine Biology"){
+                            _program.val(5);
+                          }
+
+                         /////////////////////////////////////////////////////////
                         var _english = $('#english');
-                        _english.val(currUser.skills[0]);
+                        _english.prop('checked', currUser.skills.english);
                         var _maths = $('#maths');
-                        _english.val(currUser.skills[1]);
+                        _maths.prop('checked', currUser.skills.maths);
                         var _comp = $('#comp');
-                        _english.val(currUser.skills[2]);
+                        _comp.prop('checked', currUser.skills.comp);
                         var _music = $('#music');
-                        _english.val(currUser.skills[3]);
+                        _music.prop('checked', currUser.skills.music);
                         var _noSkills = $('#noSkills');
-                        _english.val(currUser.skills[4]);
+                        _noSkills.prop('checked', currUser.skills.noSkills);
                         //_username.html(currUser.username); //cambiamos los valores del html con los que estan en la base de datos
                         $("img#userImage").attr("src", currUser.imgURL);
                         //$("#username").html(currUser.username);
