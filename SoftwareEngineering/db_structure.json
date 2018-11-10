@@ -49,3 +49,13 @@
   "Participants":["Lucas","Jessie","Ruben","Dasaed"],
   "Attachments":"__dirname/../../../../projectFiles/*"
 }
+{
+  "NotificationID":123456,
+  "Recepients":[ "Professor X"],
+  "Message":"I wanna join your x-men project",
+  "TimeStamp":"DD-MM-YY-ss-mm-hr-TZ",
+  "SpecialActions":{
+    "AcceptReject":true,
+    "DueDate":"Respond by DD-MM-YYYY, or the AcceptReject value will default to false"
+  }
+}
