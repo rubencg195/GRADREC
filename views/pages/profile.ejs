@@ -126,7 +126,7 @@
                             <div class="col-md-4">
                                 <!-- row 3, col 1 -->
                                 <div class="md-form mb-0">
-                                    <input type="text" id="form-contact-DoB" class="form-control" placeholder="Date of Birth (DD-MM-YYYY)">
+                                    <input type="text" id="form-contact-DoB" class="form-control" placeholder="Date of Birth (DD/MM/YYYY)">
                                     <label for="form-contact-DoB" class="">Date of Birth (DD/MM/YYYY)</label>
                                 </div>
                             </div>
@@ -464,7 +464,6 @@
                         console.log("Saving User Local Session ", data[0]);
                         sessionStorage.setItem('curentUser', JSON.stringify(data[0]));
                         var currUser = data[0];
-
                         var _username = $('strong#username'); //username
                         var _firstname = $('input#form-contact-firstName'); //firstName
                         var _lastname = $('input#form-contact-lastName'); //lastName
@@ -497,7 +496,7 @@
                         _lastname.val(currUser.lastName);
                         _summary.val(currUser.summary);
                         _email.val(currUser.email);
-                        _dob.val(new Date(currUser.dob).toLocaleDateString("en-US"));
+                        _dob.val( (!currUser.dob) ? "" : new Date(currUser.dob).toLocaleDateString("en-US") );
                         _nationality.val(currUser.nationality);
                         _gender.val(currUser.gender);
                         _address.val(currUser.address);
@@ -530,11 +529,11 @@
                         }
 
                         /////////////////////////////////////////////////////////
-                        _english.prop('checked', currUser.skills.english);
-                        _maths.prop('checked', currUser.skills.maths);
-                        _comp.prop('checked', currUser.skills.comp);
-                        _music.prop('checked', currUser.skills.music);
-                        _noSkills.prop('checked', currUser.skills.noSkills);
+                        _english.prop('checked', (!currUser.skills)? false :currUser.skills.english);
+                        _maths.prop('checked',(!currUser.skills)? false : currUser.skills.maths);
+                        _comp.prop('checked', (!currUser.skills)? false :currUser.skills.comp);
+                        _music.prop('checked',(!currUser.skills)? false : currUser.skills.music);
+                        _noSkills.prop('checked', (!currUser.skills)? false :currUser.skills.noSkills);
                         //_username.html(currUser.username); //cambiamos los valores del html con los que estan en la base de datos
                         $("img#userImage").attr("src", currUser.imgURL);
                         //$("#username").html(currUser.username);
@@ -553,38 +552,36 @@
                             $.ajax
                                 ({
                                     url: `/users/${currUser._id}`,
-                                    data: { 
-                                    username: "admin", 
-                                    email: "admin@mun.ca", 
-                                    firstName: "Super", 
-                                    lastName: "Admin", 
-                                    password: "admin", 
-                                    imgURL: "https://krourke.org/img/md_avatar_wizard.svg", 
-                                    name: "Adrian", 
-                                    isProf: true, 
-                                    surveyDone: false, 
-                                    summary: "I am good professor with multiple PhDs and a passion for science and technology. I like to work with students and give them challenging and interesting assignments that will test and improve their cognitive and technical skills, all while having fun and learning to be better professionals. ", 
-                                    dob: "1994-12-22T03:30:00.000Z", 
-                                    nationality: "Martian", 
-                                    gender: "apache attack helicopter", 
-                                    address: "123 Sesame Street, St. John's NL, Canada", 
-                                    phone: "7091234567", 
-                                    degree: "PhD. in Advanced Robotics", 
-                                    university: "University of Mars", 
-                                    otherCert: "MSc in Computer Science, CCNA, RHCSA, AJAX, etc.", 
-                                    employer1: "MUN", "title1": "Tenured Professor", 
-                                    duration1: "2 years", 
-                                    employer2: "MUN", 
-                                    title2: "Assistant Professor", 
-                                    duration2: "2 years", 
-                                    PhD: true, 
-                                    program: "Physics", 
-                                    skills: { 
-                                        "english": false, 
-                                        "maths": true, 
-                                        "comp": true, 
-                                        "music": false, 
-                                        "noSkills": false
+                                    data: {
+                                    username: currUser.username,
+                                    email: "admin@mun.ca",
+                                    firstName: currUser.firstName,
+                                    lastName: currUser.lastName,
+                                    imgURL: currUser.imgURL,
+                                    name: "This is just a test field. We'll delete before turning in the final project",
+                                    surveyDone: false,
+                                    summary: currUser.summary,
+                                    nationality: currUser.nationality,
+                                    gender: currUser.gender,
+                                    address: currUser.address,
+                                    phone: currUser.phone,
+                                    degree: currUser.degree,
+                                    university: currUser.university,
+                                    otherCert: currUser.otherCert,
+                                    employer1: currUser.employer1,
+                                    title1: currUser.title1,
+                                    duration1: currUser.duration1,
+                                    employer2: currUser.employer2,
+                                    title2: currUser.title2,
+                                    duration2: currUser.duration2,
+                                    PhD: currUser.PhD,
+                                    program: currUser.program,
+                                    skills: {
+                                        "english": (!currUser.skills)? false : currUser.skills.english,
+                                        "maths":  (!currUser.skills)? false : currUser.skills.maths,
+                                        "comp":  (!currUser.skills)? false : currUser.skills.comp,
+                                        "music":  (!currUser.skills)? false : currUser.skills.music,
+                                        "noSkills":  (!currUser.skills)? false : currUser.skills.noSkills
                                     }},
                                     type: 'put',
                                     success: function (user) {
