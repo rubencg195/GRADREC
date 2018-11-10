@@ -297,7 +297,14 @@
         <!-- Section: Contact v.3 -->
     </main>
     <% include ../partials/mdscripts %>
-
+    <script>
+        if (window.currUser) {
+            console.log("Exist");
+        } else {
+            console.log("not login");
+            window.location.href = '../';
+        }
+    </script>
     <script>
       $(document).ready(function() {
         $('.mdb-select').materialSelect();
