@@ -413,7 +413,7 @@
             console.log("Exist");
         } else {
             console.log("not login");
-            window.location.href = '../';
+            window.location.href = '/login';
         }
     </script>
     <script>
@@ -493,8 +493,8 @@
                                                         sessionStorage.setItem('curentUser', JSON.stringify(user));
                                                         window.currUser = sessionStorage.getItem('curentUser');
                                                         console.log("Retrieving from User Local Session ", JSON.parse(currUser));
-
-                                                        window.location.href = '../';
+            
+                                                        window.location.href = '/';
                                                     },
                                                     error: function (request, status, error) {
                                                         $("p#errorSpace").html(request.responseText);

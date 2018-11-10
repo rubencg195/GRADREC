@@ -22,21 +22,7 @@
             <input type="password" name="defaultLoginFormPassword" id="defaultLoginFormPassword" class="form-control mb-4"
                 placeholder="Password">
            
-            <p class="red-text" id="errorSpace"></p> <br />
-            <div class="d-flex justify-content-around">
-                <div>
-                    <!-- Remember me -->
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                        <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
-                    </div>
-                </div>
-                <div class="pl-1">
-                    <!-- Forgot password -->
-                    <a href="">Forgot password?</a>
-                </div>
-            </div>
-
+            <p class="red-text" id="errorSpace"></p>
             <!-- Sign in button  type="submit" -->
             <a id="submitBtn" class="btn red white-text btn-block my-4 " id="signInBtn">Sign in</a>
 
@@ -58,7 +44,7 @@
     <script>
         if (window.currUser) {
             console.log("Exist");
-            window.location.href = '../';
+            window.location.href = '/';
         } else {
             console.log("not login");
         }
