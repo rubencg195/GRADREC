@@ -56,7 +56,17 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
         res.render('pages/dashboard', {query : req.query});
     });
     app.get('/research', function (req, res) {  // GET /research?id=5
-        res.render('pages/research', {query : req.query});
+        db.collection("projects").find(req.query).toArray(function (err, docs) {
+            let data;
+            if (err) {
+                data = {}
+                //handleError(res, err.message, "Failed to get contacts.");
+            } else {
+                data = docs;
+                //res.status(200).json(docs);
+            }
+            res.render('pages/research', {projects : data});
+        });
     });
     app.get('/studentSurvey', function (req, res) {
         res.render('pages/studentSurvey', {query : req.query});

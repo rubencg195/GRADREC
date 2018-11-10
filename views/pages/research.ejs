@@ -26,18 +26,16 @@
             <!--Card content-->
             <div class="card-body text-center mb-3">
                 <!--Title-->
-                <h3 class="card-title mt-2 pb-4"><strong>Project Page</strong></h3>
+                <h3 class="card-title mt-2 pb-4"><strong id="titleDiv">PROJECT NOT FOUND</strong></h3>
                 <!--Text-->
-                <p class="card-text">This will be the page for detailed individual project information. It should only
-                    be accessed after a student is accepted.
-                </p>
+                <p class="card-text" id="abstractDiv" ></p>
                 <a href="#" class="btn red btn-rounded">APPLY</a>
-                <a class="btn grey btn-rounded white-text" id="sendMsgBtn" >Send a Message</a>
+                <a class="btn grey btn-rounded white-text" id="sendMsgBtn">Send a Message</a>
             </div>
 
         </div>
 
-        <br/>
+        <br />
         <!--/.Card-->
         <div class="card">
 
@@ -214,11 +212,11 @@
                     <!-- Grid column -->
 
                     <!-- Grid column -->
-                    <div class="col-lg-4" >
+                    <div class="col-lg-4">
 
                         <div class="card-body contact text-center h-100 white-text  red darken-4">
 
-                            <h3 class="my-4 pb-2" >Contact information</h3>
+                            <h3 class="my-4 pb-2">Contact information</h3>
                             <ul class="text-lg-left list-unstyled ml-4">
                                 <li>
                                     <p><i class="fa fa-map-marker pr-2 white-text"></i>Memorial University, NL</p>
@@ -227,7 +225,7 @@
                                     <p><i class="fa fa-phone pr-2 white-text"></i>+ 01 234 567 89</p>
                                 </li>
                                 <li>
-                                    <p><i class="fa fa-envelope pr-2 white-text"  id="contactSection"></i>contact@example.com</p>
+                                    <p><i class="fa fa-envelope pr-2 white-text" id="contactSection"></i>contact@example.com</p>
                                 </li>
                             </ul>
                         </div>
@@ -244,12 +242,48 @@
             if (!!e && e.scrollIntoView) {
                 e.scrollIntoView();
             }
-         }
+        }
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
 
-         $("#sendMsgBtn").click(function () {
+        $("#sendMsgBtn").click(function () {
             $("html, body").animate({ scrollTop: $("#contactSection").offset().top }, 500);
             return true;
         });
+
+        var projectId = getParameterByName('id');
+
+        $(document).ready(function () {
+            console.log("ready!");
+
+            $.ajax
+                ({
+                    url: `/projects/${projectId}`,
+                    data: {},
+                    type: 'get',
+                    success: function (project) {
+                        console.log("Projects GET Response", project);
+                        window.project = project;
+                        //projects.forEach(function (proj) {
+                        //    var $newCard = $(``);
+                        //    $("main").prepend($newCard);
+                        //});
+                        $("#titleDiv").html(project.title);
+                        $("#abstractDiv").html(project.abstract);
+                    },
+                    error: function (request, status, error) {
+                        $("p#errorSpace").html(request.responseText);
+                    }
+                });
+        });
+
     </script>
 </body>
 <footer>
