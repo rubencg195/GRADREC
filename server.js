@@ -149,10 +149,6 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
         var newContact = req.body;
         newContact.createDate = new Date();
 
-        if (!(req.body.firstName || req.body.lastName)) {
-            handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
-        }
-
         db.collection("projects").insertOne(newContact, function (err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to create new contact.");

@@ -301,7 +301,7 @@
                             for ( var key in  project.skills ){
                                var skillList = document.getElementById(wantedSkills);
                                console.log(project.skills[key], key );
-                               if(project.skills[key] == true ){
+                               if(JSON.parse(project.skills[key]) == true ){
                                    $("#wantedSkills").append("<li>"+key+"</li>");
                                }
                             }

@@ -245,122 +245,133 @@
             return true;
         });
         var projectId = getParameterByName('id');
-        $.ajax
-            ({
-                url: `/projects/${projectId}`,
-                data: {},
-                type: 'get',
-                success: function (data) {
-                    console.log("Projects GET Response", data);
-                    window.currProj = data;
-                    if (!window.currProj) {
-                        console.log("Project not exist");
-                    } else {
-                        var currProj = window.currProj;
-                        var projTitle = $("#form-contact-project_title");
-                        var projAbstract = $("#form-contact-Abstract");
-                        var projImg = $("#form-contact-project_img");
-                        var projResArea = $("#form-contact-specific_research_area");
-                        var projStudent = $("#form-contact-num_of_students");
-                        var projAid = $("#form-contact-financial_aid");
-                        var projComments = $("#form-contact-additional_comments");
-                        var projThanks = $("#form-contact-thanks");
-                        var projConcl = $("#form-contact-conclusion");
-                        var projRes = $("#form-contact-results");
-                        var projStart = $("#form-contact-est_duedate");
-                        var projEnd = $("#form-contact-actual_due_date");
-                        var _english = $('#english');
-                        var _maths = $('#maths');
-                        var _comp = $('#comp');
-                        var _music = $('#music');
-                        var _noSkills = $('#noSkills');
-                        var isPHD = $("#form-contact-msc_or_phd");
-                        var _program = $("#form-contact-program");
-                        var _programFinished = $("#form-project-finished");
-
-                        projTitle.val(currProj.title);
-                        projAbstract.val(currProj.abstract);
-                        projImg.val(currProj.imgURL);
-                        projResArea.val(currProj.researchArea);
-                        projStudent.val(currProj.availableSpots);
-                        projAid.val(currProj.financialAid);
-                        projComments.val(currProj.comments);
-                        projThanks.val(currProj.specialThanks);
-                        projConcl.val(currProj.conclusion);
-                        projRes.val(currProj.results);
-                        projStart.val( currProj.startDate);
-                        projEnd.val( currProj.endDate);
-                        _english.prop('checked',         (!currProj.skills) ? false : JSON.parse(currProj.skills.english));
-                        _maths.prop('checked  ',         (!currProj.skills) ? false : JSON.parse(currProj.skills.maths));
-                        _comp.prop('checked',            (!currProj.skills) ? false : JSON.parse(currProj.skills.comp));
-                        _music.prop('checked',           (!currProj.skills) ? false : JSON.parse(currProj.skills.music));
-                        _noSkills.prop('checked',        (!currProj.skills) ? false : JSON.parse(currProj.skills.noSkills));
-                        _programFinished.prop('checked', JSON.parse(currProj.finished));
-                        isPHD.val( (JSON.parse(currProj.PhD)) ? 1 : 2);
-                        if ((currProj.program) == "Computer Science/Engineering") {
-                            _program.val(1);
-                        } else if ((currProj.program) == "Computational chemistry") {
-                            _program.val(2);
-                        } else if ((currProj.program) == "Physics") {
-                            _program.val(3);
-                        } else if ((currProj.program) == "Mathematics") {
-                            _program.val(4);
-                        } else if ((currProj.program) == "Marine Biology") {
-                            _program.val(5);
-                        }
-                    }
-                    $(document).ready(function () {
-                        $("#updateBtn").click(function () {
-
-                            var newProjData = {
-                                "title": projTitle.val(),
-                                "abstract": projAbstract.val(),
-                                "imgURL": projImg.val(),
-                                "managerId": currUser._id,
-                                "collaborators": [],
-                                "PhD": isPHD.val() == 1 ? true : false,
-                                "program": $("#form-contact-program option:selected").text(),
-                                "researchArea": projResArea.val(),
-                                "availableSpots": projStudent.val(),
-                                "financialAid": projAid.val(),
-                                "comments": projComments.val(),
-                                "finished": _programFinished.is(':checked'),
-                                "conclusion": projConcl.val(),
-                                "results": projRes.val(),
-                                "specialThanks": projThanks.val(),
-                                "participants": [],
-                                "startDate": projStart.val(),
-                                "endDate": projEnd.val(),
-                                "notifications": [],
-                                "skills": {
-                                    "english": _english.is(':checked'),
-                                    "maths": _maths.is(':checked'),
-                                    "comp": _comp.is(':checked'),
-                                    "music": _music.is(':checked'),
-                                    "noSkills": _noSkills.is(':checked')
-                                }
+        var currProj = window.currProj;
+        var projTitle = $("#form-contact-project_title");
+        var projAbstract = $("#form-contact-Abstract");
+        var projImg = $("#form-contact-project_img");
+        var projResArea = $("#form-contact-specific_research_area");
+        var projStudent = $("#form-contact-num_of_students");
+        var projAid = $("#form-contact-financial_aid");
+        var projComments = $("#form-contact-additional_comments");
+        var projThanks = $("#form-contact-thanks");
+        var projConcl = $("#form-contact-conclusion");
+        var projRes = $("#form-contact-results");
+        var projStart = $("#form-contact-est_duedate");
+        var projEnd = $("#form-contact-actual_due_date");
+        var _english = $('#english');
+        var _maths = $('#maths');
+        var _comp = $('#comp');
+        var _music = $('#music');
+        var _noSkills = $('#noSkills');
+        var isPHD = $("#form-contact-msc_or_phd");
+        var _program = $("#form-contact-program");
+        var _programFinished = $("#form-project-finished");
+        var queryURL = `/projects`;
+        var queryType = 'post';
+        if( projectId ) {
+            $.ajax
+                ({
+                    url: `/projects/${projectId}`,
+                    data: {},
+                    type: 'get',
+                    success: function (data) {
+                        console.log("Projects GET Response", data);
+                        window.currProj = data;
+                        if (!window.currProj) {
+                            console.log("Project not exist");
+                        } else {
+                            queryURL = `/projects/${projectId}`;
+                            queryType = 'put';
+    
+                            projTitle.val(currProj.title);
+                            projAbstract.val(currProj.abstract);
+                            projImg.val(currProj.imgURL);
+                            projResArea.val(currProj.researchArea);
+                            projStudent.val(currProj.availableSpots);
+                            projAid.val(currProj.financialAid);
+                            projComments.val(currProj.comments);
+                            projThanks.val(currProj.specialThanks);
+                            projConcl.val(currProj.conclusion);
+                            projRes.val(currProj.results);
+                            projStart.val( currProj.startDate);
+                            projEnd.val( currProj.endDate);
+                            _english.prop('checked',         (!currProj.skills) ? false : JSON.parse(currProj.skills.english));
+                            _maths.prop('checked  ',         (!currProj.skills) ? false : JSON.parse(currProj.skills.maths));
+                            _comp.prop('checked',            (!currProj.skills) ? false : JSON.parse(currProj.skills.comp));
+                            _music.prop('checked',           (!currProj.skills) ? false : JSON.parse(currProj.skills.music));
+                            _noSkills.prop('checked',        (!currProj.skills) ? false : JSON.parse(currProj.skills.noSkills));
+                            _programFinished.prop('checked', JSON.parse(currProj.finished));
+                            isPHD.val( (JSON.parse(currProj.PhD)) ? 1 : 2);
+                            if ((currProj.program) == "Computer Science/Engineering") {
+                                _program.val(1);
+                            } else if ((currProj.program) == "Computational chemistry") {
+                                _program.val(2);
+                            } else if ((currProj.program) == "Physics") {
+                                _program.val(3);
+                            } else if ((currProj.program) == "Mathematics") {
+                                _program.val(4);
+                            } else if ((currProj.program) == "Marine Biology") {
+                                _program.val(5);
                             }
-                            console.log("UPDATING PROJECT!", newProjData);
-                            $.ajax
-                                ({
-                                    url: `/projects/${projectId}`,
-                                    data: newProjData,
-                                    type: 'put',
-                                    success: function (newProject) {
-                                        console.log("SUCCESS", newProject);
-                                    },
-                                    error: function (request, status, error) {
-                                        $("p#errorSpace").html(request.responseText);
-                                    }
-                                });
-                        });
-                    });
-                },
-                error: function (request, status, error) {
-                    $("p#errorSpace").html(request.responseText);
-                }
-            });
+                        }
+                    },
+                    error: function (request, status, error) {
+                        $("p#errorSpace").html(request.responseText);
+                    }
+                });
+        }
+        
+        $(document).ready(function () {
+            $("#updateBtn").click(function () {
 
+                var newProjData = {
+                    "title": projTitle.val(),
+                    "abstract": projAbstract.val(),
+                    "imgURL": projImg.val(),
+                    "managerId": currUser._id,
+                    "collaborators": [],
+                    "PhD": isPHD.val() == 1 ? true : false,
+                    "program": $("#form-contact-program option:selected").text(),
+                    "researchArea": projResArea.val(),
+                    "availableSpots": projStudent.val(),
+                    "financialAid": projAid.val(),
+                    "comments": projComments.val(),
+                    "finished": _programFinished.is(':checked'),
+                    "conclusion": projConcl.val(),
+                    "results": projRes.val(),
+                    "specialThanks": projThanks.val(),
+                    "participants": [],
+                    "startDate": projStart.val(),
+                    "endDate": projEnd.val(),
+                    "notifications": [],
+                    "skills": {
+                        "english": _english.is(':checked'),
+                        "maths": _maths.is(':checked'),
+                        "comp": _comp.is(':checked'),
+                        "music": _music.is(':checked'),
+                        "noSkills": _noSkills.is(':checked')
+                    }
+                }
+                console.log("UPDATING PROJECT!", newProjData, queryURL, queryType);
+                $.ajax
+                    ({
+                        url: queryURL,
+                        data: newProjData,
+                        type: queryType,
+                        success: function (newProject) {
+                            console.log(newProject);
+                            if(currProj == null){
+                                goTo(`/research?id=${newProject._id}`);
+                            }else{
+                                goTo(`/research?id=${currProj._id}`);
+                            }
+                        },
+                        error: function (request, status, error) {
+                            $("p#errorSpace").html(request.responseText);
+                        }
+                    });
+            });
+        });
 
     </script>
     <script>
