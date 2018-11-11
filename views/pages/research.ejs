@@ -4,6 +4,7 @@
 
 <head>
     <% include ../partials/mdhead %>
+    <link rel="icon" href="http://cc-arcc.ca/wp-content/uploads/2016/03/mun-logo.jpg">
 </head>
 
 <body style="background-color: rgb(230, 230, 230);">
@@ -190,10 +191,13 @@
                                         <textarea type="text" id="form-contact-message" class="form-control md-textarea"
                                             rows="3"></textarea>
                                         <label for="form-contact-message">Your message</label>
-                                        <a class="btn-floating btn-lg red">
+                                        <a class="btn-floating btn-lg red " id="sendNewMsgBtn">
                                             <i class="fa fa-send-o"></i>
                                         </a>
                                     </div>
+                                    <br/>
+
+                                    <p class="red-text" id="msgError"></p>
                                 </div>
                                 <!-- Grid column -->
 
@@ -257,12 +261,48 @@
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
 
+        var projectId = getParameterByName('id');
+
         $("#sendMsgBtn").click(function () {
             $("html, body").animate({ scrollTop: $("#contactSection").offset().top }, 500);
             return true;
         });
 
-        var projectId = getParameterByName('id');
+        $("#sendNewMsgBtn").click(function () {
+            var msgName    = $('#form-contact-name').val();
+            var msgEmail   = $('#form-contact-email').val();
+            var msgPhone   = $('#form-contact-phone').val();
+            var msgCompany = $('#form-contact-company').val();
+            var msg = $('#form-contact-message').val();
+            var msgError  = $('p#msgError');
+
+            if(!msgName || !msgEmail || !msg ){
+                msgError.html("Complete the form");
+            }else{
+                $.ajax
+                ({
+                    url: `/notifications`,
+                    data: {
+                        type : "MESSAGE",
+                        name : msgName,
+                        email : msgPhone,
+                        phone: msgPhone,
+                        company: msgCompany,
+                        msg : msg,
+                        projectId: projectId,
+                        userId : window.currUser._id
+                    },
+                    type: 'post',
+                    success: function (notification) {
+                        msgError.html("Message Sent");
+                        console.log("NOTIFICATION CREATED ", notification);
+                    },
+                    error: function (request, status, error) {
+                        msgError.html(request.responseText);
+                    }
+                });
+            }
+        });
 
         if (!projectId){
             console.log("Project not exist");

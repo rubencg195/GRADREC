@@ -1,0 +1,120 @@
+<!-- views/pages/index.ejs -->
+<!DOCTYPE html>
+<html lang="en" style="height: 100vh">
+
+<head>
+    <% include ../partials/mdhead %>
+    <link rel="icon" href="http://cc-arcc.ca/wp-content/uploads/2016/03/mun-logo.jpg">
+</head>
+
+<body style="background-color: rgb(230, 230, 230);">
+    <% include ../partials/navbar %> 
+    <main class="flex-center flex-column animated fadeIn mb-4" id="mainContainer">
+        
+
+    </main>
+    <% include ../partials/mdscripts %>
+    <script>
+        if (window.currUser) {
+            console.log("Exist");
+        } else {
+            window.location.href = '/login';
+            console.log("not login");
+        }
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            console.log("ready!");
+            
+            $.ajax
+            ({
+                url: "/notifications",
+                data: {},
+                type: "get",
+                success: function (notifications) {
+                    for(var not of notifications){
+                        console.log(not);
+
+                        var title;
+                        var img;
+                        var $card;
+                        var date = not.createDate;
+                        var type = not.type;
+
+                        if( not.type == "MESSAGE" ){
+                            img = "http://cdn.onlinewebfonts.com/svg/img_302106.png";
+                            var name = not.name;
+                            var title = "You have a new message from "+name;
+                            var description = not.msg;
+                            var email = not.email;
+                            var phone = not.phone;
+                            var company = not.company;
+                            $card = `<div class="jumbotron text-center hoverable p-4">
+                                <div class="row">
+                                  <div class="col-xs-1 col-md-2 offset-md-1 mx-3 my-3">
+                                    <div class="view overlay">
+                                      <img src="${img}" height="100px" class="img-fluid" alt="Sample image for first version of blog listing">
+                                      <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-10 col-md-9 text-md-left ml-3 mt-3">
+                                    <a href="#!" class="green-text">
+                                      <h6 class="h6 pb-1"><i class="fa fa-desktop pr-1"></i> ${type}</h6>
+                                    </a>
+                                    <!--<h4 class="h4 mb-4">This is title of the news</h4>-->
+                                    <p class="font-weight-normal">${description}</p>
+                                    <p class="font-weight-normal">by <a><strong>${name}</strong></a>, ${new Date(date).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} </p>
+                                    <br/>
+                                    <p class="font-weight-normal"> <strong>Phone:</strong> ${phone} </p>
+                                    <p class="font-weight-normal"> <strong>Email:</strong> ${email} </p>
+                                    <p class="font-weight-normal"> <strong>Company:</strong> ${company} </p>
+                                  </div>
+                                </div>
+                              </div>`;
+                        }else if ( not.type === "APPLY_REQUEST" ){
+                            type = "APPLICATION REQUEST";
+                            description = name+" wants to join to the project "+not.projectName;
+                            img = "https://png.pngtree.com/svg/20170517/apply_1359349.png";
+                            $card = `<div class="jumbotron text-center hoverable p-4">
+                                <div class="row">
+                                  <div class="col-xs-1 col-md-2 offset-md-1 mx-3 my-3">
+                                    <div class="view overlay">
+                                      <img src="${img}" height="100px" class="img-fluid" alt="Sample image for first version of blog listing">
+                                      <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-xs-10 col-md-9 text-md-left ml-3 mt-3">
+                                    <a href="#!" class="green-text">
+                                      <h6 class="h6 pb-1"><i class="fa fa-desktop pr-1"></i> ${type}</h6>
+                                    </a>
+                                    <!--<h4 class="h4 mb-4">This is title of the news</h4>-->
+                                    <p class="font-weight-normal">${description}</p>
+                                    <p class="font-weight-normal">by <a><strong>${name}</strong></a>, ${new Date(date).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} </p>
+                                    <br/>
+                                    <a class="btn red white-text">ACCEPT</a>
+                                    <a class="btn grey white-text">DENY</a>
+                                  </div>
+                                </div>
+                              </div>`;
+                        }
+                        $("#mainContainer").append($($card));
+                    }
+                  },
+                  error: function (request, status, error) {
+                      $("p#errorSpace").html(request.responseText);
+                  }
+              });
+
+        });
+
+    </script>
+</body>
+<footer>
+</footer>
+
+</html>

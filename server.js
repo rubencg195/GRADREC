@@ -55,18 +55,11 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     app.get('/dashboard', function (req, res) {
         res.render('pages/dashboard', {query : req.query});
     });
+    app.get('/messages', function (req, res) {
+        res.render('pages/notifications', {query : req.query});
+    });
     app.get('/research', function (req, res) {  // GET /research?id=5
-        db.collection("projects").find(req.query).toArray(function (err, docs) {
-            let data;
-            if (err) {
-                data = {}
-                //handleError(res, err.message, "Failed to get contacts.");
-            } else {
-                data = docs;
-                //res.status(200).json(docs);
-            }
-            res.render('pages/research', {projects : data});
-        });
+            res.render('pages/research', {query : req.query});
     });
     app.get('/studentSurvey', function (req, res) {
         res.render('pages/studentSurvey', {query : req.query});
@@ -193,10 +186,6 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     app.post("/notifications", function (req, res) {
         var newContact = req.body;
         newContact.createDate = new Date();
-
-        if (!(req.body.firstName || req.body.lastName)) {
-            handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
-        }
 
         db.collection("notifications").insertOne(newContact, function (err, doc) {
             if (err) {
