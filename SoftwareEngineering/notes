@@ -1,6 +1,18 @@
+///////////////////////////////////////////////
 View
     Pages = Main content
         Inside body, insert partials this way:
             <% include ../partials/navbar %>
     Partials = reusable content
+///////////////////////////////////////////////
+DB Information == this is just a test database
+hostname = ds121282.mlab.com
+port = 21282
+username = gradrec
+authentication database = gradrec
+///////////////////////////////////////////////
+Pending Requirements
+* Skills in the profile page are not saving. Everytime the page is reloaded, all skills appeared checked, and the database is not saving the changes in this area
+* The student is still able to create project. The variable (isProf=false) hasn't been taken into account yet.
+* 
 
