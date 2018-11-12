@@ -546,12 +546,48 @@
                             _program.val(5);
                         }
 
-                        /////////////////////////////////////////////////////////
-                        _english.prop('checked', (!currUser.skills)? false : currUser.skills.english);
-                        _maths.prop('checked',(!currUser.skills)? false :  currUser.skills.maths);
-                        _comp.prop('checked', (!currUser.skills)? false : currUser.skills.comp);
-                        _music.prop('checked',(!currUser.skills)? false : currUser.skills.music);
-                        _noSkills.prop('checked', (!currUser.skills)? false :currUser.skills.noSkills);
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        if (!currUser.skills.english || currUser.skills.english == false) {
+                          _english.attr('unchecked')
+                          console.log("the english box should be unchecked")
+                        }else {
+                          _english.attr('checked')
+                          console.log("The english box should be checked")
+                        }
+                        if (!currUser.skills.maths || currUser.skills.maths == false) {
+                          _maths.attr('unchecked')
+                          console.log("the math box should be unchecked")
+                        }else {
+                          _maths.attr('checked')
+                          console.log("The math box should be checked")
+                        }
+                        if (!currUser.skills.comp || currUser.skills.comp == false) {
+                          _comp.attr('unchecked')
+                          console.log("the comp box should be unchecked")
+                        }else {
+                          _comp.attr('checked')
+                          console.log("The comp box should be checked")
+                        }
+                        if (!currUser.skills.music || currUser.skills.music == false) {
+                          _music.attr('unchecked')
+                          console.log("the music box should be unchecked")
+                        }else {
+                          _music.attr('music')
+                          console.log("The music box should be checked")
+                        }
+                        if (!currUser.skills.noSkills || currUser.skills.noSkills == false) {
+                          _noSkills.attr('unchecked')
+                          console.log("the noSkills box should be unchecked")
+                        }else {
+                          _noSkills.attr('checked')
+                          console.log("The noSkills box should be checked")
+                        }
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //_english.prop('unchecked', (!currUser.skills.english) ? false : currUser.skills.english);
+                        //_maths.prop('unchecked',(!currUser.skills.maths) ? false :  currUser.skills.maths);
+                        //_comp.prop('unchecked', (!currUser.skills.comp) ? false : currUser.skills.comp);
+                        //_music.prop('unchecked',(!currUser.skills.music) ? false : currUser.skills.music);
+                        //_noSkills.prop('unchecked', (!currUser.skills.noSkills) ? false :currUser.skills.noSkills);
                         //_username.html(currUser.username); //cambiamos los valores del html con los que estan en la base de datos
                         $("img#userImage").attr("src", currUser.imgURL);
                         //$("#username").html(currUser.username);
