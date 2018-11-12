@@ -555,9 +555,9 @@
 */
 
                         /////// first we check if the object "skills" exist. if it doesn't, we leave all the skills as unchecked
-                        //if (!currUser.skills){
-                        //  currUser.skills = {english:false,maths:false,comp:false,music:false,noSkills:false };
-                        //}
+                        if (!currUser.skills){
+                          currUser.skills = {english:"false",maths:"false",comp:"false",music:"false",noSkills:"false" };
+                        }
 
                         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         if ( currUser.skills.english == "false") {
@@ -569,35 +569,35 @@
                         }
                         console.log(currUser.skills.maths)
                         if ( currUser.skills.maths == "false") {
-                          _maths.attr('checked',false)
-                          console.log("the math box should be unchecked")
+                          _maths.attr('checked',false);
+                          console.log("the math box should be unchecked");
                         }else {
-                          _maths.attr('checked',true)
-                          console.log("The math box should be checked")
+                          _maths.attr('checked',true);
+                          console.log("The math box should be checked");
                         }
                         console.log(currUser.skills.comp)
                         if ( currUser.skills.comp == "false") {
-                          _comp.attr('checked',false)
-                          console.log("the comp box should be unchecked")
+                          _comp.attr('checked',false);
+                          console.log("the comp box should be unchecked");
                         }else {
-                          _comp.attr('checked',true)
-                          console.log("The comp box should be checked")
+                          _comp.attr('checked',true);
+                          console.log("The comp box should be checked");
                         }
                         console.log(currUser.skills.music)
                         if ( currUser.skills.music == "false") {
-                          _music.attr('checked',false)
-                          console.log("the music box should be unchecked")
+                          _music.attr('checked',false);
+                          console.log("the music box should be unchecked");
                         }else {
-                          _music.attr('music',true)
-                          console.log("The music box should be checked")
+                          _music.attr('checked',true);
+                          console.log("The music box should be checked");
                         }
                         console.log(currUser.skills.noSkills)
                         if ( currUser.skills.noSkills == "false") {
-                          _noSkills.attr('checked', false)
-                          console.log("the noSkills box should be unchecked")
+                          _noSkills.attr('checked', false);
+                          console.log("the noSkills box should be unchecked");
                         }else {
-                          _noSkills.attr('checked',true)
-                          console.log("The noSkills box should be checked")
+                          _noSkills.attr('checked',true);
+                          console.log("The noSkills box should be checked");
                         }
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         //_english.prop('unchecked', (!currUser.skills.english) ? false : currUser.skills.english);
