@@ -76,10 +76,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="md-form mb-0">
-                                        <input placeholder="Robotics" type="text" id="form-contact-specific_research_area"
+                                        <input placeholder="Robotics, DNA, A.I., etc." type="text" id="form-contact-specific_research_area"
                                             class="form-control">
-                                        <label for="form-contact-specific_research_area" class="">Specific Research
-                                            Area (robotics, DNA splicing, etc.)</label>
+                                        <label for="form-contact-specific_research_area" class="">Specific Research Area </label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -282,7 +281,7 @@
                         } else {
                             queryURL = `/projects/${projectId}`;
                             queryType = 'put';
-    
+
                             projTitle.val(currProj.title);
                             projAbstract.val(currProj.abstract);
                             projImg.val(currProj.imgURL);
@@ -320,7 +319,7 @@
                     }
                 });
         }
-        
+
         $(document).ready(function () {
             $("#updateBtn").click(function () {
 
