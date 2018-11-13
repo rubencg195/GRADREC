@@ -442,8 +442,8 @@
 
             <!-- These are just the buttons to Submit or Save -->
             <div class="align-center text-center m-3">
-                <a class="btn red" href="/home">Submit</a>
-                <a class="btn red" href="/home" id="saveLaterBtn">Save for later</a>
+                <a class="btn red" href="/home" id="submitButton">Submit</a>
+              <!--  <a class="btn red" href="/home" id="saveLaterBtn">Save for later</a> -->
                 <br />
             </div>
 
@@ -611,7 +611,7 @@
                         // $("#form-contact-firstName").val(currUser.firstName);
 
 
-                        $("#saveLaterBtn").click(function (event) {
+                        $("#submitButton").click(function (event) {
                             event.preventDefault();
                             //if (!_name || !_lastname || !_email || !_password) {
                             //    console.log("EMPYT");
@@ -650,7 +650,7 @@
                                 noSkills: _noSkills.prop('checked')
                             }};
 
-                            console.log("ENVIANDO ", newInfo);
+                            console.log("SENDING ", newInfo);
 
                             $.ajax
                                 ({
