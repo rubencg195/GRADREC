@@ -243,6 +243,9 @@
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
+
+        
+
         $("#sendMsgBtn").click(function () {
             $("html, body").animate({ scrollTop: $("#contactSection").offset().top }, 500);
             return true;
@@ -371,6 +374,8 @@
           });
           $("#endBtn").click(function () {
             alert("This button is suppose to archive the Project, saving it in the database as a finished project in a \"read-only\" mode. Allowing users to view it, but not modify it. We are still working on this function.");
+
+
           });
             $("#saveBtn").click(function () {
 
@@ -401,6 +406,7 @@
                         "music": _music.is(':checked'),
                         "noSkills": _noSkills.is(':checked')
                     }
+
                 }
                 console.log("UPDATING PROJECT!", newProjData, queryURL, queryType);
                 $.ajax
