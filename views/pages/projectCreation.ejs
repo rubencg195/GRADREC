@@ -206,7 +206,11 @@
                     <a class="btn red white-text" href="/home">Delete</a>
                     <a class="btn red white-text" href="/home">End Project</a>
                     <a class="btn red white-text" id="updateBtn">Save</a>
+                    <a class="btn red white-text" id="saveBtn">Save</a>
+                    <a class="btn red white-text" id="deleteBtn" href="/">Delete</a>
+                    <a class="btn red white-text" id="endBtn" href="/">End Project</a>
                     <br />
+
                 </div>
             </div>
         </section>
@@ -362,7 +366,13 @@
         }
 
         $(document).ready(function () {
-            $("#updateBtn").click(function () {
+          $("#deleteBtn").click(function () {
+            alert("This button is suppose to delete the project from the database. We are still working on this function.");
+          });
+          $("#endBtn").click(function () {
+            alert("This button is suppose to archive the Project, saving it in the database as a finished project in a \"read-only\" mode. Allowing users to view it, but not modify it. We are still working on this function.");
+          });
+            $("#saveBtn").click(function () {
 
                 var newProjData = {
                     "title": projTitle.val(),
