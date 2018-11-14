@@ -183,6 +183,15 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
             }
         });
     });
+    app.delete("/projects/:id", function (req, res) {
+        db.collection("projects").remove({ _id: new ObjectID(req.params.id) }, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to delete Project");
+            } else {
+                res.status(200).json(doc);
+            }
+        });
+    });
     //===============================================================
 
 
