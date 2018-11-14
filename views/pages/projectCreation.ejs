@@ -216,6 +216,9 @@
     <script>
         if (window.currUser) {
             console.log("Exist");
+            if (window.currUser.isProf  == false || window.currUser.isProf == "false"){
+              window.location.href = '/login'
+            };
         } else {
             console.log("not login");
             window.location.href = '/login';
@@ -334,8 +337,8 @@
                                                         <p><strong>Description:</strong> ${user.summary} </p>
                                                         <p><strong>University:</strong> ${user.university} </p>
                                                         <p><strong>Degree:</strong> ${user.degree} </p>
-                                                        <p><strong>Program:</strong> ${user.program} </p>  
-                                                        <p><strong>Address:</strong> ${user.address} </p>  
+                                                        <p><strong>Program:</strong> ${user.program} </p>
+                                                        <p><strong>Address:</strong> ${user.address} </p>
                                                         <p><strong>Other Certificate:</strong> ${user.otherCert} </p>                                                    </div>
                                                 </div>
                                                 <a class="btn red  white-text" data-toggle="collapse" href="#collapse_${user._id}" aria-expanded="false" aria-controls="collapseExample">

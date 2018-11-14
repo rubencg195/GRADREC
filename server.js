@@ -56,6 +56,9 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
         res.render('pages/dashboard', {query : req.query});
     });
     app.get('/messages', function (req, res) {
+        res.render('pages/messages', {query : req.query});
+    });
+    app.get('/notifications', function (req, res) {
         res.render('pages/notifications', {query : req.query});
     });
     app.get('/research', function (req, res) {  // GET /research?id=5

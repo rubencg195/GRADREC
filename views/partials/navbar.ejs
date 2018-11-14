@@ -22,10 +22,12 @@
     <div class="collapse navbar-collapse" id="basicExampleNav">
 
         <!-- Links -->
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" id="userLinks">
             <li class="nav-item active">
                 <a class="nav-link" href="/">Home </a>
             </li>
+            <!--
+
             <li class="nav-item">
                 <a class="nav-link" href="/profile">Profile</a>
             </li>
@@ -36,7 +38,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/messages">Notifications <span class="badge badge-danger ml-2">4</span> </a>
             </li>
-
+            -->
             <!-- <li class="nav-item">
                 <a class="nav-link" href="/research">Research</a>
             </li> -->
@@ -74,8 +76,8 @@
 
 <script>
 
-     console.log(window.location.href); 
-    
+     console.log(window.location.href);
+
 
     function logout() {
 
@@ -83,9 +85,9 @@
         sessionStorage.removeItem('curentUser');
         window.location.href = '/login';
     }
-    var ul = document.getElementById("navSignList");
-    var li = document.createElement("li");
-    var a = document.createElement("a");
+    var ul = document.getElementById("navSignList"); //getting the element "ul"
+    var li = document.createElement("li"); //an "li" tag
+    var a = document.createElement("a");   //an "a" tag
     a.setAttribute("class", "nav-link");
 
     if (!currUser) {
@@ -96,7 +98,7 @@
         li.setAttribute("class", "nav-item");
     } else {
         a.setAttribute('onclick', 'logout();'); // for FF
-        a.onclick = function () { logout(); }; 
+        a.onclick = function () { logout(); };
         a.appendChild(document.createTextNode("Logout"));
         li.appendChild(a);
         li.setAttribute("id", "logoutBtn");
@@ -104,5 +106,79 @@
     }
 
     ul.appendChild(li);
+
+
+/////////////////////////////// create user links /////////////////////////////
+    var ul2 = document.getElementById("userLinks");
+//////////////////////// create the profile option ////////////////////////////
+      /*<li class="nav-item">
+          <a class="nav-link" href="/profile">Profile</a>
+      </li> */
+    var a0 = document.createElement("a");
+    var li0 = document.createElement("li");
+    if (window.currUser){
+    a0.setAttribute("href", "/profile");
+    a0.setAttribute("class", "nav-link")
+    a0.appendChild(document.createTextNode("Profile"));
+    li0.appendChild(a0);
+    li0.setAttribute("id", "seeProfile");
+    li0.setAttribute("class", "nav-item");
+    ul2.appendChild(li0);
+    }
+///////////////////////// create messages option ///////////////////////////
+/*  <!--   <li class="nav-item">
+        <a class="nav-link" href="/messages">Notifications <span class="badge badge-danger ml-2">4</span> </a>
+    </li> -->   */
+
+var a1 = document.createElement("a");
+var li1 = document.createElement("li");
+if (window.currUser){
+a1.setAttribute("href", "/messages");
+a1.setAttribute("class", "nav-link")
+a1.appendChild(document.createTextNode("Messages"));
+li1.appendChild(a1);
+li1.setAttribute("id", "viewNotifications");
+li1.setAttribute("class", "nav-item");
+ul2.appendChild(li1);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////// create new project option ///////////////////////////
+/*<!--
+<li class="nav-item">
+    <a class="nav-link" href="/projectCreation">Create Project</a>
+</li>
+--> */
+    var a2 = document.createElement("a");
+    var li2 = document.createElement("li");
+    if (window.currUser && window.currUser.isProf && (window.currUser.isProf == true || window.currUser.isProf == "true") ) {
+    a2.setAttribute("href", "/projectCreation");
+    a2.setAttribute("class", "nav-link")
+    a2.appendChild(document.createTextNode("Create Project"));
+    li2.appendChild(a2);
+    li2.setAttribute("id", "createNewProject");
+    li2.setAttribute("class", "nav-item");
+    ul2.appendChild(li2);
+    }
+///////////////////////// create notifications option ///////////////////////////
+/*  <!--   <li class="nav-item">
+        <a class="nav-link" href="/messages">Notifications <span class="badge badge-danger ml-2">4</span> </a>
+    </li> -->   */
+
+var a3 = document.createElement("a");
+var li3 = document.createElement("li");
+if (window.currUser){
+a3.setAttribute("href", "/messages");// this should be /notifications
+a3.setAttribute("class", "nav-link")
+a3.appendChild(document.createTextNode("Notifications"));
+li3.appendChild(a3);
+li3.setAttribute("id", "viewNotifications");
+li3.setAttribute("class", "nav-item");
+ul2.appendChild(li3);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
 
 </script>
