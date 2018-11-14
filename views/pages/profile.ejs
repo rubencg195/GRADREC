@@ -442,8 +442,8 @@
 
             <!-- These are just the buttons to Submit or Save -->
             <div class="align-center text-center m-3">
-                <a class="btn red" href="/home">Submit</a>
-                <a class="btn red" href="/home" id="saveLaterBtn">Save for later</a>
+                <!-- <a class="btn red" href="/home">Submit</a> -->
+                <a class="btn red" href="/home" id="saveLaterBtn">Save</a>
                 <br />
             </div>
 
@@ -660,6 +660,10 @@
                                     success: function (user) {
                                         console.log("USER SAVED", user);
                                         alert("USER SAVED");
+                                        $(document).ready(function(){
+                                            $(this).scrollTop(0);
+                                        });
+                                        document.location.reload();
                                         //window.location.href = '/';
                                     },
                                     error: function (request, status, error) {

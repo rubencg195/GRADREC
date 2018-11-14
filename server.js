@@ -160,6 +160,26 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
             }
         });
     });
+    app.put("/projects/:id/participant/:participantId", function (req, res) {
+        console.log("Update projects");
+        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, {  $push: { participants: req.params.participantId } }, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to add participant to projects");
+            } else {
+                console.log("Added Participant");
+
+                db.collection("notifications").updateOne({projectId: req.params.id , userId: req.params.participantId }, {  $set: { replied: true, answer: true } }, function (err, doc) {
+                    if (err) {
+                        handleError(res, err.message, "Failed to add participant to projects");
+                    } else {
+                        console.log("Update Notification");
+                    }
+                });
+
+                res.status(201).json(doc);
+            }
+        });
+    });
     //===============================================================
 
 

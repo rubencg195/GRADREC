@@ -191,21 +191,21 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <div class="md-form mb-0">
-                                        <p>This section will include a list of the project's participants (ie the
-                                            students, other professors, stakeholders, or other related entities that
-                                            have contributed to the system </p>
+                                    <div class="md-form mb-0" id="participantList">
+                                        <h3>Participants</h3>
+                                        <br/>
                                     </div>
+                                    <br/>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="align-center text-center m-3">
-                    <a class="btn red white-text" href="/home">Save</a>
+                    <!-- <a class="btn red white-text" href="/home">Save</a> -->
                     <a class="btn red white-text" href="/home">Delete</a>
                     <a class="btn red white-text" href="/home">End Project</a>
-                    <a class="btn red white-text" id="updateBtn">Save as Draft</a>
+                    <a class="btn red white-text" id="updateBtn">Save</a>
                     <br />
                 </div>
             </div>
@@ -312,6 +312,47 @@
                             } else if ((currProj.program) == "Marine Biology") {
                                 _program.val(5);
                             }
+                            var participants = [];
+                            currProj.participants.forEach(function(participant){
+                                $.ajax
+                                ({
+                                    url: `/users/${participant}`,
+                                    data: {},
+                                    type: 'get',
+                                    success: function (user) {
+                                        participants.push(user);
+                                        $('div#participantList').append($(`<div class="media">
+                                            <img class="d-flex mr-3" height="100px" src="${user.imgURL}">
+                                            <div class="media-body">
+                                                <h5 class="mt-0 font-weight-bold">${user.email}</h5>
+                                                <p><strong>First Name:</strong> ${user.firstName} </p>
+                                                <p><strong>Last Name:</strong> ${user.lastName} </p>
+                                                <p><strong>Title:</strong> ${user.title1} </p>
+                                                <div class="collapse" id="collapse_${user._id}">
+                                                    <div class="mt-3">
+                                                        <p><strong>Description:</strong> ${user.summary} </p>
+                                                        <p><strong>University:</strong> ${user.university} </p>
+                                                        <p><strong>Degree:</strong> ${user.degree} </p>
+                                                        <p><strong>Program:</strong> ${user.program} </p>  
+                                                        <p><strong>Address:</strong> ${user.address} </p>  
+                                                        <p><strong>Other Certificate:</strong> ${user.otherCert} </p>                                                    </div>
+                                                </div>
+                                                <a class="btn red  white-text" data-toggle="collapse" href="#collapse_${user._id}" aria-expanded="false" aria-controls="collapseExample">
+                                                    More
+                                                </a>
+                                                <button class="btn grey white-text" type="button" >
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </div>`));
+                                    },
+                                    error: function (request, status, error) {
+                                        $("p#errorSpace").html(request.responseText);
+                                    }
+                                });
+                            });
+                            currProj.participants = participants;
+                            console.log("participant  ", participants);
                         }
                     },
                     error: function (request, status, error) {
@@ -327,7 +368,7 @@
                     "title": projTitle.val(),
                     "abstract": projAbstract.val(),
                     "imgURL": projImg.val(),
-                    "managerId": currUser._id,
+                    //"managerId": currUser._id,
                     "collaborators": [],
                     "PhD": isPHD.val() == 1 ? true : false,
                     "program": $("#form-contact-program option:selected").text(),

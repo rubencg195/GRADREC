@@ -3,54 +3,71 @@
 <html lang="en" style="height: 100vh">
 
 <head>
-    <% include ../partials/mdhead %>
-    <link rel="icon" href="http://cc-arcc.ca/wp-content/uploads/2016/03/mun-logo.jpg">
+  <% include ../partials/mdhead %>
+  <link rel="icon" href="http://cc-arcc.ca/wp-content/uploads/2016/03/mun-logo.jpg">
 </head>
 
 <body style="background-color: rgb(230, 230, 230);">
-    <% include ../partials/navbar %> 
-    <main class="flex-center flex-column animated fadeIn mb-4" id="mainContainer">
-        
+  <% include ../partials/navbar %>
+  <main class="flex-center flex-column animated fadeIn mb-4 container" id="mainContainer">
 
-    </main>
-    <% include ../partials/mdscripts %>
-    <script>
-        if (window.currUser) {
-            console.log("Exist");
-        } else {
-            window.location.href = '/login';
-            console.log("not login");
-        }
-    </script>
-    <script>
 
-        $(document).ready(function () {
-            console.log("ready!");
-            
-            $.ajax
-            ({
-                url: "/notifications",
-                data: {},
-                type: "get",
-                success: function (notifications) {
-                    for(var not of notifications){
-                        console.log(not);
+  </main>
+  <% include ../partials/mdscripts %>
+  <script>
+    if (window.currUser) {
+      console.log("Exist");
+    } else {
+      window.location.href = '/login';
+      console.log("not login");
+    }
+  </script>
+  <script>
 
-                        var title;
-                        var img;
-                        var $card;
-                        var date = not.createDate;
-                        var type = not.type;
+    function acceptStudent(projectId, studentId) {
+      $.ajax
+        ({
+          url: `/projects/${projectId}/participant/${studentId}`,
+          data: window.currApplication,
+          type: 'put',
+          success: function (notification) {
+            alert(`Application Accepted`);
+            console.log("Application Accepted", notification);
+            document.location.reload(true)
+          },
+          error: function (request, status, error) {
+            msgError.html(request.responseText);
+          }
+        });
+    }
 
-                        if( not.type == "MESSAGE" ){
-                            img = "http://cdn.onlinewebfonts.com/svg/img_302106.png";
-                            var name = not.name;
-                            var title = "You have a new message from "+name;
-                            var description = not.msg;
-                            var email = not.email;
-                            var phone = not.phone;
-                            var company = not.company;
-                            $card = `<div class="jumbotron text-center hoverable p-4">
+    $(document).ready(function () {
+      console.log("ready!");
+
+      $.ajax
+        ({
+          url: "/notifications",
+          data: {},
+          type: "get",
+          success: function (notifications) {
+            for (var not of notifications) {
+              console.log(not);
+
+              var title;
+              var img;
+              var $card;
+              var date = not.createDate;
+              var type = not.type;
+
+              if (not.type == "MESSAGE") {
+                img = "http://cdn.onlinewebfonts.com/svg/img_302106.png";
+                var name = not.name;
+                var title = "You have a new message from " + name;
+                var description = not.msg;
+                var email = not.email;
+                var phone = not.phone;
+                var company = not.company;
+                $card = `<div class="jumbotron text-center hoverable p-4">
                                 <div class="row">
                                   <div class="col-xs-1 col-md-2 offset-md-1 mx-3 my-3">
                                     <div class="view overlay">
@@ -74,11 +91,11 @@
                                   </div>
                                 </div>
                               </div>`;
-                        }else if ( not.type === "APPLY_REQUEST" ){
-                            type = "APPLICATION REQUEST";
-                            description = name+" wants to join to the project "+not.projectName;
-                            img = "https://png.pngtree.com/svg/20170517/apply_1359349.png";
-                            $card = `<div class="jumbotron text-center hoverable p-4">
+              } else if (not.type === "APPLY_REQUEST") {
+                type = "APPLICATION REQUEST";
+                description = name + " wants to join to the project " + not.projectName;
+                img = "https://png.pngtree.com/svg/20170517/apply_1359349.png";
+                $card = `<div class="jumbotron text-center hoverable p-4">
                                 <div class="row">
                                   <div class="col-xs-1 col-md-2 offset-md-1 mx-3 my-3">
                                     <div class="view overlay">
@@ -94,25 +111,25 @@
                                     </a>
                                     <!--<h4 class="h4 mb-4">This is title of the news</h4>-->
                                     <p class="font-weight-normal">${description}</p>
-                                    <p class="font-weight-normal">by <a><strong>${name}</strong></a>, ${new Date(date).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} </p>
+                                    <p class="font-weight-normal">by <a><strong>${name}</strong></a>, ${date} </p>
                                     <br/>
-                                    <a class="btn red white-text">ACCEPT</a>
-                                    <a class="btn grey white-text">DENY</a>
+                                    ${(not.answer === "true" || not.answer == true)? ((not.replied === "true" || not.replied == true)? `<strong class='green-text'>ACCEPTED</strong>` : `<strong class='red-text'>DENIED</strong>`) : `<a class="btn red white-text" onclick="acceptStudent('${not.projectId}', '${not.userId}')" >ACCEPT</a><a class="btn grey white-text">DENY</a>` }
+                                    
                                   </div>
                                 </div>
                               </div>`;
-                        }
-                        $("#mainContainer").append($($card));
-                    }
-                  },
-                  error: function (request, status, error) {
-                      $("p#errorSpace").html(request.responseText);
-                  }
-              });
-
+              }
+              $("#mainContainer").append($($card));
+            }
+          },
+          error: function (request, status, error) {
+            $("p#errorSpace").html(request.responseText);
+          }
         });
 
-    </script>
+    });
+
+  </script>
 </body>
 <footer>
 </footer>
