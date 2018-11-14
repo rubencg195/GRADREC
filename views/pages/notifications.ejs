@@ -33,7 +33,7 @@
           success: function (notification) {
             alert(`Application Accepted`);
             console.log("Application Accepted", notification);
-            document.location.reload(true)
+            //document.location.reload(true)
           },
           error: function (request, status, error) {
             msgError.html(request.responseText);

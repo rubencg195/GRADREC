@@ -58,7 +58,7 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     app.get('/messages', function (req, res) {
         res.render('pages/messages', {query : req.query});
     });
-    app.get('/notifications', function (req, res) {
+    app.get('/notification', function (req, res) {
         res.render('pages/notifications', {query : req.query});
     });
     app.get('/research', function (req, res) {  // GET /research?id=5
@@ -232,56 +232,6 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     });
     //===============================================================
 
-
-
-    //==================MESSAGES DB ENDPOINTS========================
-    app.get("/messages", function (req, res) {
-        db.collection("messages").find({}).toArray(function (err, docs) {
-            if (err) {
-                handleError(res, err.message, "Failed to get contacts.");
-            } else {
-                res.status(200).json(docs);
-            }
-        });
-    });
-    app.get("/messages/:id", function (req, res) {
-        db.collection("notifications").findOne({ _id: new ObjectID(req.params.id) }, function (err, doc) {
-            if (err) {
-                handleError(res, err.message, "Failed to get contact");
-            } else {
-                res.status(200).json(doc);
-            }
-        });
-    });
-    app.post("/messages", function (req, res) {
-        var newContact = req.body;
-        newContact.createDate = new Date();
-
-        if (!(req.body.firstName || req.body.lastName)) {
-            handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
-        }
-
-        db.collection("messages").insertOne(newContact, function (err, doc) {
-            if (err) {
-                handleError(res, err.message, "Failed to create new contact.");
-            } else {
-                res.status(201).json(doc.ops[0]);
-            }
-        });
-    });
-    app.put("/messages/:id", function (req, res) {
-        var updateDoc = req.body;
-        delete updateDoc._id;
-
-        db.collection("messages").updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, function (err, doc) {
-            if (err) {
-                handleError(res, err.message, "Failed to update User");
-            } else {
-                res.status(204).end();
-            }
-        });
-    });
-    //==============================================================
 
     app.post("/signup", function (req, res) {
         var postBody = req.body;
