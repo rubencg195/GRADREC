@@ -203,8 +203,7 @@
                 </div>
                 <div class="align-center text-center m-3">
                     <!-- <a class="btn red white-text" href="/home">Save</a> -->
-                    <a class="btn red white-text" href="/home">Delete</a>
-                    <a class="btn red white-text" href="/home">End Project</a>
+                    <a class="btn red white-text" id="deleteBtn">Delete</a>
                     <a class="btn red white-text" id="saveBtn">Save</a>
                     <br />
 
@@ -243,9 +242,6 @@
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
-
-        
-
         $("#sendMsgBtn").click(function () {
             $("html, body").animate({ scrollTop: $("#contactSection").offset().top }, 500);
             return true;
@@ -370,12 +366,20 @@
 
         $(document).ready(function () {
           $("#deleteBtn").click(function () {
-            alert("This button is suppose to delete the project from the database. We are still working on this function.");
-          });
-          $("#endBtn").click(function () {
-            alert("This button is suppose to archive the Project, saving it in the database as a finished project in a \"read-only\" mode. Allowing users to view it, but not modify it. We are still working on this function.");
-
-
+            var projectId = getParameterByName('id');
+            $.ajax
+                ({
+                    url: `/projects/${projectId}`,
+                    data: {},
+                    type: 'delete',
+                    success: function (manager) {
+                      alert("Project was deleted");
+                      goTo(`/`);
+                    },
+                    error: function (request, status, error) {
+                        $("p#errorSpace").html(request.responseText);
+                    }
+                });
           });
             $("#saveBtn").click(function () {
 
@@ -406,7 +410,6 @@
                         "music": _music.is(':checked'),
                         "noSkills": _noSkills.is(':checked')
                     }
-
                 }
                 console.log("UPDATING PROJECT!", newProjData, queryURL, queryType);
                 $.ajax
