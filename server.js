@@ -67,6 +67,9 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     app.get('/studentSurvey', function (req, res) {
         res.render('pages/studentSurvey', {query : req.query});
     });
+    app.get('/chat', function (req, res) {
+        res.render('pages/chat', {query : req.query});
+    });
     //===========================================================
 
 
