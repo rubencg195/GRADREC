@@ -166,7 +166,8 @@
                             }
                             window.projects = projects;
                             projects.forEach(function (proj) {
-                                var $newCard = $(`<div class="card mb-3 text-center hoverable" >
+                               if(proj.finished == "false" || proj.finished == false){
+                              var $newCard = $(`<div class="card mb-3 text-center hoverable" >
                                             <div class="card-body">
                                                 <div class="row" >
                                                     <div class="col-md-4 offset-md-1 mx-3 my-3" onclick="goTo('/research?id=${proj._id}', '${proj._id}'  )">
@@ -189,13 +190,14 @@
                                                         </div>
                                                         ${(proj.participants != null && proj.participants.includes(window.currUser._id))? `<strong class='green-text'>ACCEPTED</strong>` : `<a id="applyBtn_${proj._id}" class="btn red white-text" data-toggle="modal" data-target="#applyModal" onclick="changeModelContent('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.username}', '${window.currUser.email}' )" >APPLY</a>` }
 
-                    
+
                                                         ${+(proj.managerId === window.currUser._id) ? `<a class="btn grey lighten-1 white-text"  onclick="goTo('/projectCreation?id=${proj._id}', '${proj._id}')" >Edit Project</a>` : ``}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>`);
                                 $("main").prepend($newCard);
+                              }
                                 //onclick="goTo('/research?id=${proj._id}', '${proj._id}')"
                             });
 
