@@ -190,6 +190,7 @@
                                         var alreadyApplied = "<strong class='green-text'>IN PROCESS</strong>";
                                         var denied = "<strong class='green-text'>DENIED</strong>";
                                         var accepted = "<strong class='green-text'>ACCEPTED</strong>";
+                                        var projPub = "<strong class='green-text'>PROJECT PUBLISHED</strong>";
 
                                         var callToAction = applyBtn;
 
@@ -201,6 +202,10 @@
                                                 }else{
                                                     callToAction = alreadyApplied;
                                                 }
+                                        }
+
+                                        if(proj.managerId == currUser._id ){
+                                            callToAction = projPub;
                                         }
                                         
                                         //console.log("Notifications for", proj.title ,  notifications, callToAction);

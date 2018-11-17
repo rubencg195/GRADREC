@@ -20,8 +20,9 @@
       <div class="card-body text-center mb-3" id="introSection">
         <h3 class="card-title mt-2 pb-4"><strong id="titleDiv">PROJECT NOT FOUND</strong></h3>
         <p class="card-text" id="abstractDiv"></p>
-        <a href="#" class="btn red btn-rounded">APPLY</a>
-        <a class="btn grey btn-rounded white-text" id="sendMsgBtn">Send a Message</a>
+        <div id="introApplySection">
+          <a class="btn grey btn-rounded white-text" id="sendMsgBtn">Send a Message</a>
+        </div>
       </div>
     </div>
     <br />
@@ -73,7 +74,7 @@
             <div class="card-body form">
               <h3 class="mt-4"><i class="fa fa-envelope pr-2"></i>Write to us:</h3>
               <div class="row">
-                <div class="col-md-12" id="contactInfo"> 
+                <div class="col-md-12" id="contactInfo">
                 </div>
               </div>
               <div class="row">
@@ -157,6 +158,30 @@
                   </div>`;
       $("#contactInfo").append($($card));
     }
+    function applyProject() {
+      console.log("Applying to ", window.currApplication);
+      if (!window.currApplication) {
+        alert("Not valid participant and project info");
+      } else {
+        $.ajax
+          ({
+            url: `/notifications`,
+            data: window.currApplication,
+            type: 'post',
+            success: function (notification) {
+              alert(`Application to ${window.currApplication.projectName} Sent`);
+              console.log("Application Sent", notification);
+              $(`a#applyBtn_${window.currApplication.projectId}`).prop('disabled', true);
+              $('#applyModal').modal('toggle');
+              document.location.reload(true);
+            },
+            error: function (request, status, error) {
+              msgError.html(request.responseText);
+            }
+          });
+      }
+
+    }
 
     var projectId = getParameterByName('id');
 
@@ -220,39 +245,80 @@
             success: function (project) {
               console.log("Projects GET Response", project);
               window.project = project;
+              var proj = project;
+
               $.ajax
                 ({
-                  url: `/users/${project.managerId}`,
-                  data: {},
-                  type: 'get',
-                  success: function (manager) {
-                    console.log("Projects GET Response", project);
-                    window.project.manager = manager;
-
-                    $("#ProjectManager").html(manager.username);
-                    $("#PMSummary").html(manager.summary);
-
+                  url: "/notifications",
+                  data: {
+                    type: "APPLY_REQUEST",
+                    projectId: proj._id,
+                    userId: window.currUser._id
                   },
-                  error: function (request, status, error) {
-                    $("p#errorSpace").html(request.responseText);
+                  type: "get",
+                  async: false,
+                  success: function (notifications) {
+                    var applyBtn = `<a id="applyBtn_${proj._id}" class="btn red white-text" data-toggle="modal" data-target="#applyModal" onclick="changeModelContent('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.firstName + " " + window.currUser.lastName}', '${window.currUser.email}', '${window.currUser.imgURL}','${proj.managerId}' )" >APPLY</a>`;
+                    var alreadyApplied = "<strong class='green-text'>IN PROCESS</strong>";
+                    var denied = "<strong class='green-text'>DENIED</strong>";
+                    var accepted = "<strong class='green-text'>ACCEPTED</strong>";
+                    var projPub = "<strong class='green-text'>PROJECT PUBLISHED</strong>";
+
+                    var callToAction = applyBtn;
+
+                    if (proj.participants != null && proj.participants.includes(window.currUser._id)) {
+                      callToAction = accepted;
+                    } else if (notifications.length > 0) {
+                      if (notifications[0].answer && !notifications[0].replied) {
+                        callToAction = denied;
+                      } else {
+                        callToAction = alreadyApplied;
+                      }
+                    }
+                    if (proj.managerId == currUser._id) {
+                      callToAction = projPub;
+                    }
+                    $.ajax
+                      ({
+                        url: `/users/${project.managerId}`,
+                        data: {},
+                        type: 'get',
+                        success: function (manager) {
+                          console.log("Projects GET Response", project);
+                          window.project.manager = manager;
+
+                          $("#ProjectManager").html(manager.username);
+                          $("#PMSummary").html(manager.summary);
+
+                        },
+                        error: function (request, status, error) {
+                          $("p#errorSpace").html(request.responseText);
+                        }
+                      });
+                    $("#titleDiv").html(project.title);
+                    $("#abstractDiv").html(project.abstract);
+                    $("#projectImage").attr("src", project.imgURL);
+                    for (var key in project.skills) {
+                      var skillList = document.getElementById(wantedSkills);
+                      console.log(project.skills[key], key);
+                      if (JSON.parse(project.skills[key]) == true) {
+                        $("#wantedSkills").append("<li>" + key + "</li>");
+                      }
+                    }
+                    $("#projectComments").html(project.comments);
+                    $("#numStudents").html(project.availableSpots);
+                    $("#financialAid").html(project.financialAid);
+
+                    $("#introApplySection").prepend($(callToAction));
+
+
+                    if (project.managerId === window.currUser._id) {
+                      $("#introApplySection").append($(`<a class="btn grey lighten-1 btn-rounded white-text" onclick="goTo('/projectCreation?id=${project._id}')" >Edit Project</a>`));
+                    }
+
                   }
                 });
-              $("#titleDiv").html(project.title);
-              $("#abstractDiv").html(project.abstract);
-              $("#projectImage").attr("src", project.imgURL);
-              for (var key in project.skills) {
-                var skillList = document.getElementById(wantedSkills);
-                console.log(project.skills[key], key);
-                if (JSON.parse(project.skills[key]) == true) {
-                  $("#wantedSkills").append("<li>" + key + "</li>");
-                }
-              }
-              $("#projectComments").html(project.comments);
-              $("#numStudents").html(project.availableSpots);
-              $("#financialAid").html(project.financialAid);
-              if (project.managerId === window.currUser._id) {
-                $("#introSection").append($(`<a class="btn grey lighten-1 btn-rounded white-text" onclick="goTo('/projectCreation?id=${project._id}')" >Edit Project</a>`));
-              }
+
 
 
             },

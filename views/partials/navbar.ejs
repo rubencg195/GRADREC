@@ -23,8 +23,8 @@
 
         <!-- Links -->
         <ul class="navbar-nav mr-auto" id="userLinks">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home </a>
+            <li id="homeLink" class="nav-item">
+                <a class="nav-link active" href="/">Home </a>
             </li>
             <!--
 
@@ -76,7 +76,7 @@
 
 <script>
 
-     console.log(window.location.href);
+    console.log(window.location.href);
 
 
     function logout() {
@@ -108,77 +108,101 @@
     ul.appendChild(li);
 
 
-/////////////////////////////// create user links /////////////////////////////
+    /////////////////////////////// create user links /////////////////////////////
     var ul2 = document.getElementById("userLinks");
-//////////////////////// create the profile option ////////////////////////////
-      /*<li class="nav-item">
-          <a class="nav-link" href="/profile">Profile</a>
-      </li> */
+    //////////////////////// create the profile option ////////////////////////////
+    /*<li class="nav-item">
+        <a class="nav-link" href="/profile">Profile</a>
+    </li> */
     var a0 = document.createElement("a");
     var li0 = document.createElement("li");
-    if (window.currUser){
-    a0.setAttribute("href", "/profile");
-    a0.setAttribute("class", "nav-link")
-    a0.appendChild(document.createTextNode("Profile"));
-    li0.appendChild(a0);
-    li0.setAttribute("id", "seeProfile");
-    li0.setAttribute("class", "nav-item");
-    ul2.appendChild(li0);
+    if (window.currUser) {
+        a0.setAttribute("href", "/profile");
+        a0.setAttribute("class", "nav-link")
+        a0.appendChild(document.createTextNode("Profile"));
+        li0.appendChild(a0);
+        li0.setAttribute("id", "seeProfile");
+        li0.setAttribute("class", "nav-item");
+        ul2.appendChild(li0);
     }
-///////////////////////// create messages option ///////////////////////////
-/*  <!--   <li class="nav-item">
-        <a class="nav-link" href="/messages">Notifications <span class="badge badge-danger ml-2">4</span> </a>
-    </li> -->   */
+    ///////////////////////// create messages option ///////////////////////////
+    /*  <!--   <li class="nav-item">
+            <a class="nav-link" href="/messages">Notifications <span class="badge badge-danger ml-2">4</span> </a>
+        </li> -->   */
 
-var a1 = document.createElement("a");
-var li1 = document.createElement("li");
-if (window.currUser){
-a1.setAttribute("href", "/messages");
-a1.setAttribute("class", "nav-link")
-a1.appendChild(document.createTextNode("Messages"));
-li1.appendChild(a1);
-li1.setAttribute("id", "viewNotifications");
-li1.setAttribute("class", "nav-item");
-ul2.appendChild(li1);
-}
+    var a1 = document.createElement("a");
+    var li1 = document.createElement("li");
+    if (window.currUser) {
+        a1.setAttribute("href", "/messages");
+        a1.setAttribute("class", "nav-link")
+        a1.appendChild(document.createTextNode("Messages"));
+        li1.appendChild(a1);
+        li1.setAttribute("id", "viewMessages");
+        li1.setAttribute("class", "nav-item");
+        ul2.appendChild(li1);
+    }
 
-///////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////
 
-///////////////////////// create new project option ///////////////////////////
-/*<!--
-<li class="nav-item">
-    <a class="nav-link" href="/projectCreation">Create Project</a>
-</li>
---> */
+    ///////////////////////// create new project option ///////////////////////////
+    /*<!--
+    <li class="nav-item">
+        <a class="nav-link" href="/projectCreation">Create Project</a>
+    </li>
+    --> */
     var a2 = document.createElement("a");
     var li2 = document.createElement("li");
-    if (window.currUser && window.currUser.isProf && (window.currUser.isProf == true || window.currUser.isProf == "true") ) {
-    a2.setAttribute("href", "/projectCreation");
-    a2.setAttribute("class", "nav-link")
-    a2.appendChild(document.createTextNode("Create Project"));
-    li2.appendChild(a2);
-    li2.setAttribute("id", "createNewProject");
-    li2.setAttribute("class", "nav-item");
-    ul2.appendChild(li2);
+    if (window.currUser && window.currUser.isProf && (window.currUser.isProf == true || window.currUser.isProf == "true")) {
+        a2.setAttribute("href", "/projectCreation");
+        a2.setAttribute("class", "nav-link")
+        a2.appendChild(document.createTextNode("Create Project"));
+        li2.appendChild(a2);
+        li2.setAttribute("id", "createNewProject");
+        li2.setAttribute("class", "nav-item");
+        ul2.appendChild(li2);
     }
-///////////////////////// create notifications option ///////////////////////////
-/*  <!--   <li class="nav-item">
-        <a class="nav-link" href="/messages">Notifications <span class="badge badge-danger ml-2">4</span> </a>
-    </li> -->   */
+    ///////////////////////// create notifications option ///////////////////////////
+    /*  <!--   <li class="nav-item">
+            <a class="nav-link" href="/messages">Notifications <span class="badge badge-danger ml-2">4</span> </a>
+        </li> -->   */
 
-var a3 = document.createElement("a");
-var li3 = document.createElement("li");
-if (window.currUser){
-a3.setAttribute("href", "/notification");// this should be /notifications
-a3.setAttribute("class", "nav-link")
-a3.appendChild(document.createTextNode("Notifications"));
-li3.appendChild(a3);
-li3.setAttribute("id", "viewNotifications");
-li3.setAttribute("class", "nav-item");
-ul2.appendChild(li3);
-}
+    var a3 = document.createElement("a");
+    var li3 = document.createElement("li");
+    if (window.currUser) {
+        a3.setAttribute("href", "/notification");// this should be /notifications
+        a3.setAttribute("class", "nav-link")
+        a3.appendChild(document.createTextNode("Notifications"));
+        li3.appendChild(a3);
+        li3.setAttribute("id", "viewNotifications");
+        li3.setAttribute("class", "nav-item");
+        ul2.appendChild(li3);
+    }
 
-///////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////
 
+
+    console.log("Location ", window.location.pathname);
+
+    switch (window.location.pathname) {
+        case "/":
+            document.getElementById('homeLink').classList.add("active");
+            break;
+        case "/profile": 
+            document.getElementById('seeProfile').classList.add("active");
+            break;
+        case "/messages": 
+            document.getElementById('viewMessages').classList.add("active");
+            break;
+        case "/projectCreation": 
+            document.getElementById('createNewProject').classList.add("active");
+            break;
+        case "/notification": 
+            document.getElementById('viewNotifications').classList.add("active");
+            break;
+    }
+
+    if(window.location.pathname.includes("projectCreation")){
+        document.getElementById('createNewProject').classList.add("active");
+    }
 
 </script>
