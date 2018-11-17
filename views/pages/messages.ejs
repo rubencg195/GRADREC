@@ -63,9 +63,10 @@
         ({
           url: "/notifications",
           data: {
-            type : "MESSAGE"
+            type: "MESSAGE"
           },
           type: "get",
+          async: false,
           success: function (notifications) {
             let newNots = [];
 
@@ -73,7 +74,7 @@
               return [item.origin, item.projectId];
             });
             console.log("Group By!", conversations);
-            for(var conv of conversations ){
+            for (var conv of conversations) {
               console.log("CONV", conv);
               
               var lastMsg = conv[0];

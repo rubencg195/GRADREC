@@ -164,7 +164,7 @@
                         data: {},
                         type: 'get',
                         success: function (projects) {
-                            console.log("Projects GET Response", projects);
+                            //console.log("Projects GET Response", projects);
                             if (!projects || projects.length == 0) {
                                 $("main").prepend($("<h1>Projects Not Available<h1/>"));
                                 return;
@@ -182,7 +182,12 @@
                                         userId  : window.currUser._id
                                     },
                                     type: "get",
+                                    async: false,
                                     success: function (notifications) {
+
+                                        var applyBtn = `<a id="applyBtn_${proj._id}" class="btn red white-text" data-toggle="modal" data-target="#applyModal" onclick="changeModelContent('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.firstName + " " + window.currUser.lastName}', '${window.currUser.email}', '${window.currUser.imgURL}' )" >APPLY</a>`;
+
+                                        
                                         console.log("Notifications for", proj.title ,  notifications);
                                         if (proj.finished == "false" || proj.finished == false) {
                                             var $newCard = $(`<div class="card mb-3 text-center hoverable" >
@@ -206,7 +211,7 @@
                                                                     <p> ${proj.abstract} </p>
                                                                     <p><a><strong>${proj.startDate} - ${proj.endDate}</strong></a></p>
                                                                 </div>
-                                                                ${(proj.participants != null && proj.participants.includes(window.currUser._id)) ? `<strong class='green-text'>ACCEPTED</strong>` : (notifications.length  > 0) ? "<strong class='green-text'>ALREADY APPLIED</strong>" :  `<a id="applyBtn_${proj._id}" class="btn red white-text" data-toggle="modal" data-target="#applyModal" onclick="changeModelContent('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.firstName + " " + window.currUser.lastName}', '${window.currUser.email}', '${window.currUser.imgURL}' )" >APPLY</a>` }
+                                                                ${(proj.participants != null && proj.participants.includes(window.currUser._id)) ? `<strong class='green-text'>ACCEPTED</strong>` : (notifications.length  > 0) ? "<strong class='green-text'>ALREADY APPLIED</strong>" :   }
         
         
                                                                 ${+(proj.managerId === window.currUser._id) ? `<a class="btn grey lighten-1 white-text"  onclick="goTo('/projectCreation?id=${proj._id}', '${proj._id}')" >Edit Project</a>` : ``}

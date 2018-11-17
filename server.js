@@ -231,10 +231,8 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
         });
     });
     app.put("/notifications/:id", function (req, res) {
-        var updateDoc = req.body;
-        delete updateDoc._id;
-
-        db.collection("notifications").updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, function (err, doc) {
+        console.log("Update Notification", req.body);
+        db.collection("notifications").updateOne({ _id: new ObjectID(req.params.id) },  {  $set: req.body }, function (err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to update User");
             } else {

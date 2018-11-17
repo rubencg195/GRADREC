@@ -40,6 +40,26 @@
           }
         });
     }
+    function denyStudent(notId) {
+      $.ajax
+        ({
+          url: `/notifications/${notId}`,
+          data: {
+            replied : false,
+            answer : true
+          },
+          type: 'put',
+          success: function (notification) {
+            alert(`Application Denied`);
+            console.log("Application Denied", notification);
+            document.location.reload(true)
+          },
+          error: function (request, status, error) {
+            msgError.html(request.responseText);
+          }
+        });
+    }
+
 
     $(document).ready(function () {
       console.log("ready!");
@@ -51,9 +71,10 @@
             type: "APPLY_REQUEST"
           },
           type: "get",
+          async: false,
           success: function (notifications) {
             for (var not of notifications) {
-              console.log(not);
+              console.log("NOT", not.projectName, not);
 
               var title;
               var img;
@@ -66,7 +87,10 @@
                   url: `/users/${not.userId}`,
                   data: {},
                   type: "get",
+                  async: false,
                   success: function (user) {
+                    console.log("NOT", not.projectName, not);
+
                     type = "APPLICATION REQUEST";
                     img = "https://png.pngtree.com/svg/20170517/apply_1359349.png";
                     $card = `<div class="jumbotron text-center hoverable p-4">
@@ -92,10 +116,11 @@
                                               <p><strong>Degree:</strong> ${user.degree} </p>
                                               <p><strong>Program:</strong> ${user.program} </p>
                                               <p><strong>Address:</strong> ${user.address} </p>
-                                              <p><strong>Other Certificate:</strong> ${user.otherCert} </p>                                                    </div>
-                                              <br/>
+                                              <p><strong>Other Certificate:</strong> ${user.otherCert} </p>                                                    
+                                            </div>
+                                            <br/>
                                           </div>
-                                          ${(not.answer === "true" || not.answer == true) ? ((not.replied === "true" || not.replied == true) ? `<strong class='green-text'>ACCEPTED</strong>` : `<strong class='red-text'>DENIED</strong>`) : `<a class="btn red white-text" onclick="acceptStudent('${not.projectId}', '${not.userId}')" >ACCEPT</a><a class="btn grey white-text">DENY</a>`}
+                                          ${( JSON.parse(not.answer) ) ? ( JSON.parse(not.replied) ? `<a class="btn btn-link green-text" disabled>ACCEPTED</a>` : `<a class="btn btn-link red-text" disabled>DENIED</a>`) : `<a class="btn red white-text" onclick="acceptStudent('${not.projectId}', '${not.userId}')" >ACCEPT</a><a class="btn grey white-text" onclick="denyStudent('${not._id}')" >DENY</a>`}
                                           <a class="btn grey lighten-2  black-text" data-toggle="collapse" href="#collapse_${user._id}_${not.projectId}" aria-expanded="false" aria-controls="collapseExample">
                                               More Information
                                           </a>
@@ -104,6 +129,7 @@
                                       </div>
                                     </div>`;
                     $("#mainContainer").append($($card));
+
                   }
                 });
 
