@@ -93,7 +93,7 @@
                                 <div class="col-md-4">
                                     <div class="md-form mb-0">
                                         <input placeholder="A number from 0 to infinity" type="text" id="form-contact-financial_aid" class="form-control">
-                                        <label for="form-contact-financial_aid" class="">Financial Aid</label>
+                                        <label for="form-contact-financial_aid" class="">Financial Aid(in CAD)</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-12">
@@ -147,15 +147,15 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="md-form mb-0">
-                                        <input placeholder="dd-mm-yyyy" type="text" id="form-contact-est_duedate" class="form-control">
-                                        <label for="form-contact-est_duedate" class="">Estimated Due Date (dd-mm-yyyy)</label>
+                                        <input placeholder="dd/mm/yyyy" type="text" id="form-contact-est_duedate" class="form-control">
+                                        <label for="form-contact-est_duedate" class="">Start Date (dd/mm/yyyy)</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="md-form mb-0">
-                                        <input placeholder="dd-mm-yyyy" type="text" id="form-contact-actual_due_date"
+                                        <input placeholder="dd/mm/yyyy" type="text" id="form-contact-actual_due_date"
                                             class="form-control">
-                                        <label for="form-contact-actual_due_date" class="">Actual Due Date (dd-mm-yyyy)</label>
+                                        <label for="form-contact-actual_due_date" class="">Due Date (dd/mm/yyyy)</label>
                                     </div>
                                 </div>
                             </div>
@@ -385,6 +385,141 @@
                 });
           });
             $("#saveBtn").click(function () {
+                var properInput = false;
+
+                var mandatoryFields = false;
+                var alertMessage1 = "Please fillout the following mandatory fields: ";
+
+                var numCheck = false;
+                var alertMessage2 = "The following fields are supposed to be positve numbers (ie: 1200,2,5, etc.): ";
+
+                var dateCheck = false;
+                var alertMessage3 = "Please follow the date format dd/mm/yyyy for the following fields: ";
+
+
+                if (properInput == false){
+                  /// IN THIS AREA IS WHERE WE CHECKED EVERYTHING HAS BEEN FILLED OUT
+                  if (mandatoryFields == false){
+                      if(projTitle.val() == "" || projTitle.val() == null) {
+                        alertMessage1 = alertMessage1 + "*Project Title* ";
+                      }
+                      if (projAbstract.val() == "" || projAbstract.val() == null){
+                        alertMessage1 = alertMessage1 + " *Project Abstract* ";
+                      }
+                      if (projResArea.val() == "" || projResArea.val() == null){
+                        alertMessage1 = alertMessage1 + " *Specific Research Area* ";
+                      }
+                      if (projStudent.val() == "" || projStudent.val() == null){
+                        alertMessage1 = alertMessage1 + " *Number of Students* ";
+                      }
+                      if (projAid.val() == "" || projAid.val() == null){
+                        alertMessage1 = alertMessage1 + " *Financial Aid* ";
+                      }
+                      if(alertMessage1 == "Please fillout the following mandatory fields: "){
+                        mandatoryFields = true;
+                        console.log("All mandatory fields have been filled out");
+                      } else {
+                        alert(alertMessage1);
+                        return;
+                      }
+                  }//end of mandatroyFields
+
+                  if (numCheck == false){
+                    var studentIsNum = /^\d+$/.test(projStudent.val());
+                    if (!studentIsNum){// check if projStudent is a number
+                      alertMessage2 = alertMessage2+" *Number of Students*";
+                    }
+                    var aidIsNum = /^\d+$/.test(projAid.val());
+                    if (!aidIsNum ){ // check if projAid is a number
+                      if (projAid.val() > 0){
+                        console.log("Financial aid is a positive number")
+                      }
+                      else{
+                      alertMessage2 = alertMessage2+" *Financial AID*";
+                      }
+                    }
+                    if (alertMessage2 == "The following fields are supposed to be positve numbers (ie: 1200,2,5, etc.): "){
+                      numCheck = true;
+                      console.log("Financial AID and Num of Students have been filled out as numbers")
+                    } else{
+                      alert(alertMessage2);
+                      return;
+                    }
+                  } //end of numCheck
+
+                  ////check date format
+                  //var shortDateRex = /^\d{1,2}(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\d{2}$/;
+                  var shortDate = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+                  if (dateCheck == false){
+                    if (projStart.val() == null){
+                      projStart.val() = "";
+                    }
+                    if ( projStart.val() != "" ){
+                      var testDate1 = projStart.val().match(shortDate);
+                        if(testDate1 == null){
+                          alertMessage3 = alertMessage3+" *Start Date*";
+                        }
+                        else{
+                          if (testDate1.length == 1){
+                             var dateSections = projStart.val().split("/");
+                             if ( (dateSections[0] >=1 && dateSections[0] <=31) && (dateSections[1] >=1 && dateSections[1] <=12) && (dateSections[2] > 0) ) {
+                               console.log("Project Start has the correct format: "+projStart.val());
+                             } else{
+                               alertMessage3 = alertMessage3+" *Start Date*";
+                             }
+                          }
+                        }
+                    }
+
+                    if ( projEnd.val() == null){
+                      projEnd.val() = "";
+                    }
+                    if ( projEnd.val() != ""){
+                      var testDate2 = projEnd.val().match(shortDate);
+                        if(testDate2 == null){
+                          alertMessage3 = alertMessage3+" *Due Date*"
+                        }
+                        else {
+                          if (testDate2.length == 1){
+                              var dateSections = projEnd.val().split("/");
+                              if ( (dateSections[0] >=1 && dateSections[0] <=31) && (dateSections[1] >=1 && dateSections[1] <=12) && (dateSections[2] > 0) ) {
+                                console.log("Project end has the correct format: "+projEnd.val());
+                              } else{
+                              alertMessage3 = alertMessage3+" *Due Date*"
+                              }
+                          }
+                        }
+                    }
+                    if ( alertMessage3 == "Please follow the date format dd/mm/yyyy for the following fields: " ){
+                        dateCheck = true;
+                    }else {
+                      alert(alertMessage3);
+                      return;
+                    }
+                  } // end of date check
+
+                  //// removing special characters from input boxes
+                  // var replaced = str.replace('\n', '');
+                  // var desired = stringToReplace.replace(/[^\w\s]/g, '')
+                  var projTitleVariable = projTitle.val().replace(/'|"|\n|<|>/gi, "   ");
+                  projTitle.val(projTitleVariable);
+                  var projAbstractVariable = projAbstract.val().replace(/'|"|\n|<|>/gi, "   ");
+                  projAbstract.val(projAbstractVariable);
+                  var projResAreaVariable = projResArea.val().replace(/'|"|\n|<|>/gi, "   ");
+                  projResArea.val(projResAreaVariable);
+                  var projImgVariable = projImg.val().replace(/'|"|\n|<|>/gi, "   ");
+                  projImg.val(projImgVariable);
+                  var projCommentsVariable = projComments.val().replace(/'|"|\n|<|>/gi, "   ");
+                  projComments.val(projCommentsVariable);
+                  var projResVariable = projRes.val().replace(/'|"|\n|<|>/gi, "   ");
+                  projRes.val(projResVariable);
+                  var projConclVariable = projConcl.val().replace(/'|"|\n|<|>/gi, "   ");
+                  projConcl.val(projConclVariable);
+                  var projThanksVariable = projThanks.val().replace(/'|"|\n|<|>/gi, "   ");
+                  projThanks.val(projThanksVariable);
+                }// end of if (properInput == false)
+
+                //else { // prevents the project from saving while I test out the if (properInput == false){
 
                 var newProjData = {
                     "title": projTitle.val(),
@@ -432,7 +567,9 @@
                             $("p#errorSpace").html(request.responseText);
                         }
                     });
-            });
+
+                //  }// end of the else that prevented the project saving
+            });// end of $("#saveBtn").click(function () {
         });
 
     </script>
