@@ -33,7 +33,7 @@
           success: function (notification) {
             alert(`Application Accepted`);
             console.log("Application Accepted", notification);
-            //document.location.reload(true)
+            document.location.reload(true)
           },
           error: function (request, status, error) {
             msgError.html(request.responseText);
@@ -47,7 +47,9 @@
       $.ajax
         ({
           url: "/notifications",
-          data: {},
+          data: {
+            type: "APPLY_REQUEST"
+          },
           type: "get",
           success: function (notifications) {
             for (var not of notifications) {
@@ -59,34 +61,52 @@
               var date = not.createDate;
               var type = not.type;
 
-              if (not.type === "APPLY_REQUEST") {
-                type = "APPLICATION REQUEST";
-                description = name + " wants to join to the project " + not.projectName;
-                img = "https://png.pngtree.com/svg/20170517/apply_1359349.png";
-                $card = `<div class="jumbotron text-center hoverable p-4">
-                                <div class="row">
-                                  <div class="col-xs-1 col-md-2 offset-md-1 mx-3 my-3">
-                                    <div class="view overlay">
-                                      <img src="${img}" height="100px" class="img-fluid" alt="Sample image for first version of blog listing">
-                                      <a>
-                                        <div class="mask rgba-white-slight"></div>
-                                      </a>
-                                    </div>
-                                  </div>
-                                  <div class="col-xs-10 col-md-9 text-md-left ml-3 mt-3">
-                                    <a href="#!" class="green-text">
-                                      <h6 class="h6 pb-1"><i class="fa fa-desktop pr-1"></i> ${type}</h6>
-                                    </a>
-                                    <p class="font-weight-normal">${description}</p>
-                                    <p class="font-weight-normal">by <a><strong>${name}</strong></a>, ${date} </p>
-                                    <br/>
-                                    ${(not.answer === "true" || not.answer == true)? ((not.replied === "true" || not.replied == true)? `<strong class='green-text'>ACCEPTED</strong>` : `<strong class='red-text'>DENIED</strong>`) : `<a class="btn red white-text" onclick="acceptStudent('${not.projectId}', '${not.userId}')" >ACCEPT</a><a class="btn grey white-text">DENY</a>` }
-                                    
-                                  </div>
-                                </div>
-                              </div>`;
-              }
-              $("#mainContainer").append($($card));
+              $.ajax
+                ({
+                  url: `/users/${not.userId}`,
+                  data: {},
+                  type: "get",
+                  success: function (user) {
+                    type = "APPLICATION REQUEST";
+                    img = "https://png.pngtree.com/svg/20170517/apply_1359349.png";
+                    $card = `<div class="jumbotron text-center hoverable p-4">
+                                      <div class="row">
+                                        <div class="col-xs-1 col-md-2 offset-md-1 mx-3 my-3">
+                                          <div class="view overlay">
+                                            <img src="${not.userImg}" height="100px" class="img-fluid" alt="Sample image for first version of blog listing">
+                                            <a>
+                                              <div class="mask rgba-white-slight"></div>
+                                            </a>
+                                          </div>
+                                        </div>
+                                        <div class="col-xs-10 col-md-9 text-md-left ml-3 mt-3">
+                                          <a href="#!" class="green-text">
+                                            <h6 class="h6 pb-1"><i class="fa fa-desktop pr-1"></i> ${type}</h6>
+                                          </a>
+                                          <p class="font-weight-normal"> <strong>${user.firstName + " " + user.lastName}</strong> wants to join <strong>${not.projectName}</strong> </p>
+                                          <p class="font-weight-normal">by <a><strong>${user.firstName + " " + user.lastName}</strong></a>, ${new Date(date).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} </p>
+                                          <div class="collapse text-justify" id="collapse_${user._id}_${not.projectId}">
+                                              <br/>
+                                              <p><strong>Description:</strong> ${user.summary} </p>
+                                              <p><strong>University:</strong> ${user.university} </p>
+                                              <p><strong>Degree:</strong> ${user.degree} </p>
+                                              <p><strong>Program:</strong> ${user.program} </p>
+                                              <p><strong>Address:</strong> ${user.address} </p>
+                                              <p><strong>Other Certificate:</strong> ${user.otherCert} </p>                                                    </div>
+                                              <br/>
+                                          </div>
+                                          ${(not.answer === "true" || not.answer == true) ? ((not.replied === "true" || not.replied == true) ? `<strong class='green-text'>ACCEPTED</strong>` : `<strong class='red-text'>DENIED</strong>`) : `<a class="btn red white-text" onclick="acceptStudent('${not.projectId}', '${not.userId}')" >ACCEPT</a><a class="btn grey white-text">DENY</a>`}
+                                          <a class="btn grey lighten-2  black-text" data-toggle="collapse" href="#collapse_${user._id}_${not.projectId}" aria-expanded="false" aria-controls="collapseExample">
+                                              More Information
+                                          </a>
+                                          <br/>
+                                        </div>
+                                      </div>
+                                    </div>`;
+                    $("#mainContainer").append($($card));
+                  }
+                });
+
             }
           },
           error: function (request, status, error) {
@@ -99,6 +119,7 @@
   </script>
 </body>
 <footer>
+  <% include ../partials/footer %>
 </footer>
 
 </html>

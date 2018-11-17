@@ -1,106 +1,162 @@
-<section class="my-5">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="mdb-feed">
-          <div class="news">
-            <div class="label">
-              <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-1-mini.jpg" class="rounded-circle z-depth-1-half">
-            </div>
-            <div class="excerpt">
-              <div class="brief">
-                <a class="name">John Doe</a> added you as a friend
-                <div class="date">1 hour ago</div>
+<!-- views/pages/index.ejs -->
+<!DOCTYPE html>
+<html lang="en" style="height: 100vh">
+
+<head>
+  <% include ../partials/mdhead %>
+  <link rel="icon" href="http://cc-arcc.ca/wp-content/uploads/2016/03/mun-logo.jpg">
+</head>
+
+<body style="background-color: rgb(230, 230, 230);">
+  <% include ../partials/navbar %>
+  <main class="container">
+
+    <section class="row my-5" id="mainContainer">
+
+    </section>
+  </main>
+  <% include ../partials/mdscripts %>
+  <script>
+    if (window.currUser) {
+      console.log("Exist");
+    } else {
+      window.location.href = '/login';
+      console.log("not login");
+    }
+  </script>
+  <script>
+
+    function addMessage(avatarImg, firstName, lastName, email, message, id) {
+      var projectId = getParameterByName('projectId');
+      var from = getParameterByName('from');
+      var to = getParameterByName('to');
+      console.log("id", id, "to", to, "from" , from);
+      if(id == from || id == to){
+        var $card = `<div class="col-sm-12"><div class="mdb-feed m-1" style="width: 500px; float: ${(id == projectId) ? 'right' : 'left'}; ">
+            <div class="card pt-2  pt-2 pb-1 px-3" style="border-radius: 45px;">
+              <div class="news">
+                  <div class="label">
+                      <img src="${avatarImg}" class="rounded-circle z-depth-1-half">
+                  </div>
+                  <div class="excerpt">
+                      <div class="brief">
+                          <a class="name">${firstName} ${lastName}</a>
+                          <br/><strong>Email:</strong><a> ${email}</a>
+                          <br/><p>${message}</p>
+                      </div>
+                  </div>
+                  </div>
+                </div>
               </div>
-              <div class="feed-footer">
-                <a class="like">
-                  <i class="fa fa-heart"></i>
-                  <span>5 likes</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="news">
-            <div class="label">
-              <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(17)-mini.jpg" class="rounded-circle z-depth-1-half">
-            </div>
-            <div class="excerpt">
-              <div class="brief">
-                <a class="name">Anna Smith</a> added
-                <a> 2 new illustrations</a>
-                <div class="date">4 hours ago</div>
-              </div>
-              <div class="added-images">
-                <img src="https://mdbootstrap.com/img/Photos/Others/images/71.jpg" class="z-depth-1 rounded mb-md-0 mb-2">
-                <img src="https://mdbootstrap.com/img/Photos/Others/images/74.jpg" class="z-depth-1 rounded">
-              </div>
-              <div class="feed-footer">
-                <a class="like">
-                  <i class="fa fa-heart"></i>
-                  <span>18 likes</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="news">
-            <div class="label">
-              <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9)-mini.jpg" class="rounded-circle z-depth-1-half">
-            </div>
-            <div class="excerpt">
-              <div class="brief">
-                <a class="name">Danny Moore</a> added you as a friend
-                <div class="date">7 hours ago</div>
-              </div>
-              <div class="feed-footer">
-                <a class="like">
-                  <i class="fa fa-heart"></i>
-                  <span>11 likes</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="news">
-            <div class="label">
-              <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(18)-mini.jpg" class="rounded-circle z-depth-1-half">
-            </div>
-            <div class="excerpt">
-              <div class="brief">
-                <a class="name">Lili Rose</a> posted on his page
-                <div class="date">2 days ago</div>
-              </div>
-              <div class="added-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero inventore,
-                iste quas libero eius? Vitae sint neque animi alias sunt dolor, accusantium ducimus, non placeat
-                voluptate.</div>
-              <div class="feed-footer">
-                <a class="like">
-                  <i class="fa fa-heart"></i>
-                  <span>7 likes</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="news">
-            <div class="label">
-              <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20)-mini.jpg" class="rounded-circle z-depth-1-half">
-            </div>
-            <div class="excerpt mb-0">
-              <div class="brief">
-                <a class="name">Kate Harrison</a> added
-                <a> 2 new photos</a> of you
-                <div class="date">3 days ago</div>
-              </div>
-              <div class="added-images">
-                <img src="https://mdbootstrap.com/img/Photos/Others/images/29.jpg" class="z-depth-1 rounded mb-md-0 mb-2">
-                <img src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg" class="z-depth-1 rounded">
-              </div>
-              <div class="feed-footer">
-                <a class="like">
-                  <i class="fa fa-heart"></i>
-                  <span>53 likes</span>
-                </a>
-              </div>
-            </div>
-          </div>
+            </div>`;
+        $("#mainContainer").append($($card));
+      }
+    }
+    function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, '\\$&');
+      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+    function getProject() {
+      var from = getParameterByName('from');
+      var to = getParameterByName('to');
+      var projectId = getParameterByName('projectId');
+      $.ajax
+        ({
+          url: `/projects/${projectId}`,
+          data: {},
+          type: 'get',
+          success: function (project) {
+            console.log("Projects GET Response", project);
+            window.project = project;
+
+          }
+        });
+    }
+    function replyMessage() {
+      var origin = getParameterByName('origin');
+      var to = getParameterByName('from');
+      var from = getParameterByName('to');
+      var projectId = getParameterByName('projectId');
+      var msg = $('#form-contact-message').val();
+      console.log("REPLYING");
+      if (msg) {
+        name = window.project.title;
+        $.ajax
+          ({
+            url: `/notifications`,
+            data: {
+              type: "MESSAGE",
+              firstName: window.currUser.firstName,
+              lastName: window.currUser.firstName,
+              email: currUser.email,
+              userImg: window.currUser.imgURL,
+              msg: msg,
+              origin: origin,
+              to: from,
+              from: projectId,
+              projectId: projectId
+
+            },
+            type: 'post',
+            success: function (notification) {
+              $('#form-contact-message').val('');
+              console.log("NOTIFICATION CREATED ", notification);
+              addMessage(notification.userImg, notification.firstName, notification.lastName, notification.email, notification.msg, projectId);
+            },
+            error: function (request, status, error) {
+              console.log(request.responseText);
+            }
+          });
+      } else {
+        console.log("Empty message");
+      }
+    }
+
+    $(document).ready(function () {
+      console.log("ready!");
+      var projectId = getParameterByName('projectId');
+      getProject();
+      $.ajax
+        ({
+          url: "/notifications",
+          data: {
+            projectId : projectId
+          },
+          type: "get",
+          success: function (notifications) {
+            console.log("NOTIFICATIONS", notifications);
+            for (var not of notifications) {
+              if (not.type == "MESSAGE") {
+                addMessage(not.userImg, not.firstName, not.lastName, not.email, not.msg, not.from);
+              }
+            }
+          }
+        });
+      $("#sendMsgBtn").click(function () {
+        replyMessage();
+      });
+    });
+  </script>
+</body>
+<footer class="fixed-bottom">
+  <div class="row white">
+    <div class="col-sm-10">
+      <div class="md-form pl-4">
+        <div>
+          <input type="text" id="form-contact-message" class="form-control">
         </div>
       </div>
     </div>
-  </section>
+    <div class="col-sm-1 p-2">
+      <a id="sendMsgBtn" class="btn-floating btn red"><i class="fa fa-paper-plane"></i></a>
+    </div>
+  </div>
+  <% include ../partials/footer %>
+</footer>
+
+</html>

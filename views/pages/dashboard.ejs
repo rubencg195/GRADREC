@@ -89,6 +89,7 @@
             });
         }
         function applyProject() {
+            console.log("Applying to ", window.currApplication);
             if (!window.currApplication) {
                 alert("Not valid participant and project info");
             } else {
@@ -102,6 +103,7 @@
                             console.log("Application Sent", notification);
                             $(`a#applyBtn_${window.currApplication.projectId}`).prop('disabled', true);
                             $('#applyModal').modal('toggle');
+                            document.location.reload(true);
                         },
                         error: function (request, status, error) {
                             msgError.html(request.responseText);
@@ -116,14 +118,15 @@
             }
             console.log("Applying: ", imgURL, title, abstract, startDate, endDate, participantId, projectId);
             window.currApplication = {
-                "type":"APPLY_REQUEST",
+                "type": "APPLY_REQUEST",
                 "name": projectName,
                 "email": paticipantEmail,
                 "projectId": projectId,
                 "userId": participantId,
+                "userImg" : participantImg,
                 "projectName": projectName,
-                "replied":"false",
-                "answer":"false"
+                "replied": "false",
+                "answer": "false"
             };
             $("div#modalBody").html(`
             <div class="row" >
@@ -150,7 +153,6 @@
                 </div>
             `);
         }
-        console.log("Dash User", window.currUser);
         if (!window.currUser) {
         } else {
             $(document).ready(function () {
@@ -170,42 +172,54 @@
                             window.projects = projects;
 
                             projects.forEach(function (proj) {
-                               if(proj.finished == "false" || proj.finished == false){
-                                 if (proj.imgURL == null || proj.imgURL == ""){
-                                   proj.imgURL="https://dubsism.files.wordpress.com/2017/12/image-not-found.png?w=547";
-                                 }
-                              var $newCard = $(`<div class="card mb-3 text-center hoverable" >
-                                            <div class="card-body">
-                                                <div class="row" >
-                                                    <div class="col-md-4 offset-md-1 mx-3 my-3" onclick="goTo('/research?id=${proj._id}', '${proj._id}'  )">
-                                                        <!--Featured image-->
-                                                        <div class="view overlay">
-                                                            <img src="${proj.imgURL}" class="img-fluid" alt="Project Image">
-                                                            <a>
-                                                                <div class="mask rgba-white-slight"></div>
-                                                            </a>
+
+                                $.ajax
+                                ({
+                                    url: "/notifications",
+                                    data: {
+                                        type: "APPLY_REQUEST",
+                                        projectId :proj._id,
+                                        userId  : window.currUser._id
+                                    },
+                                    type: "get",
+                                    success: function (notifications) {
+                                        console.log("Notifications for", proj.title ,  notifications);
+                                        if (proj.finished == "false" || proj.finished == false) {
+                                            var $newCard = $(`<div class="card mb-3 text-center hoverable" >
+                                                    <div class="card-body">
+                                                        <div class="row" >
+                                                            <div class="col-md-4 offset-md-1 mx-3 my-3" onclick="goTo('/research?id=${proj._id}', '${proj._id}'  )">
+                                                                <!--Featured image-->
+                                                                <div class="view overlay">
+                                                                    <img src="${proj.imgURL}" class="img-fluid" alt="Sample image for first version of blog listing">
+                                                                    <a>
+                                                                        <div class="mask rgba-white-slight"></div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-7 text-left ml-3 mt-3">
+                                                                <div onclick="goTo('/research?id=${proj._id}', '${proj._id}'  )">
+                                                                    <a class="green-text">
+                                                                        <h6 class="font-bold pb-1"><i class="fa fa-desktop"> PROJECT </i>  </h6>
+                                                                    </a>
+                                                                    <h4 class="mb-4"><strong> ${proj.title} </strong></h4>
+                                                                    <p> ${proj.abstract} </p>
+                                                                    <p><a><strong>${proj.startDate} - ${proj.endDate}</strong></a></p>
+                                                                </div>
+                                                                ${(proj.participants != null && proj.participants.includes(window.currUser._id)) ? `<strong class='green-text'>ACCEPTED</strong>` : (notifications.length  > 0) ? "<strong class='green-text'>ALREADY APPLIED</strong>" :  `<a id="applyBtn_${proj._id}" class="btn red white-text" data-toggle="modal" data-target="#applyModal" onclick="changeModelContent('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.firstName + " " + window.currUser.lastName}', '${window.currUser.email}', '${window.currUser.imgURL}' )" >APPLY</a>` }
+        
+        
+                                                                ${+(proj.managerId === window.currUser._id) ? `<a class="btn grey lighten-1 white-text"  onclick="goTo('/projectCreation?id=${proj._id}', '${proj._id}')" >Edit Project</a>` : ``}
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-7 text-left ml-3 mt-3">
-                                                        <div onclick="goTo('/research?id=${proj._id}', '${proj._id}'  )">
-                                                            <a class="green-text">
-                                                                <h6 class="font-bold pb-1"><i class="fa fa-desktop"> PROJECT </i>  </h6>
-                                                            </a>
-                                                            <h4 class="mb-4"><strong> ${proj.title} </strong></h4>
-                                                            <p> ${proj.abstract} </p>
-                                                            <p><a><strong>${proj.startDate} - ${proj.endDate}</strong></a></p>
-                                                        </div>
-                                                        ${(proj.participants != null && proj.participants.includes(window.currUser._id))? `<strong class='green-text'>ACCEPTED</strong>` : `<a id="applyBtn_${proj._id}" class="btn red white-text" data-toggle="modal" data-target="#applyModal" onclick="changeModelContent('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.username}', '${window.currUser.email}' )" >APPLY</a>` }
+                                                </div>`);
+                                            $("main").prepend($newCard);
+                                        }
+                                        //onclick="goTo('/research?id=${proj._id}', '${proj._id}')"
+                                    }
+                                });
 
-
-                                                        ${+(proj.managerId === window.currUser._id) ? `<a class="btn grey lighten-1 white-text"  onclick="goTo('/projectCreation?id=${proj._id}', '${proj._id}')" >Edit Project</a>` : ``}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>`);
-                                $("main").prepend($newCard);
-                              }
-                                //onclick="goTo('/research?id=${proj._id}', '${proj._id}')"
                             });
 
                         },

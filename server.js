@@ -201,7 +201,7 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
 
     //=================NOTIFICATIONS DB ENDPOINTS====================
     app.get("/notifications", function (req, res) {
-        db.collection("notifications").find({}).toArray(function (err, docs) {
+        db.collection("notifications").find(req.query).toArray(function (err, docs) {
             if (err) {
                 handleError(res, err.message, "Failed to get contacts.");
             } else {
