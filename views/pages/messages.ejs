@@ -75,61 +75,37 @@
             console.log("Group By!", conversations);
             for(var conv of conversations ){
               console.log("CONV", conv);
-              var lastMsg = conv[conv.length - 1];
-              userImg = (lastMsg.userImg)? lastMsg.userImg : "https://cdn.iconscout.com/icon/free/png-256/avatar-367-456319.png";
-              projectImg = (lastMsg.projectImg)? lastMsg.projectImg : "http://www.wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg";
-              $card = `<div class="jumbotron text-center hoverable p-4">
-                  <div class="row">
-                    <div class="col-xs-1 col-md-2 offset-md-1 mx-3 my-3">
-                      <div class="view overlay">
-                        <img src="${userImg}" height="100px" class="img-fluid" alt="Sample image for first version of blog listing">
-                        <img src="${projectImg}" height="100px" class="img-fluid" alt="Sample image for first version of blog listing">
-                        <a>
-                          <div class="mask rgba-white-slight"></div>
+              
+              var lastMsg = conv[0];
+              if (lastMsg.projectManagerId == window.currUser._id || window.currUser._id == lastMsg.origin)
+              {
+                userImg = (lastMsg.userImg)? lastMsg.userImg : "https://cdn.iconscout.com/icon/free/png-256/avatar-367-456319.png";
+                projectImg = (lastMsg.projectImg)? lastMsg.projectImg : "http://www.wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg";
+                $card = `<div class="jumbotron text-center hoverable p-4">
+                    <div class="row">
+                      <div class="col-xs-1 col-md-2 offset-md-1 mx-3 my-3">
+                        <div class="view overlay">
+                          <img src="${userImg}" height="100px" class="img-fluid" alt="Sample image for first version of blog listing">
+                          <img src="${projectImg}" height="100px" class="img-fluid" alt="Sample image for first version of blog listing">
+                          <a>
+                            <div class="mask rgba-white-slight"></div>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xs-10 col-md-9 text-md-left ml-3 mt-3">
+                        <a href="#!" class="green-text">
+                          <h6 class="h6 pb-1"><i class="fa fa-desktop pr-1"></i> ${lastMsg.type}</h6>
                         </a>
+                        <p class="font-weight-normal">${lastMsg.msg}</p><br/>
+                        <p class="font-weight-normal"><a><strong>${lastMsg.projectName}</strong></a> and <a><strong>${lastMsg.firstName} ${lastMsg.lastName}</strong></a>, ${new Date(lastMsg.createDate).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} </p>
+                        <p class="font-weight-normal"> <strong>Email:</strong> ${lastMsg.createDate} </p>
+                        <br/>
+                        <a class="btn red white-text" href="/chat?projectId=${lastMsg.projectId}&from=${lastMsg.from}&to=${lastMsg.to}&origin=${lastMsg.origin}" >Reply</a>
                       </div>
                     </div>
-                    <div class="col-xs-10 col-md-9 text-md-left ml-3 mt-3">
-                      <a href="#!" class="green-text">
-                        <h6 class="h6 pb-1"><i class="fa fa-desktop pr-1"></i> ${lastMsg.type}</h6>
-                      </a>
-                      <p class="font-weight-normal">${lastMsg.msg}</p><br/>
-                      <p class="font-weight-normal"><a><strong>${lastMsg.projectName}</strong></a> and <a><strong>${lastMsg.firstName} ${lastMsg.lastName}</strong></a>, ${new Date(lastMsg.createDate).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} </p>
-                      <p class="font-weight-normal"> <strong>Email:</strong> ${lastMsg.createDate} </p>
-                      <br/>
-                      <a class="btn red white-text" href="/chat?projectId=${lastMsg.projectId}&from=${lastMsg.from}&to=${lastMsg.to}&to=${lastMsg.origin}" >Reply</a>
-                    </div>
-                  </div>
-                </div>`;
-                $("#mainContainer").append($($card));
-            }
-            for (var not of notifications) {
-              var $card;
-              if (false) { //not.type == "MESSAGE") {
-                $card = `<div class="jumbotron text-center hoverable p-4">
-                                <div class="row">
-                                  <div class="col-xs-1 col-md-2 offset-md-1 mx-3 my-3">
-                                    <div class="view overlay">
-                                      <img src="${not.userImg}" height="100px" class="img-fluid" alt="Sample image for first version of blog listing">
-                                      <a>
-                                        <div class="mask rgba-white-slight"></div>
-                                      </a>
-                                    </div>
-                                  </div>
-                                  <div class="col-xs-10 col-md-9 text-md-left ml-3 mt-3">
-                                    <a href="#!" class="green-text">
-                                      <h6 class="h6 pb-1"><i class="fa fa-desktop pr-1"></i> ${not.type}</h6>
-                                    </a>
-                                    <p class="font-weight-normal">${not.msg}</p><br/>
-                                    <p class="font-weight-normal">by <a><strong>${not.firstName} ${not.lastName}</strong></a>, ${new Date(not.date).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} </p>
-                                    <p class="font-weight-normal"> <strong>Email:</strong> ${not.createDate} </p>
-                                    <br/>
-                                    <a class="btn red white-text" href="/chat?projectId=${not.projectId}&from=${not.from}&to=${not.to}&to=${not.origin}" >Reply</a>
-                                  </div>
-                                </div>
-                              </div>`;
+                  </div>`;
+                  $("#mainContainer").append($($card));
               }
-              
             }
           },
           error: function (request, status, error) {
