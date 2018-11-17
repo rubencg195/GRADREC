@@ -170,7 +170,7 @@
                                 return;
                             }
                             window.projects = projects;
-
+                            console.log(projects);
                             projects.forEach(function (proj) {
 
                                 $.ajax
@@ -186,9 +186,23 @@
                                     success: function (notifications) {
 
                                         var applyBtn = `<a id="applyBtn_${proj._id}" class="btn red white-text" data-toggle="modal" data-target="#applyModal" onclick="changeModelContent('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.firstName + " " + window.currUser.lastName}', '${window.currUser.email}', '${window.currUser.imgURL}' )" >APPLY</a>`;
+                                        var alreadyApplied = "<strong class='green-text'>IN PROCESS</strong>";
+                                        var denied = "<strong class='green-text'>DENIED</strong>";
+                                        var accepted = "<strong class='green-text'>ACCEPTED</strong>";
 
+                                        var callToAction = applyBtn;
+
+                                        if(proj.participants != null && proj.participants.includes(window.currUser._id)){
+                                            callToAction = accepted;
+                                        }else if(notifications.length >  0){
+                                                if(notifications[0].answer && !notifications[0].replied ){
+                                                    callToAction = denied;
+                                                }else{
+                                                    callToAction = alreadyApplied;
+                                                }
+                                        }
                                         
-                                        console.log("Notifications for", proj.title ,  notifications);
+                                        //console.log("Notifications for", proj.title ,  notifications, callToAction);
                                         if (proj.finished == "false" || proj.finished == false) {
                                             var $newCard = $(`<div class="card mb-3 text-center hoverable" >
                                                     <div class="card-body">
@@ -211,9 +225,7 @@
                                                                     <p> ${proj.abstract} </p>
                                                                     <p><a><strong>${proj.startDate} - ${proj.endDate}</strong></a></p>
                                                                 </div>
-                                                                ${(proj.participants != null && proj.participants.includes(window.currUser._id)) ? `<strong class='green-text'>ACCEPTED</strong>` : (notifications.length  > 0) ? "<strong class='green-text'>ALREADY APPLIED</strong>" :   }
-        
-        
+                                                                ${callToAction}
                                                                 ${+(proj.managerId === window.currUser._id) ? `<a class="btn grey lighten-1 white-text"  onclick="goTo('/projectCreation?id=${proj._id}', '${proj._id}')" >Edit Project</a>` : ``}
                                                             </div>
                                                         </div>
