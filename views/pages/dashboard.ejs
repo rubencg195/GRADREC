@@ -112,7 +112,7 @@
             }
 
         }
-        function changeModelContent(imgURL, title, abstract, startDate, endDate, participantId, projectId, projectName,  participantName, paticipantEmail, participantImg ) {
+        function changeModelContent(imgURL, title, abstract, startDate, endDate, participantId, projectId, projectName,  participantName, paticipantEmail, participantImg, projectManagerId) {
             if (imgURL == null || imgURL == ""){
               imgURL="https://dubsism.files.wordpress.com/2017/12/image-not-found.png?w=547";
             }
@@ -125,6 +125,7 @@
                 "userId": participantId,
                 "userImg" : participantImg,
                 "projectName": projectName,
+                "projectManagerId": projectManagerId,
                 "replied": "false",
                 "answer": "false"
             };
@@ -185,7 +186,7 @@
                                     async: false,
                                     success: function (notifications) {
 
-                                        var applyBtn = `<a id="applyBtn_${proj._id}" class="btn red white-text" data-toggle="modal" data-target="#applyModal" onclick="changeModelContent('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.firstName + " " + window.currUser.lastName}', '${window.currUser.email}', '${window.currUser.imgURL}' )" >APPLY</a>`;
+                                        var applyBtn = `<a id="applyBtn_${proj._id}" class="btn red white-text" data-toggle="modal" data-target="#applyModal" onclick="changeModelContent('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.firstName + " " + window.currUser.lastName}', '${window.currUser.email}', '${window.currUser.imgURL}','${proj.managerId}' )" >APPLY</a>`;
                                         var alreadyApplied = "<strong class='green-text'>IN PROCESS</strong>";
                                         var denied = "<strong class='green-text'>DENIED</strong>";
                                         var accepted = "<strong class='green-text'>ACCEPTED</strong>";

@@ -73,9 +73,14 @@
           type: "get",
           async: false,
           success: function (notifications) {
+
             for (var not of notifications) {
               console.log("NOT", not.projectName, not);
-
+              
+              if (not.projectManagerId != window.currUser._id)
+              {
+                continue;
+              }
               var title;
               var img;
               var $card;
