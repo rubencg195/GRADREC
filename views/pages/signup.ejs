@@ -69,63 +69,72 @@
     <script>
         $(document).ready(function () {
             $("#submitBtn").click(function (event) {
-                event.preventDefault();
-                var _name = $('input#defaultRegisterFormFirstName').val();
-                var _lastname = $('input#defaultRegisterFormLastName').val();
-                var _email = $('input#defaultRegisterFormEmail').val();
-                var _password = $('input#defaultRegisterFormPassword').val();
-                var _isProf =  $("input#defaultLoginFormIsProf").is(':checked');
-
-                if (!_name || !_lastname || !_email || !_password) {
-                    console.log("EMPYT");
-                    $("p#errorSpace").html("Fill up the fields");
-                    return;
+                signUp(event);
+            });
+            $(document).keypress(function(e) {
+                if(e.which == 13) {
+                    signUp(e);
                 }
-                $.ajax
-                    ({
-                        url: '/users',
-                        data: {
-                            email: _email
-                        },
-                        type: 'get',
-                        success: function (data) {
-                            if (data.length > 0) {
-                                $("p#errorSpace").html(`User with email ${_email} Already Exists`);
-                            } else {
-                                $.ajax
-                                    ({
-                                        url: '/users',
-                                        data: {
-                                            username: _name + " " + _lastname,
-                                            firstName: _name,
-                                            lastName: _lastname,
-                                            email: _email,
-                                            password: _password,
-                                            isProf: _isProf,
-                                            surveyDone: false,
-                                            imgURL: "http://icons-for-free.com/free-icons/png/512/274900.png"
-                                        },
-                                        type: 'post',
-                                        success: function (user) {
-                                            console.log("Projects GET Response", user);
-                                            console.log("Saving User Local Session ", user);
-                                            sessionStorage.setItem('curentUser', JSON.stringify(user));
-                                            window.currUser = sessionStorage.getItem('curentUser');
-                                            console.log("Retrieving from User Local Session ", JSON.parse(currUser));
-
-                                            window.location.href = '/profile';
-                                        },
-                                        error: function (request, status, error) {
-                                            $("p#errorSpace").html(request.responseText);
-                                        }
-                                    });
-                            }
-
-
-                        }
-                    });
             });
         });
+
+
+        function signUp(event)
+        {
+            event.preventDefault();
+            var _name = $('input#defaultRegisterFormFirstName').val();
+            var _lastname = $('input#defaultRegisterFormLastName').val();
+            var _email = $('input#defaultRegisterFormEmail').val();
+            var _password = $('input#defaultRegisterFormPassword').val();
+            var _isProf =  $("input#defaultLoginFormIsProf").is(':checked');
+
+            if (!_name || !_lastname || !_email || !_password) {
+                console.log("EMPYT");
+                $("p#errorSpace").html("Fill up the fields");
+                return;
+            }
+            $.ajax
+                ({
+                    url: '/users',
+                    data: {
+                        email: _email
+                    },
+                    type: 'get',
+                    success: function (data) {
+                        if (data.length > 0) {
+                            $("p#errorSpace").html(`User with email ${_email} Already Exists`);
+                        } else {
+                            $.ajax
+                                ({
+                                    url: '/users',
+                                    data: {
+                                        username: _name + " " + _lastname,
+                                        firstName: _name,
+                                        lastName: _lastname,
+                                        email: _email,
+                                        password: _password,
+                                        isProf: _isProf,
+                                        surveyDone: false,
+                                        imgURL: "http://icons-for-free.com/free-icons/png/512/274900.png"
+                                    },
+                                    type: 'post',
+                                    success: function (user) {
+                                        console.log("Projects GET Response", user);
+                                        console.log("Saving User Local Session ", user);
+                                        sessionStorage.setItem('curentUser', JSON.stringify(user));
+                                        window.currUser = sessionStorage.getItem('curentUser');
+                                        console.log("Retrieving from User Local Session ", JSON.parse(currUser));
+
+                                        window.location.href = '/profile';
+                                    },
+                                    error: function (request, status, error) {
+                                        $("p#errorSpace").html(request.responseText);
+                                    }
+                                });
+                        }
+                    }
+                });
+        }
     </script>
 </body>
 

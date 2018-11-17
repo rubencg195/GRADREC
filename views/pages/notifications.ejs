@@ -74,16 +74,19 @@
           async: false,
           success: function (notifications) {
 
+            let emptyCheck = true;
             for (var not of notifications) {
               console.log("NOT", not.projectName, not);
               
+              var $card;
               if (not.projectManagerId != window.currUser._id)
               {
+                emptyCheck = true;
                 continue;
               }
+              emptyCheck = false;
               var title;
               var img;
-              var $card;
               var date = not.createDate;
               var type = not.type;
 
@@ -138,6 +141,15 @@
                   }
                 });
 
+            }
+            if (emptyCheck)
+            {
+              $card = `<div class="d-flex p-2">
+                <div class="row">         
+                    <h1 class="grey-text" style="font-family: Arial Black,Arial Bold,Gadget,sans-serif;">No Notifications at this time</h1>
+                </div>
+              </div>`
+              $("#mainContainer").append($($card));
             }
           },
           error: function (request, status, error) {

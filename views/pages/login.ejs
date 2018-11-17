@@ -50,7 +50,18 @@
             console.log("ready!");
 
             $("#submitBtn").click(function (event) {
-                event.preventDefault();
+                signIn(event);
+            }); 
+            $(document).keypress(function(e) {
+                if(e.which == 13) {
+                    signIn(e);
+                }
+            });
+        });
+
+        function signIn(event)
+        {
+            event.preventDefault();
                 var _username = $('input#defaultLoginFormEmail').val();
                 var _password = $('input#defaultLoginFormPassword').val();
 
@@ -99,8 +110,7 @@
                             $("p#errorSpace").html(request.responseText);
                         }
                     });
-            });
-        });
+        }
 
 
 

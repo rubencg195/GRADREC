@@ -74,12 +74,14 @@
               return [item.origin, item.projectId];
             });
             console.log("Group By!", conversations);
+            let emptyMsg = true;
             for (var conv of conversations) {
               console.log("CONV", conv);
               
               var lastMsg = conv[0];
               if (lastMsg.projectManagerId == window.currUser._id || window.currUser._id == lastMsg.origin)
               {
+                emptyMsg = false;
                 userImg = (lastMsg.userImg)? lastMsg.userImg : "https://cdn.iconscout.com/icon/free/png-256/avatar-367-456319.png";
                 projectImg = (lastMsg.projectImg)? lastMsg.projectImg : "http://www.wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg";
                 $card = `<div class="jumbotron text-center hoverable p-4">
@@ -107,6 +109,15 @@
                   </div>`;
                   $("#mainContainer").append($($card));
               }
+            }
+            if (emptyMsg)
+            {
+              $card = `<div class="d-flex p-2">
+                <div class="row">         
+                    <h1 class="grey-text" style="font-family: Arial Black,Arial Bold,Gadget,sans-serif;">No Messages at this time</h1>
+                </div>
+              </div>`
+              $("#mainContainer").append($($card));
             }
           },
           error: function (request, status, error) {
