@@ -197,7 +197,7 @@
                                         if(proj.participants != null && proj.participants.includes(window.currUser._id)){
                                             callToAction = accepted;
                                         }else if(notifications.length >  0){
-                                                if(notifications[0].answer && !notifications[0].replied ){
+                                                if(JSON.parse(notifications[0].answer) && !JSON.parse(notifications[0].replied)){
                                                     callToAction = denied;
                                                 }else{
                                                     callToAction = alreadyApplied;

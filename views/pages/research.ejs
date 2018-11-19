@@ -158,28 +158,33 @@
                   </div>`;
       $("#contactInfo").append($($card));
     }
-    function applyProject() {
-      console.log("Applying to ", window.currApplication);
-      if (!window.currApplication) {
-        alert("Not valid participant and project info");
-      } else {
-        $.ajax
-          ({
-            url: `/notifications`,
-            data: window.currApplication,
-            type: 'post',
-            success: function (notification) {
-              alert(`Application to ${window.currApplication.projectName} Sent`);
-              console.log("Application Sent", notification);
-              $(`a#applyBtn_${window.currApplication.projectId}`).prop('disabled', true);
-              $('#applyModal').modal('toggle');
-              document.location.reload(true);
-            },
-            error: function (request, status, error) {
-              msgError.html(request.responseText);
-            }
-          });
-      }
+    function applyProject(imgURL, title, abstract, startDate, endDate, participantId, projectId, projectName,  participantName, paticipantEmail, participantImg, projectManagerId){
+      var currApplication = {
+        "type": "APPLY_REQUEST",
+        "name": projectName,
+        "email": paticipantEmail,
+        "projectId": projectId,
+        "userId": participantId,
+        "userImg": participantImg,
+        "projectName": projectName,
+        "projectManagerId": projectManagerId,
+        "replied": "false",
+        "answer": "false"
+      };
+      $.ajax
+        ({
+          url: `/notifications`,
+          data: currApplication,
+          type: 'post',
+          success: function (notification) {
+            alert(`Application to ${currApplication.projectName} Sent`);
+            console.log("Application Sent", notification);
+            document.location.reload(true);
+          },
+          error: function (request, status, error) {
+            msgError.html(request.responseText);
+          }
+        });
 
     }
 
@@ -258,7 +263,7 @@
                   type: "get",
                   async: false,
                   success: function (notifications) {
-                    var applyBtn = `<a id="applyBtn_${proj._id}" class="btn red white-text" data-toggle="modal" data-target="#applyModal" onclick="changeModelContent('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.firstName + " " + window.currUser.lastName}', '${window.currUser.email}', '${window.currUser.imgURL}','${proj.managerId}' )" >APPLY</a>`;
+                    var applyBtn = `<a id="applyBtn_${proj._id}" class="btn  btn-rounded red white-text" data-toggle="modal" data-target="#applyModal" onclick="applyProject('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.firstName + " " + window.currUser.lastName}', '${window.currUser.email}', '${window.currUser.imgURL}','${proj.managerId}' )" >APPLY</a>`;
                     var alreadyApplied = "<strong class='green-text'>IN PROCESS</strong>";
                     var denied = "<strong class='green-text'>DENIED</strong>";
                     var accepted = "<strong class='green-text'>ACCEPTED</strong>";
@@ -269,7 +274,7 @@
                     if (proj.participants != null && proj.participants.includes(window.currUser._id)) {
                       callToAction = accepted;
                     } else if (notifications.length > 0) {
-                      if (notifications[0].answer && !notifications[0].replied) {
+                      if (JSON.parse(notifications[0].answer) && !JSON.parse(notifications[0].replied)) {
                         callToAction = denied;
                       } else {
                         callToAction = alreadyApplied;
@@ -334,7 +339,7 @@
 
   </script>
 </body>
-<footer class="fixed-bottom">
+<footer >
   <% include ../partials/footer %>
 </footer>
 
