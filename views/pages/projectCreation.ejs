@@ -245,6 +245,24 @@
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
+        function deleteStudent(projectId, studentId) {
+            var query =  `/projects/${projectId}/participant/${studentId}`;
+            console.log("Trying to Delete Student", query);
+            $.ajax
+              ({
+                url: query,
+                data: {},
+                type: 'delete',
+                success: function (notification) {
+                  alert(`Student Deleted`);
+                  console.log("Student Deleted", notification);
+                  document.location.reload(true)
+                },
+                error: function (request, status, error) {
+                  console.log(request.responseText);
+                }
+              });
+          }
         $("#sendMsgBtn").click(function () {
             $("html, body").animate({ scrollTop: $("#contactSection").offset().top }, 500);
             return true;
@@ -347,7 +365,7 @@
                                                     <a class="btn red  white-text" data-toggle="collapse" href="#collapse_${user._id}" aria-expanded="false" aria-controls="collapseExample">
                                                         More
                                                     </a>
-                                                    <button class="btn grey white-text" type="button" >
+                                                    <button class="btn grey white-text" type="button" onclick="deleteStudent('${currProj._id}', '${user._id}')" >
                                                         Delete
                                                     </button>
                                                 </div>

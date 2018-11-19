@@ -186,6 +186,25 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
             }
         });
     });
+    app.delete("/projects/:id/participant/:participantId", function (req, res) {
+        console.log("Deleting User");
+        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, {  $pull: { participants: req.params.participantId } }, function (err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to delete participant to projects");
+            } else {
+                console.log("Deleted Participant");
+                db.collection("notifications").remove({projectId: req.params.id , userId: req.params.participantId }, function (err, doc) {
+                    if (err) {
+                        handleError(res, err.message, "Failed to add participant to projects");
+                    } else {
+                        console.log(" Notification Remove");
+                    }
+                });
+
+                res.status(201).json(doc);
+            }
+        });
+    });
     app.delete("/projects/:id", function (req, res) {
         db.collection("projects").remove({ _id: new ObjectID(req.params.id) }, function (err, doc) {
             if (err) {
