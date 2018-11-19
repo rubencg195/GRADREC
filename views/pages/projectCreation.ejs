@@ -372,7 +372,19 @@
         }
 
         $(document).ready(function () {
+
           $("#deleteBtn").click(function () {
+            
+              var confirmDelete;
+              var confirmDelete = confirm("Are you sure you wish to delete the Project? ");
+              if (confirmDelete == true) {
+                  console.log("Project will be deleted");
+              } else {
+                console.log("User chose not to delete the Project");
+                  return;
+              }
+
+
             var projectId = getParameterByName('id');
             $.ajax
                 ({
@@ -522,6 +534,20 @@
                   var projThanksVariable = projThanks.val().replace(/'|"|\n|<|>/gi, "   ");
                   projThanks.val(projThanksVariable);
                 }// end of if (properInput == false)
+
+                //// confirm that the project has ended
+                if(_programFinished.is(':checked')){
+                  var confirmPdone;
+                  var confirmPdone = confirm("Are you sure the Project is done and you wish to archive it? ");
+                  if (confirmPdone == true) {
+                      console.log("Project will be archived");
+                  } else {
+                    console.log("User may double check the project");
+                      return;
+                  }
+                }
+
+
 
                 //else { // prevents the project from saving while I test out the if (properInput == false){
 
