@@ -44,7 +44,7 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="md-form mb-0">
-                                        <p>MSc or PhD:  <i class="fa fa-question-circle-o" aria-hidden="true" data-toggle="tooltip" title="Is this project aimed at Masters or PhD students"></i></p>
+                                        <p>MSc or PhD:  <i class="fa fa-question-circle-o" aria-hidden="true" data-toggle="tooltip" title="Is this project aimed at Masters PhD students, or both?"></i></p>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
@@ -390,6 +390,19 @@
         }
 
         $(document).ready(function () {
+          /*  personal side note, for future reference
+          if (window.currUser.isProf  == false || window.currUser.isProf == "false"){
+          } else {
+            var newOption = document.createElement("option");
+            var phdmsc = document.getElementById("form-contact-msc_or_phd");
+            phdmsc.appendChild(newOption);
+            newOption.setAttribute("value", "3");
+            newOption.innerHTML = "Both";
+          }
+
+          */
+
+          //
 
           $("#deleteBtn").click(function () {
 
