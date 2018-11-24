@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 function handleError(res, stacktrace, msg) {
     console.log(stacktrace, msg);
-    res.status(200).json(stacktrace+msg).end();
+    res.status(200).json(stacktrace + msg).end();
 }
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
@@ -38,7 +38,7 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
 
     //=============WEB PAGES=======================================
     app.get('/', function (req, res) {
-        res.render('pages/dashboard', {query : req.query});
+        res.render('pages/dashboard', { query: req.query });
     });
     app.get('/login', function (req, res) {
         res.render('pages/login');
@@ -47,28 +47,28 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
         res.render('pages/signup');
     });
     app.get('/profile', function (req, res) {
-        res.render('pages/profile', {query : req.query});
+        res.render('pages/profile', { query: req.query });
     });
     app.get('/projectCreation', function (req, res) {
-        res.render('pages/projectCreation', {query : req.query});
+        res.render('pages/projectCreation', { query: req.query });
     });
     app.get('/dashboard', function (req, res) {
-        res.render('pages/dashboard', {query : req.query});
+        res.render('pages/dashboard', { query: req.query });
     });
     app.get('/messages', function (req, res) {
-        res.render('pages/messages', {query : req.query});
+        res.render('pages/messages', { query: req.query });
     });
     app.get('/notification', function (req, res) {
-        res.render('pages/notifications', {query : req.query});
+        res.render('pages/notifications', { query: req.query });
     });
     app.get('/research', function (req, res) {  // GET /research?id=5
-            res.render('pages/research', {query : req.query});
+        res.render('pages/research', { query: req.query });
     });
     app.get('/studentSurvey', function (req, res) {
-        res.render('pages/studentSurvey', {query : req.query});
+        res.render('pages/studentSurvey', { query: req.query });
     });
     app.get('/chat', function (req, res) {
-        res.render('pages/chat', {query : req.query});
+        res.render('pages/chat', { query: req.query });
     });
     //===========================================================
 
@@ -76,7 +76,7 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
 
     //=============USER DB ENDPOINTS==============================
     app.get("/users", function (req, res) {
-        console.log("User Query" , req.query);
+        console.log("User Query", req.query);
         db.collection("users").find(req.query).toArray(function (err, docs) {
             if (err) {
                 handleError(res, err.message, "Failed to get contacts.");
@@ -112,31 +112,7 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     });
     app.put("/users/:id", function (req, res) {
         console.log("Update User", req.body);
-        db.collection("users").updateOne({ _id: new ObjectID(req.params.id) }, {  $set: req.body }, function (err, doc) {
-          if (err) {
-              handleError(res, err.message, "Failed to get contact");
-          } else {
-              res.status(200).json(doc);
-          }
-        });
-    });
-    //===========================================================
-
-
-
-    //===============PROJECTS DB ENDPOINTS========================
-    app.get("/projects", function (req, res) {
-        console.log("Project Query" , req.query);
-        db.collection("projects").find(req.query).toArray(function (err, docs) {
-            if (err) {
-                handleError(res, err.message, "Failed to get contacts.");
-            } else {
-                res.status(200).json(docs);
-            }
-        });
-    });
-    app.get("/projects/:id", function (req, res) {
-        db.collection("projects").findOne({ _id: new ObjectID(req.params.id) }, function (err, doc) {
+        db.collection("users").updateOne({ _id: new ObjectID(req.params.id) }, { $set: req.body }, function (err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to get contact");
             } else {
@@ -144,21 +120,92 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
             }
         });
     });
-    app.post("/projects", function (req, res) {
-        var newContact = req.body;
-        newContact.createDate = new Date();
+    //===========================================================
+    app.get("/projects", function (req, res) {
+        console.log("GET PROJECTS", req.query);
+        db.collection("projects").aggregate([
+            { "$match": req.query },
+            {
+                "$lookup": {
+                    "from": "users",
+                    "foreignField": "_id",
+                    "localField": "participants",
+                    "as": "participantsData"
+                }
+            },
+            {
+                "$lookup": {
+                    "from": "users",
+                    "foreignField": "_id",
+                    "localField": "managerId",
+                    "as": "managerData"
+                }
+            }
+        ]).toArray(function (err, docs) {
+            if (err) {
+                handleError(res, err.message, "Failed to get contacts.");
+            } else {
+                console.log("GETTING PROJECTS");
+                res.status(200).json(docs);
+            }
+        });
+    });
 
-        db.collection("projects").insertOne(newContact, function (err, doc) {
+    app.get("/projects/:id", function (req, res) {
+        // db.collection("projects").findOne({ _id: new ObjectID(req.params.id) }, function (err, doc) {
+        //     if (err) {
+        //         handleError(res, err.message, "Failed to get contact");
+        //     } else {
+        //         console.log("GETTING PROJECTS", doc);
+        //         res.status(200).json(doc);
+        //     }
+        // });
+
+        console.log("GET PROJECTS", { _id: new ObjectID(req.params.id) } );
+        db.collection("projects").aggregate([
+            { "$match": { _id: new ObjectID(req.params.id) }  },
+            {
+                "$lookup": {
+                    "from": "users",
+                    "foreignField": "_id",
+                    "localField": "participants",
+                    "as": "participantsData"
+                }
+            },
+            {
+                "$lookup": {
+                    "from": "users",
+                    "foreignField": "_id",
+                    "localField": "managerId",
+                    "as": "managerData"
+                }
+            }
+        ]).toArray(function (err, project) {
+            if (err) {
+                handleError(res, err.message, "Failed to get contacts.");
+            } else {
+                console.log("GETTING PROJECTS");
+                res.status(200).json(docs);
+            }
+        });
+    });
+    app.post("/projects", function (req, res) {
+        var newProject = req.body;
+        newProject.createDate = new Date();
+        newProject.managerId = new ObjectID(newProject.managerId);
+
+        db.collection("projects").insertOne(newProject, function (err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to create new contact.");
             } else {
+                console.log("POSTING PROJECTS", doc.ops[0]);
                 res.status(201).json(doc.ops[0]);
             }
         });
     });
     app.put("/projects/:id", function (req, res) {
         console.log("Update projects", req.body);
-        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, {  $set: req.body }, function (err, doc) {
+        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, { $set: req.body }, function (err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to update projects");
             } else {
@@ -168,13 +215,13 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     });
     app.put("/projects/:id/participant/:participantId", function (req, res) {
         console.log("Update projects");
-        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, {  $push: { participants: req.params.participantId } }, function (err, doc) {
+        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, { $push: { participants: new ObjectID(req.params.participantId) } }, function (err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to add participant to projects");
             } else {
                 console.log("Added Participant");
 
-                db.collection("notifications").updateOne({projectId: req.params.id , userId: req.params.participantId }, {  $set: { replied: true, answer: true } }, function (err, doc) {
+                db.collection("notifications").updateOne({ projectId: req.params.id, userId: req.params.participantId }, { $set: { replied: true, answer: true } }, function (err, doc) {
                     if (err) {
                         handleError(res, err.message, "Failed to add participant to projects");
                     } else {
@@ -188,12 +235,12 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     });
     app.delete("/projects/:id/participant/:participantId", function (req, res) {
         console.log("Deleting User");
-        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, {  $pull: { participants: req.params.participantId } }, function (err, doc) {
+        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, { $pull: { participants: req.params.participantId } }, function (err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to delete participant to projects");
             } else {
                 console.log("Deleted Participant");
-                db.collection("notifications").remove({projectId: req.params.id , userId: req.params.participantId }, function (err, doc) {
+                db.collection("notifications").remove({ projectId: req.params.id, userId: req.params.participantId }, function (err, doc) {
                     if (err) {
                         handleError(res, err.message, "Failed to add participant to projects");
                     } else {
@@ -251,7 +298,7 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     });
     app.put("/notifications/:id", function (req, res) {
         console.log("Update Notification", req.body);
-        db.collection("notifications").updateOne({ _id: new ObjectID(req.params.id) },  {  $set: req.body }, function (err, doc) {
+        db.collection("notifications").updateOne({ _id: new ObjectID(req.params.id) }, { $set: req.body }, function (err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to update User");
             } else {
@@ -261,6 +308,33 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     });
     //===============================================================
 
+    //========================= CONVERSATION ==============================
+    app.get("/conversation/:originId/projectId/:projectId", function (req, res) {
+        console.log("Project Query", req.query);
+        db.collection("notifications").aggregate([
+            { "$match":  {
+                "origin" : req.params.originId,
+                "projectId" : req.params.projectId,
+                "type" : "MESSAGE"
+            }},
+            {
+                "$lookup": {
+                    "from": "users",
+                    "foreignField": "_id",
+                    "localField": "participants",
+                    "as": "participantsData"
+                }
+            }
+        ]).toArray(function (err, docs) {
+            if (err) {
+                handleError(res, err.message, "Failed to get contacts.");
+            } else {
+                console.log("GETTING PROJECTS");
+                res.status(200).json(docs);
+            }
+        });
+    });
+    //===============================================================
 
     app.post("/signup", function (req, res) {
         var postBody = req.body;
