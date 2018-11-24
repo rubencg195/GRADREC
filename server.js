@@ -188,18 +188,27 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
                     "from": "notifications",
                     "foreignField": "projectId",
                     "localField": "_id",
-                    "as": "notificationData"
+                    "as": "notificationsData"
                 }
             }
         ]).toArray(function (err, projects) {
             if (err) {
                 handleError(res, err.message, "Failed to get contacts.");
             } else {
-                console.log("GETTING PROJECTS");
-                projects.forEach(proj => {
-                    proj.managerData = (proj.managerData.length > 0)? proj.managerData[0] : null;
-                });
-                res.status(200).json( projects.length > 0 ? projects[0] : null );
+                var proj = projects.length > 0 ? projects[0] : null;
+                proj.managerData = (proj && proj.managerData.length > 0)? proj.managerData[0] : null;
+                console.log("GETTING PROJECTS", proj);
+                if(req.query.getNotifications){
+                    var userId = req.query.userId;
+                    if(proj){
+                        proj.notificationsData =  proj.notificationsData.filter(not => not.type== "APPLY_REQUEST" && not.userId ==  userId );
+                    }
+
+                }else{
+
+                }
+
+                res.status(200).json( proj );
             }
         });
     });
@@ -219,7 +228,10 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     });
     app.put("/projects/:id", function (req, res) {
         console.log("Update projects", req.body);
-        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, { $set: req.body }, function (err, doc) {
+        var newProject = req.body;
+        newProject.managerId = new ObjectID(newProject.managerId);
+
+        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, { $set: newProject }, function (err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to update projects");
             } else {
