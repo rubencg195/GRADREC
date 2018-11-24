@@ -124,7 +124,7 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     app.get("/projects", function (req, res) {
         console.log("GET PROJECTS", req.query);
         db.collection("projects").aggregate([
-            { "$match": req.query },
+            // { "$match": req.query },
             {
                 "$lookup": {
                     "from": "users",
@@ -140,6 +140,14 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
                     "localField": "managerId",
                     "as": "managerData"
                 }
+            },
+            {
+                "$lookup": {
+                    "from": "notifications",
+                    "foreignField": "projectId",
+                    "localField": "_id",
+                    "as": "notificationsData"
+                }
             }
         ]).toArray(function (err, projects) {
             if (err) {
@@ -148,6 +156,19 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
                 console.log("GETTING PROJECTS");
                 projects.forEach(proj => {
                     proj.managerData = (proj.managerData.length > 0)? proj.managerData[0] : null;
+
+                    var userId = req.query.userId;
+                    if(req.query.getNotifications){
+                        var userId = req.query.userId;
+                        if(proj){
+                            proj.notificationsData =  proj.notificationsData.filter(not => not.type== "APPLY_REQUEST" && not.userId ==  userId );
+                        }
+    
+                    }else{
+                        if(proj){
+                            proj.notificationsData =  null;
+                        }
+                    }
                 });
                 res.status(200).json(projects);
             }
@@ -205,7 +226,9 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
                     }
 
                 }else{
-
+                    if(proj){
+                        proj.notificationsData =  null;
+                    }
                 }
 
                 res.status(200).json( proj );
