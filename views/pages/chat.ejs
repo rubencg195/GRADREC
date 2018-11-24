@@ -3,36 +3,35 @@
 <html lang="en" style="height: 100vh">
 
 <head>
-  <% include ../partials/mdhead %>
-  <link rel="icon" href="http://cc-arcc.ca/wp-content/uploads/2016/03/mun-logo.jpg">
+    <% include ../partials/mdhead %>
+        <link rel="icon" href="http://cc-arcc.ca/wp-content/uploads/2016/03/mun-logo.jpg">
 </head>
 
 <body style="background-color: rgb(230, 230, 230); padding-bottom: 110px;">
-  <% include ../partials/navbar %>
-  <main class="container">
+    <% include ../partials/navbar %>
+        <main class="container">
 
-    <section class="row my-5" id="mainContainer">
+            <section class="row my-5" id="mainContainer">
 
-    </section>
-  </main>
-  <% include ../partials/mdscripts %>
-  <script>
-    if (window.currUser) {
-      console.log("Exist");
-    } else {
-      window.location.href = '/login';
-      console.log("not login");
-    }
-  </script>
-  <script>
-
-    function addMessage(avatarImg, firstName, lastName, email, message, id) {
-      var projectId = getParameterByName('projectId');
-      var from = getParameterByName('from');
-      var to = getParameterByName('to');
-      console.log("id", id, "to", to, "from" , from);
-      if(id == from || id == to){
-        var $card = `<div class="col-sm-12"><div class="mdb-feed m-1" style="width: 500px; float: ${(id == projectId) ? 'right' : 'left'}; ">
+            </section>
+        </main>
+        <% include ../partials/mdscripts %>
+            <script>
+                if (window.currUser) {
+                    console.log("Exist");
+                } else {
+                    window.location.href = '/login';
+                    console.log("not login");
+                }
+            </script>
+            <script>
+                function addMessage(avatarImg, firstName, lastName, email, message, id) {
+                    var projectId = getParameterByName('projectId');
+                    var from = getParameterByName('from');
+                    var to = getParameterByName('to');
+                    console.log("id", id, "to", to, "from", from);
+                    if (id == from || id == to) {
+                        var $card = `<div class="col-sm-12"><div class="mdb-feed m-1" style="width: 500px; float: ${(id == projectId) ? 'right' : 'left'}; ">
             <div class="card pt-2  pt-2 pb-1 px-3" style="border-radius: 45px;">
               <div class="news">
                   <div class="label">
@@ -49,125 +48,141 @@
                 </div>
               </div>
             </div>`;
-        $("#mainContainer").append($($card));
-      }
-    }
-    function compare(a,b) {
-      if (a.createDate < b.createDate)
-        return -1;
-      if (a.createDate > b.createDate)
-        return 1;
-      return 0;
-    } 
-    function getParameterByName(name, url) {
-      if (!url) url = window.location.href;
-      name = name.replace(/[\[\]]/g, '\\$&');
-      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-      if (!results) return null;
-      if (!results[2]) return '';
-      return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
-    function getProject() {
-      var from = getParameterByName('from');
-      var to = getParameterByName('to');
-      var projectId = getParameterByName('projectId');
-      $.ajax
-        ({
-          url: `/projects/${projectId}`,
-          data: {},
-          type: 'get',
-          success: function (project) {
-            console.log("Projects GET Response", project);
-            window.project = project;
+                        $("#mainContainer").append($($card));
+                    }
+                }
 
-          }
-        });
-    }
-    function replyMessage() {
-      var origin = getParameterByName('origin');
-      var to = getParameterByName('from');
-      var from = getParameterByName('to');
-      var projectId = getParameterByName('projectId');
-      var msg = $('#form-contact-message').val();
-      console.log("REPLYING");
-      if (msg) {
-        name = window.project.title;
-        $.ajax
-          ({
-            url: `/notifications`,
-            data: {
-              type: "MESSAGE",
-              firstName: window.currUser.firstName,
-              lastName: window.currUser.firstName,
-              email: currUser.email,
-              userImg: window.currUser.imgURL,
-              msg: msg,
-              origin: origin,
-              to: from,
-              from: projectId,
-              projectId: projectId,
-              projectManagerId: window.project.managerId,
-              projectName: window.project.title,
-              projectImg: window.project.imgURL
+                function compare(a, b) {
+                    if (a.createDate < b.createDate)
+                        return -1;
+                    if (a.createDate > b.createDate)
+                        return 1;
+                    return 0;
+                }
 
-            },
-            type: 'post',
-            success: function (notification) {
-              $('#form-contact-message').val('');
-              console.log("NOTIFICATION CREATED ", notification);
-              addMessage(notification.userImg, notification.firstName, notification.lastName, notification.email, notification.msg, projectId);
-            },
-            error: function (request, status, error) {
-              console.log(request.responseText);
-            }
-          });
-      } else {
-        console.log("Empty message");
-      }
-    }
+                function getParameterByName(name, url) {
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, '\\$&');
+                    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                        results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+                }
 
-    $(document).ready(function () {
-      console.log("ready!");
-      var projectId = getParameterByName('projectId');
-      getProject();
-      $.ajax
-        ({
-          url: "/notifications",
-          data: {
-            projectId : projectId
-          },
-          type: "get",
-          success: function (notifications) {
-            notifications.sort(compare);
-            for (var not of notifications) {
-              if (not.type == "MESSAGE") {
-                console.log("NOTIFICATIONS", notifications);
-                addMessage(not.userImg, not.firstName, not.lastName, not.email, not.msg, not.from);
-              }
-            }
-          }
-        });
-      $("#sendMsgBtn").click(function () {
-        replyMessage();
-      });
-    });
-  </script>
+                function getProject() {
+                    var from = getParameterByName('from');
+                    var to = getParameterByName('to');
+                    var projectId = getParameterByName('projectId');
+                    $.ajax({
+                        url: `/projects/${projectId}`,
+                        data: {},
+                        type: 'get',
+                        success: function(project) {
+                            console.log("Projects GET Response", project);
+                            window.project = project;
+
+                        }
+                    });
+                }
+
+                function replyMessage() {
+                    var origin = getParameterByName('origin');
+                    var to = getParameterByName('from');
+                    var from = getParameterByName('to');
+                    var projectId = getParameterByName('projectId');
+                    var msg = $('#form-contact-message').val();
+                    console.log("REPLYING");
+                    if (msg) {
+                        name = window.project.title;
+                        $.ajax({
+                            url: `/notifications`,
+                            data: {
+                                type: "MESSAGE",
+                                firstName: window.currUser.firstName,
+                                lastName: window.currUser.firstName,
+                                email: currUser.email,
+                                userImg: window.currUser.imgURL,
+                                msg: msg,
+                                origin: origin,
+                                to: from,
+                                from: projectId,
+                                projectId: projectId,
+                                projectManagerId: window.project.managerId,
+                                projectName: window.project.title,
+                                projectImg: window.project.imgURL
+
+                            },
+                            type: 'post',
+                            success: function(notification) {
+                                $('#form-contact-message').val('');
+                                console.log("NOTIFICATION CREATED ", notification);
+                                addMessage(notification.userImg, notification.firstName, notification.lastName, notification.email, notification.msg, projectId);
+                            },
+                            error: function(request, status, error) {
+                                console.log(request.responseText);
+                            }
+                        });
+                    } else {
+                        console.log("Empty message");
+                    }
+                }
+
+                $(document).ready(function() {
+                    console.log("ready!");
+                    var projectId = getParameterByName('projectId');
+                    var origin = getParameterByName('origin');
+                    getProject();
+
+                    $("#sendMsgBtn").click(function() {
+                        replyMessage();
+                    });
+                    setInterval(function() {
+                        //document.location.reload(true);
+                        $("#mainContainer").empty();
+                        $.ajax({
+                            url: `/conversation/${origin}/projectId/${projectId}`,
+                            data: {},
+                            type: "get",
+                            success: function(notifications) {
+                                notifications.sort(compare);
+                                for (var not of notifications) {
+                                    //console.log("NOTIFICATIONS", notifications);
+                                    addMessage(not.userImg, not.firstName, not.lastName, not.email, not.msg, not.from);
+
+                                }
+                            }
+                        });
+
+                        // $('body').scrollTo($("#mainContainer").last());
+                        $('#mainContainer').animate({
+                            scrollTop: $('#mainContainer').prop("scrollHeight")
+                        }, 5000000);
+
+                        // $('html, body').animate({
+                        //     scrollTop: $("#mainContainer").last().offset().top
+                        // }, 200);
+
+                    }, 2000);
+                    //document.location.reload(true);
+
+                });
+            </script>
 </body>
 <footer class="fixed-bottom">
-  <div class="row white">
-    <div class="col-sm-10">
-      <div class="md-form pl-4">
-        <div>
-          <input type="text" id="form-contact-message" class="form-control">
+    <div class="row white">
+        <div class="col-sm-10">
+            <div class="md-form pl-4">
+                <div>
+                    <input type="text" id="form-contact-message" class="form-control">
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="col-sm-1 p-2">
+            <a id="sendMsgBtn" class="btn-floating btn red"><i class="fa fa-paper-plane"></i></a>
+        </div>
     </div>
-    <div class="col-sm-1 p-2">
-      <a id="sendMsgBtn" class="btn-floating btn red"><i class="fa fa-paper-plane"></i></a>
-    </div>
-  </div>
-  <% include ../partials/footer %>
+    <% include ../partials/footer %>
 </footer>
 
 </html>

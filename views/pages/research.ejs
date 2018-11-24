@@ -3,145 +3,142 @@
 <html lang="en" style="height: 100vh">
 
 <head>
-  <% include ../partials/mdhead %>
-  <link rel="icon" href="http://cc-arcc.ca/wp-content/uploads/2016/03/mun-logo.jpg">
+    <% include ../partials/mdhead %>
+        <link rel="icon" href="http://cc-arcc.ca/wp-content/uploads/2016/03/mun-logo.jpg">
 </head>
 
 <body style="background-color: rgb(230, 230, 230);">
-  <% include ../partials/navbar %>
-  <main class="container">
-    <div class="card">
-      <div class="view overlay">
-        <img id="projectImage" src="https://mdbootstrap.com/img/Photos/Slides/img%20(134).jpg" class="img-fluid" alt="">
-        <a href="#">
-          <div class="mask rgba-white-slight"></div>
-        </a>
-      </div>
-      <div class="card-body text-center mb-3" id="introSection">
-        <h3 class="card-title mt-2 pb-4"><strong id="titleDiv">PROJECT NOT FOUND</strong></h3>
-        <p class="card-text" id="abstractDiv"></p>
-        <div id="introApplySection">
-          <a class="btn grey btn-rounded white-text" id="sendMsgBtn">Send a Message</a>
-        </div>
-      </div>
-    </div>
-    <br />
-    <div class="card">
-      <div class="row text-center my-5">
-        <section class="">
-          <h2 class="h1-responsive font-weight-bold my-5">Project Manager: <span id="ProjectManager">Information not
-              available</span></h2>
-          <p class="grey-text w-responsive mx-auto mb-5" id="PMSummary">This section is supposed to let you know more
-            about the project manager in charge of this project, so that you may know a little more about your possible
-            future supervisor.</p>
-          <div class="row text-center">
-            <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
-              <div class="card-body pb-0">
-                <h4 class="font-weight-bold my-3">Required Skills</h4>
-                <p class="grey-text">If you excel at the following skills, you should consider signing up or looking
-                  into this project.
-                  <ul id="wantedSkills">
-                  </ul>
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
-              <div class="card-body pb-0">
-                <h4 class="font-weight-bold my-3">About the positions</h4>
-                <p class="grey-text">There are <span id="numStudents">1</span> available spots for students. As far as
-                  available financial aid, this project was assigned <span id="financialAid">0</span> CAD. However, if
-                  needed, additional fundraising activities can be done by the Project Manager and the Participants at
-                  any point during the semester to help ensure a successful project delivery.
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="card-body pb-0">
-                <h4 class="font-weight-bold my-3">Additional Project Information</h4>
-                <p class="grey-text" id="projectComments">This area was originally inteded for additional information
-                  that the Project Manager may wish to communicate about the project. However, if you would still like
-                  to learn a little more about the Project, please continue to the contact section below. </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
-    <section class="contact-section my-5">
-      <div class="card">
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="card-body form">
-              <h3 class="mt-4"><i class="fa fa-envelope pr-2"></i>Write to us:</h3>
-              <div class="row">
-                <div class="col-md-12" id="contactInfo">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="md-form mb-0">
-                    <textarea type="text" id="form-contact-message" class="form-control md-textarea" rows="3"></textarea>
-                    <label for="form-contact-message">Your message</label>
-                    <a class="btn-floating btn-lg red " id="sendNewMsgBtn">
-                      <i class="fa fa-send-o"></i>
+    <% include ../partials/navbar %>
+        <main class="container">
+            <div class="card">
+                <div class="view overlay">
+                    <img id="projectImage" src="https://mdbootstrap.com/img/Photos/Slides/img%20(134).jpg" class="img-fluid" alt="">
+                    <a href="#">
+                        <div class="mask rgba-white-slight"></div>
                     </a>
-                  </div>
-                  <br />
-                  <p class="red-text" id="msgError"></p>
                 </div>
-              </div>
+                <div class="card-body text-center mb-3" id="introSection">
+                    <h3 class="card-title mt-2 pb-4"><strong id="titleDiv">PROJECT NOT FOUND</strong></h3>
+                    <p class="card-text" id="abstractDiv"></p>
+                    <div id="introApplySection">
+                        <a class="btn grey btn-rounded white-text" id="sendMsgBtn">Send a Message</a>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="card-body contact text-center h-100 white-text  red darken-4">
-              <h3 class="my-4 pb-2">Contact information</h3>
-              <ul class="text-lg-left list-unstyled ml-4">
-                <li>
-                  <p><i class="fa fa-map-marker pr-2 white-text"></i>Memorial University, NL</p>
-                </li>
-                <li>
-                  <p><i class="fa fa-phone pr-2 white-text"></i>+ 01 234 567 89</p>
-                </li>
-                <li>
-                  <p><i class="fa fa-envelope pr-2 white-text" id="contactSection"></i>contact@example.com</p>
-                </li>
-              </ul>
+            <br />
+            <div class="card">
+                <div class="row text-center my-5">
+                    <section class="">
+                        <h2 class="h1-responsive font-weight-bold my-5">Project Manager: <span id="ProjectManager">Information not
+              available</span></h2>
+                        <p class="grey-text w-responsive mx-auto mb-5" id="PMSummary">This section is supposed to let you know more about the project manager in charge of this project, so that you may know a little more about your possible future supervisor.</p>
+                        <div class="row text-center">
+                            <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
+                                <div class="card-body pb-0">
+                                    <h4 class="font-weight-bold my-3">Required Skills</h4>
+                                    <p class="grey-text">If you excel at the following skills, you should consider signing up or looking into this project.
+                                        <ul id="wantedSkills">
+                                        </ul>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
+                                <div class="card-body pb-0">
+                                    <h4 class="font-weight-bold my-3">About the positions</h4>
+                                    <p class="grey-text">There are <span id="numStudents">1</span> available spots for students. As far as available financial aid, this project was assigned <span id="financialAid">0</span> CAD. However, if needed, additional fundraising activities
+                                        can be done by the Project Manager and the Participants at any point during the semester to help ensure a successful project delivery.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card-body pb-0">
+                                    <h4 class="font-weight-bold my-3">Additional Project Information</h4>
+                                    <p class="grey-text" id="projectComments">This area was originally inteded for additional information that the Project Manager may wish to communicate about the project. However, if you would still like to learn a little more about the Project, please continue
+                                        to the contact section below. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <% include ../partials/mdscripts %>
-  <script>
-    if (window.currUser) {
-      console.log("Exist");
-    } else {
-      console.log("not login");
-      window.location.href = '/login';
-    }
-  </script>
-  <script>
-    function goTo(addr) {
-      window.location.href = addr;
-    }
-    function scrollIntoView(eleID) {
-      var e = document.getElementById(eleID);
-      if (!!e && e.scrollIntoView) {
-        e.scrollIntoView();
-      }
-    }
-    function getParameterByName(name, url) {
-      if (!url) url = window.location.href;
-      name = name.replace(/[\[\]]/g, '\\$&');
-      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-      if (!results) return null;
-      if (!results[2]) return '';
-      return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
-    function addContactInfo(avatarImg, firstName, lastName, email) {
-      var $card = `<div class="mdb-feed">
+            <section class="contact-section my-5">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="card-body form">
+                                <h3 class="mt-4"><i class="fa fa-envelope pr-2"></i>Write to us:</h3>
+                                <div class="row">
+                                    <div class="col-md-12" id="contactInfo">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="md-form mb-0">
+                                            <textarea type="text" id="form-contact-message" class="form-control md-textarea" rows="3"></textarea>
+                                            <label for="form-contact-message">Your message</label>
+                                            <a class="btn-floating btn-lg red " id="sendNewMsgBtn">
+                                                <i class="fa fa-send-o"></i>
+                                            </a>
+                                        </div>
+                                        <br />
+                                        <p class="red-text" id="msgError"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card-body contact text-center h-100 white-text  red darken-4">
+                                <h3 class="my-4 pb-2">Contact information</h3>
+                                <ul class="text-lg-left list-unstyled ml-4">
+                                    <li>
+                                        <p><i class="fa fa-map-marker pr-2 white-text"></i>Memorial University, NL</p>
+                                    </li>
+                                    <li>
+                                        <p><i class="fa fa-phone pr-2 white-text"></i>+ 01 234 567 89</p>
+                                    </li>
+                                    <li>
+                                        <p><i class="fa fa-envelope pr-2 white-text" id="contactSection"></i>contact@example.com</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <% include ../partials/mdscripts %>
+            <script>
+                if (window.currUser) {
+                    console.log("Exist");
+                } else {
+                    console.log("not login");
+                    window.location.href = '/login';
+                }
+            </script>
+            <script>
+                function goTo(addr) {
+                    window.location.href = addr;
+                }
+
+                function scrollIntoView(eleID) {
+                    var e = document.getElementById(eleID);
+                    if (!!e && e.scrollIntoView) {
+                        e.scrollIntoView();
+                    }
+                }
+
+                function getParameterByName(name, url) {
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, '\\$&');
+                    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                        results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+                }
+
+                function addContactInfo(avatarImg, firstName, lastName, email) {
+                    var $card = `<div class="mdb-feed">
                   <br/>
                   <div class="news">
                           <div class="label">
@@ -156,191 +153,186 @@
                           </div>
                       </div>
                   </div>`;
-      $("#contactInfo").append($($card));
-    }
-    function applyProject(imgURL, title, abstract, startDate, endDate, participantId, projectId, projectName,  participantName, paticipantEmail, participantImg, projectManagerId){
-      var currApplication = {
-        "type": "APPLY_REQUEST",
-        "name": projectName,
-        "email": paticipantEmail,
-        "projectId": projectId,
-        "userId": participantId,
-        "userImg": participantImg,
-        "projectName": projectName,
-        "projectManagerId": projectManagerId,
-        "replied": "false",
-        "answer": "false"
-      };
-      $.ajax
-        ({
-          url: `/notifications`,
-          data: currApplication,
-          type: 'post',
-          success: function (notification) {
-            alert(`Application to ${currApplication.projectName} Sent`);
-            console.log("Application Sent", notification);
-            document.location.reload(true);
-          },
-          error: function (request, status, error) {
-            msgError.html(request.responseText);
-          }
-        });
+                    $("#contactInfo").append($($card));
+                }
 
-    }
-
-    var projectId = getParameterByName('id');
-
-    $("#sendMsgBtn").click(function () {
-      $("html, body").animate({ scrollTop: $("#contactSection").offset().top }, 500);
-      return true;
-    });
-
-    $("#sendNewMsgBtn").click(function () {
-      var msg = $('#form-contact-message').val();
-      var msgError = $('p#msgError');
-
-      if (!msg) {
-        msgError.html("Complete the form");
-      } else {
-        $.ajax
-          ({
-            url: `/notifications`,
-            data: {
-              type: "MESSAGE",
-              firstName: window.currUser.firstName,
-              lastName: window.currUser.lastName,
-              email: window.currUser.email,
-              userImg: window.currUser.imgURL,
-              msg: msg,
-              origin: window.currUser._id,
-              to: projectId,
-              from: window.currUser._id,
-              projectId: projectId,
-              projectName: window.project.title,
-              projectImg: window.project.imgURL,
-              projectManagerId: window.project.managerId
-
-            },
-            type: 'post',
-            success: function (notification) {
-              msgError.html("Message Sent");
-              alert("Message Sent");
-              $('#form-contact-message').val('');
-              console.log("NOTIFICATION CREATED ", notification);
-            },
-            error: function (request, status, error) {
-              msgError.html(request.responseText);
-            }
-          });
-      }
-    });
-
-    if (!projectId) {
-      console.log("Project not exist");
-      window.location.href = '/';
-    } else {
-      $(document).ready(function () {
-        console.log("ready!");
-        addContactInfo(window.currUser.imgURL, window.currUser.firstName, window.currUser.lastName, window.currUser.email);
-        $.ajax
-          ({
-            url: `/projects/${projectId}`,
-            data: {},
-            type: 'get',
-            success: function (project) {
-              console.log("Projects GET Response", project);
-              window.project = project;
-              var proj = project;
-
-              $.ajax
-                ({
-                  url: "/notifications",
-                  data: {
-                    type: "APPLY_REQUEST",
-                    projectId: proj._id,
-                    userId: window.currUser._id
-                  },
-                  type: "get",
-                  async: false,
-                  success: function (notifications) {
-                    var applyBtn = `<a id="applyBtn_${proj._id}" class="btn  btn-rounded red white-text" data-toggle="modal" data-target="#applyModal" onclick="applyProject('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.firstName + " " + window.currUser.lastName}', '${window.currUser.email}', '${window.currUser.imgURL}','${proj.managerId}' )" >APPLY</a>`;
-                    var alreadyApplied = "<strong class='green-text'>IN PROCESS</strong>";
-                    var denied = "<strong class='green-text'>DENIED</strong>";
-                    var accepted = "<strong class='green-text'>ACCEPTED</strong>";
-                    var projPub = "<strong class='green-text'>PROJECT PUBLISHED</strong>";
-
-                    var callToAction = applyBtn;
-
-                    if (proj.participants != null && proj.participants.includes(window.currUser._id)) {
-                      callToAction = accepted;
-                    } else if (notifications.length > 0) {
-                      if (JSON.parse(notifications[0].answer) && !JSON.parse(notifications[0].replied)) {
-                        callToAction = denied;
-                      } else {
-                        callToAction = alreadyApplied;
-                      }
-                    }
-                    if (proj.managerId == currUser._id) {
-                      callToAction = projPub;
-                    }
-                    $.ajax
-                      ({
-                        url: `/users/${project.managerId}`,
-                        data: {},
-                        type: 'get',
-                        success: function (manager) {
-                          console.log("Projects GET Response", project);
-                          window.project.manager = manager;
-
-                          $("#ProjectManager").html(manager.username);
-                          $("#PMSummary").html(manager.summary);
-
+                function applyProject(imgURL, title, abstract, startDate, endDate, participantId, projectId, projectName, participantName, paticipantEmail, participantImg, projectManagerId) {
+                    var currApplication = {
+                        "type": "APPLY_REQUEST",
+                        "name": projectName,
+                        "email": paticipantEmail,
+                        "projectId": projectId,
+                        "userId": participantId,
+                        "userImg": participantImg,
+                        "projectName": projectName,
+                        "projectManagerId": projectManagerId,
+                        "replied": "false",
+                        "answer": "false"
+                    };
+                    $.ajax({
+                        url: `/notifications`,
+                        data: currApplication,
+                        type: 'post',
+                        success: function(notification) {
+                            alert(`Application to ${currApplication.projectName} Sent`);
+                            console.log("Application Sent", notification);
+                            document.location.reload(true);
                         },
-                        error: function (request, status, error) {
-                          $("p#errorSpace").html(request.responseText);
+                        error: function(request, status, error) {
+                            msgError.html(request.responseText);
                         }
-                      });
-                    $("#titleDiv").html(project.title);
-                    $("#abstractDiv").html(project.abstract);
-                    $("#projectImage").attr("src", project.imgURL);
-                    for (var key in project.skills) {
-                      var skillList = document.getElementById(wantedSkills);
-                      console.log(project.skills[key], key);
-                      if (JSON.parse(project.skills[key]) == true) {
-                        $("#wantedSkills").append("<li>" + key + "</li>");
-                      }
-                    }
-                    $("#projectComments").html(project.comments);
-                    $("#numStudents").html(project.availableSpots);
-                    $("#financialAid").html(project.financialAid);
+                    });
 
-                    $("#introApplySection").prepend($(callToAction));
+                }
 
+                var projectId = getParameterByName('id');
 
-                    if (project.managerId === window.currUser._id) {
-                      $("#introApplySection").append($(`<a class="btn grey lighten-1 btn-rounded white-text" onclick="goTo('/projectCreation?id=${project._id}')" >Edit Project</a>`));
-                    }
-
-                  }
+                $("#sendMsgBtn").click(function() {
+                    $("html, body").animate({
+                        scrollTop: $("#contactSection").offset().top
+                    }, 500);
+                    return true;
                 });
 
+                $("#sendNewMsgBtn").click(function() {
+                    var msg = $('#form-contact-message').val();
+                    var msgError = $('p#msgError');
+
+                    if (!msg) {
+                        msgError.html("Complete the form");
+                    } else {
+                        $.ajax({
+                            url: `/notifications`,
+                            data: {
+                                type: "MESSAGE",
+                                firstName: window.currUser.firstName,
+                                lastName: window.currUser.lastName,
+                                email: window.currUser.email,
+                                userImg: window.currUser.imgURL,
+                                msg: msg,
+                                origin: window.currUser._id,
+                                to: projectId,
+                                from: window.currUser._id,
+                                projectId: projectId,
+                                projectName: window.project.title,
+                                projectImg: window.project.imgURL,
+                                projectManagerId: window.project.managerId
+
+                            },
+                            type: 'post',
+                            success: function(notification) {
+                                msgError.html("Message Sent");
+                                alert("Message Sent");
+                                $('#form-contact-message').val('');
+                                console.log("NOTIFICATION CREATED ", notification);
+                            },
+                            error: function(request, status, error) {
+                                msgError.html(request.responseText);
+                            }
+                        });
+                    }
+                });
+
+                if (!projectId) {
+                    console.log("Project not exist");
+                    window.location.href = '/';
+                } else {
+                    $(document).ready(function() {
+                        console.log("ready!");
+                        addContactInfo(window.currUser.imgURL, window.currUser.firstName, window.currUser.lastName, window.currUser.email);
+                        $.ajax({
+                            url: `/projects/${projectId}`,
+                            data: {},
+                            type: 'get',
+                            success: function(project) {
+                                console.log("Projects GET Response", project);
+                                window.project = project;
+                                var proj = project;
+
+                                $.ajax({
+                                    url: "/notifications",
+                                    data: {
+                                        type: "APPLY_REQUEST",
+                                        projectId: proj._id,
+                                        userId: window.currUser._id
+                                    },
+                                    type: "get",
+                                    async: false,
+                                    success: function(notifications) {
+                                        var applyBtn = `<a id="applyBtn_${proj._id}" class="btn  btn-rounded red white-text" data-toggle="modal" data-target="#applyModal" onclick="applyProject('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.firstName + " " + window.currUser.lastName}', '${window.currUser.email}', '${window.currUser.imgURL}','${proj.managerId}' )" >APPLY</a>`;
+                                        var alreadyApplied = "<strong class='green-text'>IN PROCESS</strong>";
+                                        var denied = "<strong class='green-text'>DENIED</strong>";
+                                        var accepted = "<strong class='green-text'>ACCEPTED</strong>";
+                                        var projPub = "<strong class='green-text'>PROJECT PUBLISHED</strong>";
+
+                                        var callToAction = applyBtn;
+
+                                        if (proj.participants != null && proj.participants.includes(window.currUser._id)) {
+                                            callToAction = accepted;
+                                        } else if (notifications.length > 0) {
+                                            if (JSON.parse(notifications[0].answer) && !JSON.parse(notifications[0].replied)) {
+                                                callToAction = denied;
+                                            } else {
+                                                callToAction = alreadyApplied;
+                                            }
+                                        }
+                                        if (proj.managerId == currUser._id) {
+                                            callToAction = projPub;
+                                        }
+                                        // $.ajax
+                                        //   ({
+                                        //     url: `/users/${project.managerId}`,
+                                        //     data: {},
+                                        //     type: 'get',
+                                        //     success: function (manager) {
+                                        console.log("Projects GET Response" + project);
+                                        //window.project.managerData = manager;// why did this work before?
+                                        manager = window.project.managerData;
+                                        $("#ProjectManager").html(manager.username);
+                                        $("#PMSummary").html(manager.summary);
+
+                                        //   },
+                                        //   error: function (request, status, error) {
+                                        //     $("p#errorSpace").html(request.responseText);
+                                        //   }
+                                        // });
+                                        $("#titleDiv").html(project.title);
+                                        $("#abstractDiv").html(project.abstract);
+                                        $("#projectImage").attr("src", project.imgURL);
+                                        for (var key in project.skills) {
+                                            var skillList = document.getElementById(wantedSkills);
+                                            console.log(project.skills[key], key);
+                                            if (JSON.parse(project.skills[key]) == true) {
+                                                $("#wantedSkills").append("<li>" + key + "</li>");
+                                            }
+                                        }
+                                        $("#projectComments").html(project.comments);
+                                        $("#numStudents").html(project.availableSpots);
+                                        $("#financialAid").html(project.financialAid);
+
+                                        $("#introApplySection").prepend($(callToAction));
 
 
-            },
-            error: function (request, status, error) {
-              $("p#errorSpace").html(request.responseText);
-            }
-          });
-      });
-    }
+                                        if (project.managerId === window.currUser._id) {
+                                            $("#introApplySection").append($(`<a class="btn grey lighten-1 btn-rounded white-text" onclick="goTo('/projectCreation?id=${project._id}')" >Edit Project</a>`));
+                                        }
+
+                                    }
+                                });
+                                //end of second ajax
 
 
-
-
-  </script>
+                            },
+                            error: function(request, status, error) {
+                                $("p#errorSpace").html(request.responseText);
+                            }
+                        });
+                    });
+                }
+            </script>
 </body>
-<footer >
-  <% include ../partials/footer %>
+<footer>
+    <% include ../partials/footer %>
 </footer>
 
 </html>
