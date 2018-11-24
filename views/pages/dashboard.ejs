@@ -188,7 +188,7 @@
                    type: "get",
                    async: false,
                    success: function (notifications) {
-
+                                                 // test
                 var applyBtn = `<a id="applyBtn_${proj._id}" class="btn red white-text" data-toggle="modal" data-target="#applyModal" onclick="changeModelContent('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.firstName + " " + window.currUser.lastName}', '${window.currUser.email}', '${window.currUser.imgURL}','${proj.managerId}' )" >APPLY</a>`;
                 var alreadyApplied = "<strong class='green-text'>IN PROCESS</strong>";
                 var denied = "<strong class='green-text'>DENIED</strong>";
