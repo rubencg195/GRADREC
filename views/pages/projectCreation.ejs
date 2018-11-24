@@ -98,29 +98,7 @@
                                         <div class="md-form mb-0">
                                             <p>Ideal Candidate Skills:</p>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="english">
-                                                    <label class="custom-control-label" for="english">English</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="maths">
-                                                    <label class="custom-control-label" for="maths">Mathematics</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="comp">
-                                                    <label class="custom-control-label" for="comp">Computer Skills</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="music">
-                                                    <label class="custom-control-label" for="music">Music</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" class="custom-control-input" id="noSkills">
-                                                    <label class="custom-control-label" for="noSkills">None</label>
-                                                </div>
-                                            </div>
+                                        <div id="participantRows">      
                                         </div>
                                     </div>
                                 </div><br />
@@ -221,6 +199,79 @@
                 }
             </script>
             <script>
+
+                $('#form-contact-num_of_students').on('input propertychange paste', function() {
+                    $( "#participantRows" ).empty();
+                    addParticipantRows();
+                });
+            
+                function addParticipantRows()
+                {
+                    let num = $('#form-contact-num_of_students').val();
+                    for (let i =0; i < num; i++)
+                    {   
+                        $( "#participantRows" ).append("<p>Participant " + (i+1) + "</p>");
+
+                         let row = `<div class="row">
+                        <div class="col-md-12">
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" class="custom-control-input" id="english_${i}">
+                                 <label class="custom-control-label" for="english_${i}">English</label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" class="custom-control-input" id="maths_${i}">
+                                <label class="custom-control-label" for="maths_${i}">Mathematics</label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" class="custom-control-input" id="comp_${i}">
+                                <label class="custom-control-label" for="comp_${i}">Computer Skills</label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" class="custom-control-input" id="music_${i}">
+                                <label class="custom-control-label" for="music_${i}">Music</label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" class="custom-control-input" id="noSkills_${i}">
+                                <label class="custom-control-label" for="noSkills_${i}">None</label>
+                            </div>
+                        </div>
+                    </div>`;
+
+                        $( "#participantRows" ).append(row);
+                    }                   
+                }
+                
+                 // {
+                    //     "english": _english.is(':checked'),
+                    //     "maths": _maths.is(':checked'),
+                    //     "comp": _comp.is(':checked'),
+                    //     "music": _music.is(':checked'),
+                    //     "noSkills": _noSkills.is(':checked')
+                    // }
+
+                function getSkills()
+                {
+                    let num = $('#form-contact-num_of_students').val();
+                    let skillArray = [];
+                    for(let i =0; i < num; i++)
+                    {
+                        let eng = $(`#english_${i}`);
+                        let math = $(`#maths_${i}`);
+                        let comp = $(`#comp_${i}`);
+                        let music = $(`#music_${i}`);
+                        let none = $(`#noSkills_${i}`);
+
+                        skillArray.push({
+                            "english": eng.is(':checked'),
+                             "maths": math.is(':checked'),
+                            "comp": comp.is(':checked'),
+                            "music": music.is(':checked'),
+                            "noSkills": none.is(':checked')
+                        });
+                    }
+                    return skillArray;
+                }
+
                 function goTo(addr) {
                     window.location.href = addr;
                 }
@@ -279,11 +330,11 @@
                 var projRes = $("#form-contact-results");
                 var projStart = $("#form-contact-est_duedate");
                 var projEnd = $("#form-contact-actual_due_date");
-                var _english = $('#english');
-                var _maths = $('#maths');
-                var _comp = $('#comp');
-                var _music = $('#music');
-                var _noSkills = $('#noSkills');
+                // var _english = $('#english');
+                // var _maths = $('#maths');
+                // var _comp = $('#comp');
+                // var _music = $('#music');
+                // var _noSkills = $('#noSkills');
                 var isPHD = $("#form-contact-msc_or_phd");
                 var _program = $("#form-contact-program");
                 var _programFinished = $("#form-project-finished");
@@ -315,11 +366,26 @@
                                 projRes.val(currProj.results);
                                 projStart.val(currProj.startDate);
                                 projEnd.val(currProj.endDate);
-                                _english.prop('checked', (!currProj.skills) ? false : JSON.parse(currProj.skills.english));
-                                _maths.prop('checked  ', (!currProj.skills) ? false : JSON.parse(currProj.skills.maths));
-                                _comp.prop('checked', (!currProj.skills) ? false : JSON.parse(currProj.skills.comp));
-                                _music.prop('checked', (!currProj.skills) ? false : JSON.parse(currProj.skills.music));
-                                _noSkills.prop('checked', (!currProj.skills) ? false : JSON.parse(currProj.skills.noSkills));
+                                
+                                if (currProj.skills)
+                                {
+                                    for (let i = 0; i < currProj.skills.length; i++)
+                                    {
+                                        let _english = $(`#english_${i}`);
+                                        let _maths = $(`#maths_${i}`);
+                                        let _comp = $(`#comp_${i}`);
+                                        let _music = $(`#music_${i}`);
+                                        let _noSkills = $(`#noSkills_${i}`);
+
+                                        _english.prop('checked', (!currProj.skills) ? false : JSON.parse(currProj.skills[i].english));
+                                        _maths.prop('checked  ', (!currProj.skills) ? false : JSON.parse(currProj.skills[i].maths));
+                                        _comp.prop('checked', (!currProj.skills) ? false : JSON.parse(currProj.skills[i].comp));
+                                        _music.prop('checked', (!currProj.skills) ? false : JSON.parse(currProj.skills[i].music));
+                                        _noSkills.prop('checked', (!currProj.skills) ? false : JSON.parse(currProj.skills[i].noSkills));
+                                    }
+                                }
+                                
+                                
                                 _programFinished.prop('checked', JSON.parse(currProj.finished));
                                 isPHD.val((JSON.parse(currProj.PhD)) ? 1 : 2);
                                 if ((currProj.program) == "Computer Science/Engineering") {
@@ -378,6 +444,7 @@
                                 } else {
                                     console.log("No participants");
                                 }
+                                addParticipantRows();
                             }
                         },
                         error: function(request, status, error) {
@@ -582,13 +649,14 @@
                             "startDate": projStart.val(),
                             "endDate": projEnd.val(),
                             "notifications": [],
-                            "skills": {
-                                "english": _english.is(':checked'),
-                                "maths": _maths.is(':checked'),
-                                "comp": _comp.is(':checked'),
-                                "music": _music.is(':checked'),
-                                "noSkills": _noSkills.is(':checked')
-                            }
+                            "skills": getSkills()
+                            // {
+                            //     "english": _english.is(':checked'),
+                            //     "maths": _maths.is(':checked'),
+                            //     "comp": _comp.is(':checked'),
+                            //     "music": _music.is(':checked'),
+                            //     "noSkills": _noSkills.is(':checked')
+                            // }
                         }
                         console.log("UPDATING PROJECT!", newProjData, queryURL, queryType);
                         $.ajax({
@@ -615,6 +683,7 @@
             <script>
                 $(document).ready(function() {
                     $('.mdb-select').materialSelect();
+                    
                 });
                 // Tooltips Initialization
                 $(function() {

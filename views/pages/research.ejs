@@ -313,11 +313,16 @@
                 $("#titleDiv").html(project.title);
                 $("#abstractDiv").html(project.abstract);
                 $("#projectImage").attr("src", project.imgURL);
-                for (var key in project.skills) {
-                  var skillList = document.getElementById(wantedSkills);
-                  console.log(project.skills[key], key);
-                  if (JSON.parse(project.skills[key]) == true) {
-                    $("#wantedSkills").append("<li>" + key + "</li>");
+
+                for (let index = 0; index < project.skills.length; index++) {
+                  let participantSkills = project.skills[index];
+                  $("#wantedSkills").append("<h5>Participant " + (index+1) + "</h5>");
+                  for (var key in participantSkills) {
+                    var skillList = document.getElementById(wantedSkills);
+                    console.log(participantSkills[key], key);
+                    if (JSON.parse(participantSkills[key]) == true) {
+                      $("#wantedSkills").append("<li>" + key + "</li>");
+                    }
                   }
                 }
                 $("#projectComments").html(project.comments);
