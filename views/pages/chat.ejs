@@ -7,7 +7,7 @@
         <link rel="icon" href="http://cc-arcc.ca/wp-content/uploads/2016/03/mun-logo.jpg">
 </head>
 
-<body style="background-color: rgb(230, 230, 230); padding-bottom: 110px;">
+<body style="background-color: rgb(230, 230, 230); padding-bottom: 200px;">
     <% include ../partials/navbar %>
         <main class="container">
 
@@ -29,7 +29,7 @@
                     var projectId = getParameterByName('projectId');
                     var from = getParameterByName('from');
                     var to = getParameterByName('to');
-                    console.log("id", id, "to", to, "from", from);
+                    //console.log("id", id, "to", to, "from", from);
                     if (id == from || id == to) {
                         var $card = `<div class="col-sm-12"><div class="mdb-feed m-1" style="width: 500px; float: ${(id == projectId) ? 'right' : 'left'}; ">
             <div class="card pt-2  pt-2 pb-1 px-3" style="border-radius: 45px;">
@@ -116,7 +116,7 @@
                             type: 'post',
                             success: function(notification) {
                                 $('#form-contact-message').val('');
-                                console.log("NOTIFICATION CREATED ", notification);
+                                //console.log("NOTIFICATION CREATED ", notification);
                                 addMessage(notification.userImg, notification.firstName, notification.lastName, notification.email, notification.msg, projectId);
                             },
                             error: function(request, status, error) {
@@ -133,21 +133,10 @@
                     var projectId = getParameterByName('projectId');
                     var origin = getParameterByName('origin');
                     getProject();
-
                     $("#sendMsgBtn").click(function() {
                         replyMessage();
                     });
-
-
-
-
-
                     $("#mainContainer").empty();
-
-
-
-
-
                     $.ajax({
                         url: `/conversation/${origin}/projectId/${projectId}`,
                         data: {},
@@ -157,13 +146,9 @@
                             for (var not of notifications) {
                                 //console.log("NOTIFICATIONS", notifications);
                                 addMessage(not.userImg, not.firstName, not.lastName, not.email, not.msg, not.from);
-
                             }
                         }
                     });
-
-
-
                     setInterval(function() {
                         //document.location.reload(true);
                         $("#mainContainer").empty();
@@ -182,10 +167,10 @@
                         });
                         $("html, body").animate({
                             scrollTop: $(document).height()
-                        }, 100);
+                        }, 150);
 
 
-                    }, 5000);
+                    }, 2000);
                     // //document.location.reload(true);
 
 
