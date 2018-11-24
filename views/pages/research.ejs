@@ -242,7 +242,10 @@
                         addContactInfo(window.currUser.imgURL, window.currUser.firstName, window.currUser.lastName, window.currUser.email);
                         $.ajax({
                             url: `/projects/${projectId}`,
-                            data: {},
+                            data: {
+                              getNotifications : true,
+                              userId: window.currUser._id
+                            },
                             type: 'get',
                             success: function(project) {
                                 console.log("Projects GET Response", project);

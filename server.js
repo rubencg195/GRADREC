@@ -182,6 +182,14 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
                     "localField": "managerId",
                     "as": "managerData"
                 }
+            },
+            {
+                "$lookup": {
+                    "from": "notifications",
+                    "foreignField": "projectId",
+                    "localField": "_id",
+                    "as": "notificationData"
+                }
             }
         ]).toArray(function (err, projects) {
             if (err) {
@@ -291,10 +299,23 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
         });
     });
     app.post("/notifications", function (req, res) {
-        var newContact = req.body;
-        newContact.createDate = new Date();
+        var newNot = req.body;
+        newNot.createDate = new Date();
 
-        db.collection("notifications").insertOne(newContact, function (err, doc) {
+        if(newNot.type == "APPLY_REQUEST"){
+            newNot.projectId        =  new ObjectID(newNot.projectId) ;
+            newNot.userId           = new ObjectID(newNot.userId) ;
+            newNot.projectManagerId = new ObjectID(newNot.projectManagerId) ;
+        }else{
+            newNot.origin             = new ObjectID(newNot.origin );
+            newNot.to                 = new ObjectID(newNot.to);
+            newNot.from               = new ObjectID(newNot.from);
+            newNot.projectId          = new ObjectID(newNot.projectId);
+            newNot.projectManagerId   = new ObjectID(newNot.projectManagerId);
+        }
+
+
+        db.collection("notifications").insertOne(newNot, function (err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to create new contact.");
             } else {
@@ -304,7 +325,23 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     });
     app.put("/notifications/:id", function (req, res) {
         console.log("Update Notification", req.body);
-        db.collection("notifications").updateOne({ _id: new ObjectID(req.params.id) }, { $set: req.body }, function (err, doc) {
+
+        var newNot = req.body;
+        newNot.createDate = new Date();
+
+        if(newNot.type == "APPLY_REQUEST"){
+            newNot.projectId        =  new ObjectID(newNot.projectId) ;
+            newNot.userId           = new ObjectID(newNot.userId) ;
+            newNot.projectManagerId = new ObjectID(newNot.projectManagerId) ;
+        }else{
+            newNot.origin             = new ObjectID(newNot.origin );
+            newNot.to                 = new ObjectID(newNot.to);
+            newNot.from               = new ObjectID(newNot.from);
+            newNot.projectId          = new ObjectID(newNot.projectId);
+            newNot.projectManagerId   = new ObjectID(newNot.projectManagerId);
+        }
+
+        db.collection("notifications").updateOne({ _id: new ObjectID(req.params.id) }, { $set: newNot }, function (err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to update User");
             } else {
