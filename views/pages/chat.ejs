@@ -137,34 +137,57 @@
                     $("#sendMsgBtn").click(function() {
                         replyMessage();
                     });
-                    setInterval(function() {
-                        //document.location.reload(true);
-                        $("#mainContainer").empty();
-                        $.ajax({
-                            url: `/conversation/${origin}/projectId/${projectId}`,
-                            data: {},
-                            type: "get",
-                            success: function(notifications) {
-                                notifications.sort(compare);
-                                for (var not of notifications) {
-                                    //console.log("NOTIFICATIONS", notifications);
-                                    addMessage(not.userImg, not.firstName, not.lastName, not.email, not.msg, not.from);
 
-                                }
+
+
+
+
+                    $("#mainContainer").empty();
+                    $.ajax({
+                        url: `/conversation/${origin}/projectId/${projectId}`,
+                        data: {},
+                        type: "get",
+                        success: function(notifications) {
+                            notifications.sort(compare);
+                            for (var not of notifications) {
+                                //console.log("NOTIFICATIONS", notifications);
+                                addMessage(not.userImg, not.firstName, not.lastName, not.email, not.msg, not.from);
+
                             }
-                        });
 
-                        // $('body').scrollTo($("#mainContainer").last());
-                        $('#mainContainer').animate({
-                            scrollTop: $('#mainContainer').prop("scrollHeight")
-                        }, 5000000);
+                        }
+                    });
 
-                        // $('html, body').animate({
-                        //     scrollTop: $("#mainContainer").last().offset().top
-                        // }, 200);
 
-                    }, 2000);
-                    //document.location.reload(true);
+                    // setInterval(function() {
+                    //     //document.location.reload(true);
+                    //     $("#mainContainer").empty();
+                    //     $.ajax({
+                    //         url: `/conversation/${origin}/projectId/${projectId}`,
+                    //         data: {},
+                    //         type: "get",
+                    //         success: function(notifications) {
+                    //             notifications.sort(compare);
+                    //             for (var not of notifications) {
+                    //                 //console.log("NOTIFICATIONS", notifications);
+                    //                 addMessage(not.userImg, not.firstName, not.lastName, not.email, not.msg, not.from);
+
+                    //             }
+                    //         }
+                    //     });
+
+                    //     // $('body').scrollTo($("#mainContainer").last());
+                    //     console.log("It should scroll at this point");
+                    //     $('#mainContainer').animate({
+                    //         scrollTop: $('#mainContainer').prop("scrollHeight")
+                    //     }, 5000);
+                    //     console.log("It should have stopped scrolling here")
+                    //         // $('html, body').animate({
+                    //         //     scrollTop: $("#mainContainer").last().offset().top
+                    //         // }, 200);
+
+                    // }, 30000);
+                    // //document.location.reload(true);
 
                 });
             </script>
