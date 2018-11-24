@@ -247,7 +247,7 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
             } else {
                 console.log("Added Participant");
 
-                db.collection("notifications").updateOne({ projectId: req.params.id, userId: req.params.participantId }, { $set: { replied: true, answer: true } }, function (err, doc) {
+                db.collection("notifications").updateOne({ projectId: new ObjectID(req.params.id), userId: new ObjectID(req.params.participantId) }, { $set: { replied: true, answer: true } }, function (err, doc) {
                     if (err) {
                         handleError(res, err.message, "Failed to add participant to projects");
                     } else {
@@ -261,12 +261,12 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     });
     app.delete("/projects/:id/participant/:participantId", function (req, res) {
         console.log("Deleting User");
-        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, { $pull: { participants: req.params.participantId } }, function (err, doc) {
+        db.collection("projects").updateOne({ _id: new ObjectID(req.params.id) }, { $pull: { participants:  new ObjectID(req.params.participantId) } }, function (err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to delete participant to projects");
             } else {
                 console.log("Deleted Participant");
-                db.collection("notifications").remove({ projectId: req.params.id, userId: req.params.participantId }, function (err, doc) {
+                db.collection("notifications").remove({ projectId: new ObjectID(req.params.id), userId: new ObjectID(req.params.participantId) }, function (err, doc) {
                     if (err) {
                         handleError(res, err.message, "Failed to add participant to projects");
                     } else {
