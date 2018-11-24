@@ -353,11 +353,11 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
 
     //========================= CONVERSATION ==============================
     app.get("/conversation/:originId/projectId/:projectId", function (req, res) {
-        console.log("Project Query", req.query);
+        console.log("Conversation Query", req.query, req.params);
         db.collection("notifications").aggregate([
             { "$match":  {
-                "origin" : req.params.originId,
-                "projectId" : req.params.projectId,
+                "origin" : new ObjectID(req.params.originId) ,
+                "projectId" : new ObjectID(req.params.projectId) ,
                 "type" : "MESSAGE"
             }},
             {
