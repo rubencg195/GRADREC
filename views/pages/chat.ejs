@@ -143,6 +143,11 @@
 
 
                     $("#mainContainer").empty();
+
+
+
+
+
                     $.ajax({
                         url: `/conversation/${origin}/projectId/${projectId}`,
                         data: {},
@@ -154,40 +159,35 @@
                                 addMessage(not.userImg, not.firstName, not.lastName, not.email, not.msg, not.from);
 
                             }
-
                         }
                     });
 
 
-                    // setInterval(function() {
-                    //     //document.location.reload(true);
-                    //     $("#mainContainer").empty();
-                    //     $.ajax({
-                    //         url: `/conversation/${origin}/projectId/${projectId}`,
-                    //         data: {},
-                    //         type: "get",
-                    //         success: function(notifications) {
-                    //             notifications.sort(compare);
-                    //             for (var not of notifications) {
-                    //                 //console.log("NOTIFICATIONS", notifications);
-                    //                 addMessage(not.userImg, not.firstName, not.lastName, not.email, not.msg, not.from);
 
-                    //             }
-                    //         }
-                    //     });
+                    setInterval(function() {
+                        //document.location.reload(true);
+                        $("#mainContainer").empty();
+                        $.ajax({
+                            url: `/conversation/${origin}/projectId/${projectId}`,
+                            data: {},
+                            type: "get",
+                            success: function(notifications) {
+                                notifications.sort(compare);
+                                for (var not of notifications) {
+                                    //console.log("NOTIFICATIONS", notifications);
+                                    addMessage(not.userImg, not.firstName, not.lastName, not.email, not.msg, not.from);
 
-                    //     // $('body').scrollTo($("#mainContainer").last());
-                    //     console.log("It should scroll at this point");
-                    //     $('#mainContainer').animate({
-                    //         scrollTop: $('#mainContainer').prop("scrollHeight")
-                    //     }, 5000);
-                    //     console.log("It should have stopped scrolling here")
-                    //         // $('html, body').animate({
-                    //         //     scrollTop: $("#mainContainer").last().offset().top
-                    //         // }, 200);
+                                }
+                            }
+                        });
+                        $("html, body").animate({
+                            scrollTop: $(document).height()
+                        }, 100);
 
-                    // }, 30000);
+
+                    }, 5000);
                     // //document.location.reload(true);
+
 
                 });
             </script>
