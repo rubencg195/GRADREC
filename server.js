@@ -141,12 +141,15 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
                     "as": "managerData"
                 }
             }
-        ]).toArray(function (err, docs) {
+        ]).toArray(function (err, projects) {
             if (err) {
                 handleError(res, err.message, "Failed to get contacts.");
             } else {
                 console.log("GETTING PROJECTS");
-                res.status(200).json(docs);
+                projects.forEach(proj => {
+                    proj.managerData = (proj.managerData.length > 0)? proj.managerData[0] : null;
+                });
+                res.status(200).json(projects);
             }
         });
     });
@@ -161,7 +164,7 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
         //     }
         // });
 
-        console.log("GET PROJECTS", { _id: new ObjectID(req.params.id) } );
+        console.log("GET PROJECT", { _id: new ObjectID(req.params.id) } );
         db.collection("projects").aggregate([
             { "$match": { _id: new ObjectID(req.params.id) }  },
             {
@@ -180,12 +183,15 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
                     "as": "managerData"
                 }
             }
-        ]).toArray(function (err, project) {
+        ]).toArray(function (err, projects) {
             if (err) {
                 handleError(res, err.message, "Failed to get contacts.");
             } else {
                 console.log("GETTING PROJECTS");
-                res.status(200).json(docs);
+                projects.forEach(proj => {
+                    proj.managerData = (proj.managerData.length > 0)? proj.managerData[0] : null;
+                });
+                res.status(200).json( projects.length > 0 ? projects[0] : null );
             }
         });
     });
