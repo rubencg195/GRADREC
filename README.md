@@ -4,6 +4,19 @@
 
 GRADREC (Graduate Recruitment) is a web-based system that enables faculty members to advertise Master/PhD positions, provide information about their research projects and the availability of financial aid.  Our goal is to become a world leader at connecting high skilled researchers with highly motivated students to create next generation projects and research.
 
+## INITIAL SETUP
+
+1. Install npm and nodejs
+
+2. Open CMD in the project home directory.
+
+3. Run the following command _npm install_
+
+4. Run the command _npm start_ to initiate the server
+
+## DEMO
+
+Demo Web Page: http://sc-1.cs.mun.ca/ 
 
 ## DOCUMENTATION
 
@@ -38,24 +51,5 @@ GRADREC (Graduate Recruitment) is a web-based system that enables faculty member
    6.3 [Messages (Same as the Student's page)](SoftwareEngineering/messages.md)
 
    6.4 [Notifications](SoftwareEngineering/notifications.md)
-
-***
-
-## INITIAL SETUP
-
-1. Install npm and nodejs
-
-2. Open CMD in the project home directory.
-
-3. Run the following command _npm install_
-
-4. Run the command _npm start_ to initiate the server
-
-***
-
-## DEMO
-
-Demo Web Page: http://sc-1.cs.mun.ca/ 
-
 
 
