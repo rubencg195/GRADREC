@@ -1,135 +1,138 @@
 <!--views / pages / index.ejs-->
 <!DOCTYPE html>
-  <html lang="en" style="height: 100vh">
+<html lang="en" style="height: 100vh">
 
-    <head>
-      <% include ../partials/mdhead %>
+<head>
+  <% include ../partials/mdhead %>
   <link rel="icon" href="http://cc-arcc.ca/wp-content/uploads/2016/03/mun-logo.jpg">
 </head>
 
-      <body style="background-color: rgb(230, 230, 230);">
-        <!-- <header>
+<body style="background-color: rgb(230, 230, 230);">
+  <!-- <header>
           < include../partials/header %>
     </header> -->
   <% include ../partials/navbar %>
   <main class="container pb-3">
-          <!--Pagination -->
+    <!--Pagination -->
     <nav aria-label="pagination example">
-            <ul class="pagination pagination-circle pg-red mb-0">
-              <!--First-->
+      <ul class="pagination pagination-circle pg-red mb-0">
+        <!--First-->
         <li class="page-item disabled"><a class="page-link">First</a></li>
-              <!--Arrow left-->
+        <!--Arrow left-->
         <li class="page-item disabled">
-                <a class="page-link" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <!--Numbers-->
+          <a class="page-link" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <!--Numbers-->
         <li class="page-item active"><a class="page-link">1</a></li>
-              <li class="page-item"><a class="page-link">2</a></li>
-              <li class="page-item"><a class="page-link">3</a></li>
-              <li class="page-item"><a class="page-link">4</a></li>
-              <li class="page-item"><a class="page-link">5</a></li>
-              <!--Arrow right-->
+        <li class="page-item"><a class="page-link">2</a></li>
+        <li class="page-item"><a class="page-link">3</a></li>
+        <li class="page-item"><a class="page-link">4</a></li>
+        <li class="page-item"><a class="page-link">5</a></li>
+        <!--Arrow right-->
         <li class="page-item">
-                <a class="page-link" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-              <!--Last-->
+          <a class="page-link" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+        <!--Last-->
         <li class="page-item"><a class="page-link">Last</a></li>
-            </ul>
-          </nav>
-        </main>
-        <% include ../partials/mdscripts %>
-      
+      </ul>
+    </nav>
+  </main>
+  <% include ../partials/mdscripts %>
+
   <!-- Modal -->
   <div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-          aria-hidden="true">
+    aria-hidden="true">
 
-          <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
     <div class="modal-dialog modal-dialog-centered" role="document">
 
 
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to apply?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body" id="modalBody">
-                ...
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to apply?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-              <div class="modal-footer">
-                <button type="button" class="btn red white-text" onclick="applyProject()">APPLY</button>
-                <button type="button" class="btn grey white-text" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
+        <div class="modal-body" id="modalBody">
+          ...
         </div>
-        <script>
-          if (window.currUser) {
-            console.log("Exist");
-          } else {
-            console.log("not login");
-          window.location.href = '/login';
-        }
+        <div class="modal-footer">
+          <button type="button" class="btn red white-text" onclick="applyProject()">APPLY</button>
+          <button type="button" class="btn grey white-text" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="btn-floating btn-lg red" style="position:absolute; right:30px; bottom:30px" onclick="startIntro()"><i
+    class="fa fa-question-circle "></i></a>
+  <script>
+    if (window.currUser) {
+      console.log("Exist");
+    } else {
+      console.log("not login");
+      window.location.href = '/login';
+    }
   </script>
-        <script>
-          function goTo(addr, projId) {
-            window.projects.forEach(function (proj) {
-              if (proj._id == projId) {
-                console.log("Saving User Local Session ", proj);
-                sessionStorage.setItem('curentProj', JSON.stringify(proj));
-                window.location.href = addr;
-              }
-            });
-          }
-    function applyProject() {
-            console.log("Applying to ", window.currApplication);
-          if (!window.currApplication) {
-            alert("Not valid participant and project info");
-          } else {
-            $.ajax
-              ({
-                url: `/notifications`,
-                data: window.currApplication,
-                type: 'post',
-                success: function (notification) {
-                  alert(`Application to ${window.currApplication.projectName} Sent`);
-                  console.log("Application Sent", notification);
-                  $(`a#applyBtn_${window.currApplication.projectId}`).prop('disabled', true);
-                  $('#applyModal').modal('toggle');
-                  document.location.reload(true);
-                },
-                error: function (request, status, error) {
-                  msgError.html(request.responseText);
-                }
-              });
-          }
-    
+  <script>
+    function goTo(addr, projId) {
+      window.projects.forEach(function (proj) {
+        if (proj._id == projId) {
+          console.log("Saving User Local Session ", proj);
+          sessionStorage.setItem('curentProj', JSON.stringify(proj));
+          window.location.href = addr;
         }
+      });
+    }
+    function applyProject() {
+      console.log("Applying to ", window.currApplication);
+      if (!window.currApplication) {
+        alert("Not valid participant and project info");
+      } else {
+        $.ajax
+          ({
+            url: `/notifications`,
+            data: window.currApplication,
+            type: 'post',
+            success: function (notification) {
+              alert(`Application to ${window.currApplication.projectName} Sent`);
+              console.log("Application Sent", notification);
+              $(`a#applyBtn_${window.currApplication.projectId}`).prop('disabled', true);
+              $('#applyModal').modal('toggle');
+              document.location.reload(true);
+            },
+            error: function (request, status, error) {
+              msgError.html(request.responseText);
+            }
+          });
+      }
+
+    }
     function changeModelContent(imgURL, title, abstract, startDate, endDate, participantId, projectId, projectName, participantName, paticipantEmail, participantImg, projectManagerId) {
       if (imgURL == null || imgURL == "") {
-            imgURL = "https://dubsism.files.wordpress.com/2017/12/image-not-found.png?w=547";
-          }
-          console.log("Applying: ", imgURL, title, abstract, startDate, endDate, participantId, projectId);
+        imgURL = "https://dubsism.files.wordpress.com/2017/12/image-not-found.png?w=547";
+      }
+      console.log("Applying: ", imgURL, title, abstract, startDate, endDate, participantId, projectId);
       window.currApplication = {
-            "type": "APPLY_REQUEST",
-          "name": projectName,
-          "email": paticipantEmail,
-          "projectId": projectId,
-          "userId": participantId,
-          "userImg": participantImg,
-          "projectName": projectName,
-          "projectManagerId": projectManagerId,
-          "replied": "false",
-          "answer": "false"
-        };
-        $("div#modalBody").html(`
+        "type": "APPLY_REQUEST",
+        "name": projectName,
+        "email": paticipantEmail,
+        "projectId": projectId,
+        "userId": participantId,
+        "userImg": participantImg,
+        "projectName": projectName,
+        "projectManagerId": projectManagerId,
+        "replied": "false",
+        "answer": "false"
+      };
+      $("div#modalBody").html(`
             <div class="row" >
             <div class="col-sm-12">
               <!--Featured image-->
@@ -155,66 +158,66 @@
             `);
     }
     if (!window.currUser) {
-            } else {
-              $(document).ready(function () {
-                console.log("ready!");
-                var _modalBody = $("div#modalBody");
-                $.ajax
-                  ({
-                    url: '/projects',
-                    data: {
-                      getNotifications: true,
-                      userId: window.currUser._id
-                    },
-                    type: 'get',
-                    success: function (projects) {
-                      //console.log("Projects GET Response", projects);
-                      if (!projects || projects.length == 0) {
-                        $("main").prepend($("<h1>Projects Not Available<h1/>"));
-                        return;
-                      }
-                      window.projects = projects;
-                      console.log(projects);
-                      projects.forEach(function (proj) {
-                        var notifications = proj.notificationsData;
-                        proj.notifications = proj.notificationsData;
-                        // $.ajax
-                        //   ({
-                        //     url: "/notifications",
-                        //     data: {
-                        //       type: "APPLY_REQUEST",
-                        //       projectId: proj._id,
-                        //       userId: window.currUser._id
-                        //     },
-                        //     type: "get",
-                        //     async: false,
-                        //     success: function (notifications) {
-                              // test
-                              var applyBtn = `<a id="applyBtn_${proj._id}" class="btn red white-text" data-toggle="modal" data-target="#applyModal" onclick="changeModelContent('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.firstName + " " + window.currUser.lastName}', '${window.currUser.email}', '${window.currUser.imgURL}','${proj.managerId}' )" >APPLY</a>`;
-                              var alreadyApplied = "<strong class='green-text'>IN PROCESS</strong>";
-                              var denied = "<strong class='green-text'>DENIED</strong>";
-                              var accepted = "<strong class='green-text'>ACCEPTED</strong>";
-                              var projPub = "<strong class='green-text'>PROJECT PUBLISHED</strong>";
+    } else {
+      $(document).ready(function () {
+        console.log("ready!");
+        var _modalBody = $("div#modalBody");
+        $.ajax
+          ({
+            url: '/projects',
+            data: {
+              getNotifications: true,
+              userId: window.currUser._id
+            },
+            type: 'get',
+            success: function (projects) {
+              //console.log("Projects GET Response", projects);
+              if (!projects || projects.length == 0) {
+                $("main").prepend($("<h1>Projects Not Available<h1/>"));
+                return;
+              }
+              window.projects = projects;
+              console.log(projects);
+              projects.forEach(function (proj) {
+                var notifications = proj.notificationsData;
+                proj.notifications = proj.notificationsData;
+                // $.ajax
+                //   ({
+                //     url: "/notifications",
+                //     data: {
+                //       type: "APPLY_REQUEST",
+                //       projectId: proj._id,
+                //       userId: window.currUser._id
+                //     },
+                //     type: "get",
+                //     async: false,
+                //     success: function (notifications) {
+                // test
+                var applyBtn = `<a id="applyBtn_${proj._id}" class="btn red white-text" data-toggle="modal" data-target="#applyModal" onclick="changeModelContent('${proj.imgURL}', '${proj.title}', '${proj.abstract}', '${proj.startDate}', '${proj.endDate}', '${window.currUser._id}', '${proj._id}', '${proj.title}',  '${window.currUser.firstName + " " + window.currUser.lastName}', '${window.currUser.email}', '${window.currUser.imgURL}','${proj.managerId}' )" >APPLY</a>`;
+                var alreadyApplied = "<strong class='green-text'>IN PROCESS</strong>";
+                var denied = "<strong class='green-text'>DENIED</strong>";
+                var accepted = "<strong class='green-text'>ACCEPTED</strong>";
+                var projPub = "<strong class='green-text'>PROJECT PUBLISHED</strong>";
 
-                              var callToAction = applyBtn;
+                var callToAction = applyBtn;
 
-                              if (proj.participants != null && proj.participants.includes(window.currUser._id)) {
-                                callToAction = accepted;
-                              } else if (notifications.length > 0) {
-                                if (JSON.parse(notifications[0].answer) && !JSON.parse(notifications[0].replied)) {
-                                  callToAction = denied;
-                                } else {
-                                  callToAction = alreadyApplied;
-                                }
-                              }
+                if (proj.participants != null && proj.participants.includes(window.currUser._id)) {
+                  callToAction = accepted;
+                } else if (notifications.length > 0) {
+                  if (JSON.parse(notifications[0].answer) && !JSON.parse(notifications[0].replied)) {
+                    callToAction = denied;
+                  } else {
+                    callToAction = alreadyApplied;
+                  }
+                }
 
-                              if (proj.managerId == currUser._id) {
-                                callToAction = projPub;
-                              }
+                if (proj.managerId == currUser._id) {
+                  callToAction = projPub;
+                }
 
-                              //console.log("Notifications for", proj.title ,  notifications, callToAction);
-                              if (proj.finished == "false" || proj.finished == false) {
-                                var $newCard = $(`<div class="card mb-3 text-center hoverable" >
+                //console.log("Notifications for", proj.title ,  notifications, callToAction);
+                if (proj.finished == "false" || proj.finished == false) {
+                  var $newCard = $(`<div class="card mb-3 text-center hoverable" >
                                                     <div class="card-body">
                                                         <div class="row" >
                                                             <div class="col-md-4 offset-md-1 mx-3 my-3" onclick="goTo('/research?id=${proj._id}', '${proj._id}'  )">
@@ -231,7 +234,7 @@
                                                                     <a class="green-text">
                                                                         <h6 class="font-bold pb-1"><i class="fa fa-desktop"> PROJECT </i>  </h6>
                                                                     </a>
-                                                                    <h4 class="mb-4"><strong> ${proj.title} </strong></h4>
+                                                                    <h4 class="mb-4"><strong id='project_titw'> ${proj.title} </strong></h4>
                                                                     <p> ${proj.abstract} </p>
                                                                     <p><a><strong>${proj.startDate} - ${proj.endDate}</strong></a></p>
                                                                 </div>
@@ -241,25 +244,42 @@
                                                         </div>
                                                     </div>
                                                 </div>`);
-                                $("main").prepend($newCard);
-                              }
-                              //onclick="goTo('/research?id=${proj._id}', '${proj._id}')"
-                          //   }
-                          // });
+                  $("main").prepend($newCard);
+                }
+                //onclick="goTo('/research?id=${proj._id}', '${proj._id}')"
+                //   }
+                // });
 
-                      });
-
-                    },
-                    error: function (request, status, error) {
-                      $("p#errorSpace").html(request.responseText);
-                    }
-                  });
               });
+
+            },
+            error: function (request, status, error) {
+              $("p#errorSpace").html(request.responseText);
             }
+          });
+      });
+    }
+
+    function startIntro() {
+      var intro = introJs();
+      intro.setOptions({
+        steps: [
+          {
+            element: document.querySelector('#defaultLoginFormEmail'),
+            intro: "Apply to a Project",
+            position: 'left'
+          }
+        ]
+      });
+      intro.start();
+    }
+
+
+
   </script>
 </body>
-        <footer>
-          <% include ../partials/footer %>
+<footer>
+  <% include ../partials/footer %>
 </footer>
 
 </html>
