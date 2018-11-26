@@ -12,7 +12,7 @@ Click on the following links to view the available content.
 1. [Assignment 1](SoftwareEngineering/Assignment_1_Group_1.pdf)
 2. [Assignment 2](SoftwareEngineering/Assignment_2_Group1.pdf)
 
-###3 Site Map
+### 3 Site Map
 
 1. [Assignment 1](SoftwareEngineering/)
 2. [Assignment 2](SoftwareEngineering/)
