@@ -7,15 +7,24 @@ GRADREC (Graduate Recruitment) is a web-based system that enables faculty member
 
 ## DOCUMENTATION
 
-Click on the following links to view the available content.
+### Class Assignments 
 
 1. [Assignment 1](SoftwareEngineering/Assignment_1_Group_1.pdf)
 2. [Assignment 2](SoftwareEngineering/Assignment_2_Group1.pdf)
 
-### 3 Site Map
+### Map Site and Functionality
 
-1. [Assignment 1](SoftwareEngineering/)
-2. [Assignment 2](SoftwareEngineering/)
+1. [Login](SoftwareEngineering/login.md)
+2. [Register](SoftwareEngineering/register.md)
+3. [Create-Edit Profile](SoftwareEngineering/profile.md)
+4. [Home page]
+  5. [Student Home Page](SoftwareEngineering/studentHomePage.md)
+    5.1 [Apply to Project] (SoftwareEngineering/studentHomePage.md)
+    5.2 [Send Message (Apply to Project Option 2)] 
+  6. [Professor Home Page](SoftwareEngineering/)
+7. [Sign-up](SoftwareEngineering/)
+
+
 
 ***
 
