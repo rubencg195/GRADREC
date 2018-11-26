@@ -1,5 +1,7 @@
 # Profile Page
-The profile page is designed for the users to fill out their personal information. In the case of students, the idea is to create a profile that will attract professor and increase their chances of being approved for a project. In the case of Project Managers, some of the information shown here will be displayed along side their projects, so we recommend for project managers to fill out the information in a way that will be appealing for students. Although students will not be able this information directly, some of this information will be displayed 
+The profile page is designed for the users to fill out their personal information. In the case of students, the idea is to create a profile that will attract professor and increase their chances of being approved for a project. In the case of Project Managers, some of the information shown here will be displayed along side their projects, so we recommend for project managers to fill out the information in a way that will be appealing for students. Although students will not be able this information directly, some of this information will be displayed.
+
+To go back to the index [click here](https://github.com/rubencg195/GRADREC)
 
 The fields to fill out, are as follows:
 
@@ -52,7 +54,6 @@ This information is for students, as it is used to match students to projects.
 
 ### Sample Image
 
-To go back to the index [click here](https://github.com/rubencg195/GRADREC)
-
-
 ![alt text](profile.JPG "Edit/View Profile") 
+
+To go back to the index [click here](https://github.com/rubencg195/GRADREC)
