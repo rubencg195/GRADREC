@@ -26,7 +26,7 @@ GRADREC (Graduate Recruitment) is a web-based system that enables faculty member
 
 
 
-***
+*
 
 ## INITIAL SETUP
 
@@ -34,17 +34,17 @@ GRADREC (Graduate Recruitment) is a web-based system that enables faculty member
 
 2. Open CMD in the project home directory.
 
-3. Run the following command _npm install_
+3. Run the following command npm install
 
-4. Run the command _npm start_ to initiate the server
+4. Run the command npm start to initiate the server
 
-***
+*
 
 ## DEMO
 
 Demo Web Page: http://sc-1.cs.mun.ca/ 
 
-***
+*
 
 ## FUNCTIONALITY
 
@@ -63,12 +63,10 @@ From the student's perspective, we have implemented the following options:
 
 
 
-***
+*
 
 ## PAGE DESCRIPTIONS
 
-***
+*
 
 ## DISTRIBUTION OF THE POINTS
-
-
