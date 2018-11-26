@@ -4,17 +4,15 @@
     console.log("Retrieving from User Local Session ", window.currUser);
 </script>
 <!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark red darken-4">
+<nav class="navbar navbar-expand-lg navbar-dark red darken-4" id="mainNavBar">
 
     <!-- Navbar brand -->
     <a class="navbar-brand" href="/">
-        <img src="https://clf.mun.ca/favicon/favicon-192x192.png" height="30" class="d-inline-block align-top" alt="mdb logo">
-        GRADREC
+        <img src="https://clf.mun.ca/favicon/favicon-192x192.png" height="30" class="d-inline-block align-top" alt="mdb logo"> GRADREC
     </a>
 
     <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
-        aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -35,7 +33,6 @@
 <!--/.Navbar-->
 
 <script>
-
     console.log(window.location.href);
 
 
@@ -47,7 +44,7 @@
     }
     var ul = document.getElementById("navSignList"); //getting the element "ul"
     var li = document.createElement("li"); //an "li" tag
-    var a = document.createElement("a");   //an "a" tag
+    var a = document.createElement("a"); //an "a" tag
     a.setAttribute("class", "nav-link");
 
     if (!currUser) {
@@ -58,7 +55,9 @@
         li.setAttribute("class", "nav-item");
     } else {
         a.setAttribute('onclick', 'logout();'); // for FF
-        a.onclick = function () { logout(); };
+        a.onclick = function() {
+            logout();
+        };
         a.appendChild(document.createTextNode("Logout"));
         li.appendChild(a);
         li.setAttribute("id", "logoutBtn");
@@ -129,7 +128,7 @@
     var a3 = document.createElement("a");
     var li3 = document.createElement("li");
     if (window.currUser) {
-        a3.setAttribute("href", "/notification");// this should be /notifications
+        a3.setAttribute("href", "/notification"); // this should be /notifications
         a3.setAttribute("class", "nav-link")
         a3.appendChild(document.createTextNode("Notifications"));
         li3.appendChild(a3);
@@ -147,22 +146,21 @@
         case "/":
             document.getElementById('homeLink').classList.add("active");
             break;
-        case "/profile": 
+        case "/profile":
             document.getElementById('seeProfile').classList.add("active");
             break;
-        case "/messages": 
+        case "/messages":
             document.getElementById('viewMessages').classList.add("active");
             break;
-        case "/projectCreation": 
+        case "/projectCreation":
             document.getElementById('createNewProject').classList.add("active");
             break;
-        case "/notification": 
+        case "/notification":
             document.getElementById('viewNotifications').classList.add("active");
             break;
     }
 
-    if(window.location.pathname.includes("projectCreation")){
+    if (window.location.pathname.includes("projectCreation")) {
         document.getElementById('createNewProject').classList.add("active");
     }
-
 </script>
