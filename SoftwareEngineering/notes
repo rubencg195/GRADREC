@@ -16,3 +16,11 @@ Pending Requirements
 * The student is still able to create project. The variable (isProf=false) hasn't been taken into account yet.
 * 
 
+Professor should be able to choose which type of courses is he teaching. (MSc, PHd, Undergraduate)
+
+passwords are visible in mongodb!
+
+If the image is too small, in the research, the image will not be centered. 
+
+chat still keeps all the messages on the same side. 
+
