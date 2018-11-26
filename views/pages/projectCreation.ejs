@@ -3,221 +3,227 @@
 <html lang="en" style="height: 100vh">
 
 <head>
-    <% include ../partials/mdhead %>
+  <% include ../partials/mdhead %>
 
 </head>
 
 <body style="background-color: rgb(230, 230, 230);">
-    <% include ../partials/navbar %>
-        <main class="container">
-            <section class="contact-section my-5">
-                <div class="card">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card-body form">
-                                <h3 class="mt-4"><i class="fa fa-envelope pr-2"></i>Create New/Edit Project:</h3>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="md-form mb-0">
-                                            <input placeholder="Title" type="text" id="form-contact-project_title" class="form-control">
-                                            <label for="form-contact-project_title" class="">Project Title</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="md-form mb-0">
-                                            <textarea type="text" id="form-contact-Abstract" class="form-control md-textarea" rows="8"></textarea>
-                                            <label for="form-contact-Abstract">Project Description (Abstract)</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="md-form mb-0">
-                                            <input placeholder="http://" type="text" id="form-contact-project_img" class="form-control">
-                                            <label for="form-contact-project_img" class="">Image URL </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="md-form mb-0">
-                                            <p>Target Participant (MSc or PhD): <i class="fa fa-question-circle-o" aria-hidden="true" data-toggle="tooltip" title="Is this project aimed at Masters or PhD students"></i></p>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="md-form mb-0">
-                                            <select class="browser-default custom-select" id="form-contact-msc_or_phd">
-                                            <option selected value="1">MSc</option>
-                                            <option value="2">PhD</option>
-                                            <option value="3">Both</option>
-                                        </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="md-form mb-0">
-                                            Program:
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="md-form mb-0">
-                                            <select class="browser-default custom-select" id="form-contact-program">
-                                            <option value="1">Computer Science/Engineering</option>
-                                            <option value="2">Computational chemistry </option>
-                                            <option value="3">Physics</option>
-                                            <option value="4">Mathematics</option>
-                                            <option value="5">Marine Biology</option>
-
-                                        </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="md-form mb-0">
-                                            <input placeholder="Robotics, DNA, A.I., etc." type="text" id="form-contact-specific_research_area" class="form-control">
-                                            <label for="form-contact-specific_research_area" class="">Specific Research Area  </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="md-form mb-0">
-                                            <input placeholder="A number from 1 to infinity" type="text" id="form-contact-num_of_students" class="form-control">
-                                            <label for="form-contact-num_of_students" class="">Number of Students  <i class="fa fa-question-circle-o" aria-hidden="true" data-toggle="tooltip" title="How many students can actually join the project?"></i></label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="md-form mb-0">
-                                            <input placeholder="A number from 0 to infinity" type="text" id="form-contact-financial_aid" class="form-control">
-                                            <label for="form-contact-financial_aid" class="">Financial Aid(in CAD)   <i class="fa fa-question-circle-o" aria-hidden="true" data-toggle="tooltip" title="Money available for the entire project's duration. If unknown, feel free to specify details in the comments 'Additional Project Related Information' section. "></i></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-12">
-                                        <div class="md-form mb-0">
-                                            <p>Ideal Candidate Skills:</p>
-                                        </div>
-                                        <div id="participantRows">      
-                                        </div>
-                                    </div>
-                                </div><br />
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="md-form mb-0">
-                                            <input placeholder="Additional Information" type="text" id="form-contact-additional_comments" class="form-control">
-                                            <label for="form-contact-additional_comments" class="">Additional Project
-                                            Related Information</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <hr>
-                                        <p><b>Project Termination: The information below is only required once the project
-                                            is finished, but feel free to fill out the fields at any time.</b></p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="md-form mb-0">
-                                            <input placeholder="dd/mm/yyyy" type="text" id="form-contact-est_duedate" class="form-control">
-                                            <label for="form-contact-est_duedate" class="">Start Date (dd/mm/yyyy)</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="md-form mb-0">
-                                            <input placeholder="dd/mm/yyyy" type="text" id="form-contact-actual_due_date" class="form-control">
-                                            <label for="form-contact-actual_due_date" class="">Due Date (dd/mm/yyyy)</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="md-form mb-0">
-                                            <textarea type="text" id="form-contact-conclusion" class="form-control md-textarea" rows="3"></textarea>
-                                            <label for="form-contact-conclusion">Conclusion</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="md-form mb-0">
-                                            <textarea type="text" id="form-contact-results" class="form-control md-textarea" rows="3"></textarea>
-                                            <label for="form-contact-results">Results</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="md-form mb-0">
-                                            <textarea type="text" id="form-contact-thanks" class="form-control md-textarea" rows="3"></textarea>
-                                            <label for="form-contact-thanks">Special Thanks/Mentions</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="md-form mb-0" id="participantList">
-                                            <h3>Participants</h3>
-                                            <br/>
-                                        </div>
-                                        <br/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <p>Do not select the following option until you are sure the Project is 100% complete, or that no more further work or modifications will be made to it. This option stores the Project in the database, but will no longer
-                                            be modifiable. </p>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="form-project-finished">
-                                            <label class="custom-control-label" for="form-project-finished">Is the Project
-                                            Finished</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="align-center text-center m-3">
-                        <!-- <a class="btn red white-text" href="/home">Save</a> -->
-                        <a class="btn red white-text" id="deleteBtn">Delete</a>
-                        <a class="btn red white-text" id="saveBtn">Save</a>
-                        <br />
-
-
-                    </div>
+  <% include ../partials/navbar %>
+  <main class="container">
+    <section class="contact-section my-5">
+      <div class="card">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card-body form">
+              <h3 class="mt-4"><i class="fa fa-envelope pr-2"></i>Create New/Edit Project:</h3>
+              <div class="row"  id="section_1">
+                <div class="col-md-12">
+                  <div class="md-form mb-0">
+                    <input placeholder="Title" type="text" id="form-contact-project_title" class="form-control">
+                    <label for="form-contact-project_title" class="">Project Title</label>
+                  </div>
                 </div>
-            </section>
-        </main>
-        <% include ../partials/mdscripts %>
-            <script>
-                if (window.currUser) {
-                    console.log("Exist");
-                    if (window.currUser.isProf == false || window.currUser.isProf == "false") {
-                        window.location.href = '/login'
-                    };
-                } else {
-                    console.log("not login");
-                    window.location.href = '/login';
-                }
-            </script>
-            <script>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="md-form mb-0">
+                    <textarea type="text" id="form-contact-Abstract" class="form-control md-textarea" rows="8"></textarea>
+                    <label for="form-contact-Abstract">Project Description (Abstract)</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="md-form mb-0">
+                    <input placeholder="http://" type="text" id="form-contact-project_img" class="form-control">
+                    <label for="form-contact-project_img" class="">Image URL </label>
+                  </div>
+                </div>
+              </div>
 
-                $('#form-contact-num_of_students').on('input propertychange paste', function() {
-                    $( "#participantRows" ).empty();
-                    addParticipantRows();
-                });
-            
-                function addParticipantRows()
-                {
-                    let num = $('#form-contact-num_of_students').val();
-                    for (let i =0; i < num; i++)
-                    {   
-                        $( "#participantRows" ).append("<strong>Participant " + (i+1) + "</strong>");
+              <div class="row"  id="section_2">
+                <div class="col-sm-3">
+                  <div class="md-form mb-0">
+                    <p>Target Participant (MSc or PhD): <i class="fa fa-question-circle-o" aria-hidden="true"
+                        data-toggle="tooltip" title="Is this project aimed at Masters or PhD students"></i></p>
+                  </div>
 
-                         let row = `<div class="row">
+                </div>
+                <div class="col-sm-3">
+                  <div class="md-form mb-0">
+                    <select class="browser-default custom-select" id="form-contact-msc_or_phd">
+                      <option selected value="1">MSc</option>
+                      <option value="2">PhD</option>
+                      <option value="3">Both</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="md-form mb-0">
+                    Program:
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="md-form mb-0">
+                    <select class="browser-default custom-select" id="form-contact-program">
+                      <option value="1">Computer Science/Engineering</option>
+                      <option value="2">Computational chemistry </option>
+                      <option value="3">Physics</option>
+                      <option value="4">Mathematics</option>
+                      <option value="5">Marine Biology</option>
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row"  id="section_3">
+                <div class="col-md-6">
+                  <div class="md-form mb-0">
+                    <input placeholder="Robotics, DNA, A.I., etc." type="text" id="form-contact-specific_research_area"
+                      class="form-control">
+                    <label for="form-contact-specific_research_area" class="">Specific Research Area </label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="md-form mb-0">
+                    <input placeholder="A number from 1 to infinity" type="text" id="form-contact-num_of_students"
+                      class="form-control">
+                    <label for="form-contact-num_of_students" class="">Number of Students <i class="fa fa-question-circle-o"
+                        aria-hidden="true" data-toggle="tooltip" title="How many students can actually join the project?"></i></label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row"  id="section_4">
+                <div class="col-md-4">
+                  <div class="md-form mb-0">
+                    <input placeholder="A number from 0 to infinity" type="text" id="form-contact-financial_aid" class="form-control">
+                    <label for="form-contact-financial_aid" class="">Financial Aid(in CAD) <i class="fa fa-question-circle-o"
+                        aria-hidden="true" data-toggle="tooltip" title="Money available for the entire project's duration. If unknown, feel free to specify details in the comments 'Additional Project Related Information' section. "></i></label>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-12">
+                  <div class="md-form mb-0">
+                    <p>Ideal Candidate Skills:</p>
+                  </div>
+                  <div id="participantRows">
+                  </div>
+                </div>
+              </div><br />
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="md-form mb-0">
+                    <input placeholder="Additional Information" type="text" id="form-contact-additional_comments" class="form-control">
+                    <label for="form-contact-additional_comments" class="">Additional Project
+                      Related Information</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <hr>
+                  <p><b>Project Termination: The information below is only required once the project
+                      is finished, but feel free to fill out the fields at any time.</b></p>
+                </div>
+              </div>
+              <div class="row"  id="section_5">
+                <div class="col-sm-4">
+                  <div class="md-form mb-0">
+                    <input placeholder="dd/mm/yyyy" type="text" id="form-contact-est_duedate" class="form-control">
+                    <label for="form-contact-est_duedate" class="">Start Date (dd/mm/yyyy)</label>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="md-form mb-0">
+                    <input placeholder="dd/mm/yyyy" type="text" id="form-contact-actual_due_date" class="form-control">
+                    <label for="form-contact-actual_due_date" class="">Due Date (dd/mm/yyyy)</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row"  id="section_6">
+                <div class="col-sm-6">
+                  <div class="md-form mb-0">
+                    <textarea type="text" id="form-contact-conclusion" class="form-control md-textarea" rows="3"></textarea>
+                    <label for="form-contact-conclusion">Conclusion</label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="md-form mb-0">
+                    <textarea type="text" id="form-contact-results" class="form-control md-textarea" rows="3"></textarea>
+                    <label for="form-contact-results">Results</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="md-form mb-0">
+                    <textarea type="text" id="form-contact-thanks" class="form-control md-textarea" rows="3"></textarea>
+                    <label for="form-contact-thanks">Special Thanks/Mentions</label>
+                  </div>
+                </div>
+                <div class="col-sm-12"  id="section_7">
+                  <div class="md-form mb-0" id="participantList">
+                    <h3>Participants</h3>
+                    <br />
+                  </div>
+                  <br />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <p>Do not select the following option until you are sure the Project is 100% complete, or that no
+                    more further work or modifications will be made to it. This option stores the Project in the
+                    database, but will no longer
+                    be modifiable. </p>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="form-project-finished">
+                    <label class="custom-control-label" for="form-project-finished">Is the Project
+                      Finished</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="align-center text-center m-3" id="section_8">
+          <!-- <a class="btn red white-text" href="/home">Save</a> -->
+          <a class="btn red white-text" id="deleteBtn">Delete</a>
+          <a class="btn red white-text" id="saveBtn">Save</a>
+          <br />
+
+
+        </div>
+      </div>
+    </section>
+  <a id='helpBtn' class="btn-floating btn-lg red" style="position:absolute; right:30px; bottom:30px" onclick="startIntro()"><i class="fa fa-question-circle "></i></a>
+  </main>
+  <% include ../partials/mdscripts %>
+  <script>
+    if (window.currUser) {
+      console.log("Exist");
+      if (window.currUser.isProf == false || window.currUser.isProf == "false") {
+        window.location.href = '/login'
+      };
+    } else {
+      console.log("not login");
+      window.location.href = '/login';
+    }
+  </script>
+  <script>
+
+    $('#form-contact-num_of_students').on('input propertychange paste', function () {
+      $("#participantRows").empty();
+      addParticipantRows();
+    });
+
+    function addParticipantRows() {
+      let num = $('#form-contact-num_of_students').val();
+      for (let i = 0; i < num; i++) {
+        $("#participantRows").append("<strong>Participant " + (i + 1) + "</strong>");
+
+        let row = `<div class="row">
                         <div class="col-md-12">
                             <div class="custom-control custom-checkbox custom-control-inline">
                                 <input type="checkbox" class="custom-control-input" id="english_${i}">
@@ -242,159 +248,157 @@
                         </div>
                     </div>`;
 
-                        $( "#participantRows" ).append(row);
-                    }                   
-                }
-                
-                 // {
-                    //     "english": _english.is(':checked'),
-                    //     "maths": _maths.is(':checked'),
-                    //     "comp": _comp.is(':checked'),
-                    //     "music": _music.is(':checked'),
-                    //     "noSkills": _noSkills.is(':checked')
-                    // }
+        $("#participantRows").append(row);
+      }
+    }
 
-                function getSkills()
-                {
-                    let num = $('#form-contact-num_of_students').val();
-                    let skillArray = [];
-                    for(let i =0; i < num; i++)
-                    {
-                        let eng = $(`#english_${i}`);
-                        let math = $(`#maths_${i}`);
-                        let comp = $(`#comp_${i}`);
-                        let music = $(`#music_${i}`);
-                        let none = $(`#noSkills_${i}`);
+    // {
+    //     "english": _english.is(':checked'),
+    //     "maths": _maths.is(':checked'),
+    //     "comp": _comp.is(':checked'),
+    //     "music": _music.is(':checked'),
+    //     "noSkills": _noSkills.is(':checked')
+    // }
 
-                        skillArray.push({
-                            "english": eng.is(':checked'),
-                             "maths": math.is(':checked'),
-                            "comp": comp.is(':checked'),
-                            "music": music.is(':checked'),
-                            "noSkills": none.is(':checked')
-                        });
-                    }
-                    return skillArray;
-                }
+    function getSkills() {
+      let num = $('#form-contact-num_of_students').val();
+      let skillArray = [];
+      for (let i = 0; i < num; i++) {
+        let eng = $(`#english_${i}`);
+        let math = $(`#maths_${i}`);
+        let comp = $(`#comp_${i}`);
+        let music = $(`#music_${i}`);
+        let none = $(`#noSkills_${i}`);
 
-                function goTo(addr) {
-                    window.location.href = addr;
-                }
+        skillArray.push({
+          "english": eng.is(':checked'),
+          "maths": math.is(':checked'),
+          "comp": comp.is(':checked'),
+          "music": music.is(':checked'),
+          "noSkills": none.is(':checked')
+        });
+      }
+      return skillArray;
+    }
 
-                function scrollIntoView(eleID) {
-                    var e = document.getElementById(eleID);
-                    if (!!e && e.scrollIntoView) {
-                        e.scrollIntoView();
-                    }
-                }
+    function goTo(addr) {
+      window.location.href = addr;
+    }
 
-                function getParameterByName(name, url) {
-                    if (!url) url = window.location.href;
-                    name = name.replace(/[\[\]]/g, '\\$&');
-                    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-                        results = regex.exec(url);
-                    if (!results) return null;
-                    if (!results[2]) return '';
-                    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-                }
+    function scrollIntoView(eleID) {
+      var e = document.getElementById(eleID);
+      if (!!e && e.scrollIntoView) {
+        e.scrollIntoView();
+      }
+    }
 
-                function deleteStudent(projectId, studentId) {
-                    var query = `/projects/${projectId}/participant/${studentId}`;
-                    console.log("Trying to Delete Student", query);
-                    $.ajax({
-                        url: query,
-                        data: {},
-                        type: 'delete',
-                        success: function(notification) {
-                            alert(`Student Deleted`);
-                            console.log("Student Deleted", notification);
-                            document.location.reload(true)
-                        },
-                        error: function(request, status, error) {
-                            console.log(request.responseText);
-                        }
-                    });
-                }
-                $("#sendMsgBtn").click(function() {
-                    $("html, body").animate({
-                        scrollTop: $("#contactSection").offset().top
-                    }, 500);
-                    return true;
-                });
-                var projectId = getParameterByName('id');
-                var currProj = window.currProj;
-                var projTitle = $("#form-contact-project_title");
-                var projAbstract = $("#form-contact-Abstract");
-                var projImg = $("#form-contact-project_img");
-                var projResArea = $("#form-contact-specific_research_area");
-                var projStudent = $("#form-contact-num_of_students");
-                var projAid = $("#form-contact-financial_aid");
-                var projComments = $("#form-contact-additional_comments");
-                var projThanks = $("#form-contact-thanks");
-                var projConcl = $("#form-contact-conclusion");
-                var projRes = $("#form-contact-results");
-                var projStart = $("#form-contact-est_duedate");
-                var projEnd = $("#form-contact-actual_due_date");
-                // var _english = $('#english');
-                // var _maths = $('#maths');
-                // var _comp = $('#comp');
-                // var _music = $('#music');
-                // var _noSkills = $('#noSkills');
-                var isPHD = $("#form-contact-msc_or_phd");
-                var _program = $("#form-contact-program");
-                var _programFinished = $("#form-project-finished");
-                var queryURL = `/projects`;
-                var queryType = 'post';
-                if (projectId) {
-                    $.ajax({
-                        url: `/projects/${projectId}`,
-                        data: {},
-                        type: 'get',
-                        success: function(data) {
-                            console.log("Projects GET Response", data);
-                            window.currProj = data;
-                            if (!window.currProj) {
-                                console.log("Project not exist");
-                            } else {
-                                queryURL = `/projects/${projectId}`;
-                                queryType = 'put';
+    function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, '\\$&');
+      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
 
-                                projTitle.val(currProj.title);
-                                projAbstract.val(currProj.abstract);
-                                projImg.val(currProj.imgURL);
-                                projResArea.val(currProj.researchArea);
-                                projStudent.val(currProj.availableSpots);
-                                projAid.val(currProj.financialAid);
-                                projComments.val(currProj.comments);
-                                projThanks.val(currProj.specialThanks);
-                                projConcl.val(currProj.conclusion);
-                                projRes.val(currProj.results);
-                                projStart.val(currProj.startDate);
-                                projEnd.val(currProj.endDate);
+    function deleteStudent(projectId, studentId) {
+      var query = `/projects/${projectId}/participant/${studentId}`;
+      console.log("Trying to Delete Student", query);
+      $.ajax({
+        url: query,
+        data: {},
+        type: 'delete',
+        success: function (notification) {
+          alert(`Student Deleted`);
+          console.log("Student Deleted", notification);
+          document.location.reload(true)
+        },
+        error: function (request, status, error) {
+          console.log(request.responseText);
+        }
+      });
+    }
+    $("#sendMsgBtn").click(function () {
+      $("html, body").animate({
+        scrollTop: $("#contactSection").offset().top
+      }, 500);
+      return true;
+    });
+    var projectId = getParameterByName('id');
+    var currProj = window.currProj;
+    var projTitle = $("#form-contact-project_title");
+    var projAbstract = $("#form-contact-Abstract");
+    var projImg = $("#form-contact-project_img");
+    var projResArea = $("#form-contact-specific_research_area");
+    var projStudent = $("#form-contact-num_of_students");
+    var projAid = $("#form-contact-financial_aid");
+    var projComments = $("#form-contact-additional_comments");
+    var projThanks = $("#form-contact-thanks");
+    var projConcl = $("#form-contact-conclusion");
+    var projRes = $("#form-contact-results");
+    var projStart = $("#form-contact-est_duedate");
+    var projEnd = $("#form-contact-actual_due_date");
+    // var _english = $('#english');
+    // var _maths = $('#maths');
+    // var _comp = $('#comp');
+    // var _music = $('#music');
+    // var _noSkills = $('#noSkills');
+    var isPHD = $("#form-contact-msc_or_phd");
+    var _program = $("#form-contact-program");
+    var _programFinished = $("#form-project-finished");
+    var queryURL = `/projects`;
+    var queryType = 'post';
+    if (projectId) {
+      $.ajax({
+        url: `/projects/${projectId}`,
+        data: {},
+        type: 'get',
+        success: function (data) {
+          console.log("Projects GET Response", data);
+          window.currProj = data;
+          if (!window.currProj) {
+            console.log("Project not exist");
+          } else {
+            queryURL = `/projects/${projectId}`;
+            queryType = 'put';
 
-                                _programFinished.prop('checked', JSON.parse(currProj.finished));
-                                isPHD.val((JSON.parse(currProj.PhD)) ? 1 : 2);
-                                if ((currProj.program) == "Computer Science/Engineering") {
-                                    _program.val(1);
-                                } else if ((currProj.program) == "Computational chemistry") {
-                                    _program.val(2);
-                                } else if ((currProj.program) == "Physics") {
-                                    _program.val(3);
-                                } else if ((currProj.program) == "Mathematics") {
-                                    _program.val(4);
-                                } else if ((currProj.program) == "Marine Biology") {
-                                    _program.val(5);
-                                }
-                                var participants = [];
-                                if (currProj.participantsData != null) {
-                                    currProj.participantsData.forEach(function(participant) {
-                                        // $.ajax({
-                                        //     url: `/users/${participant}`,
-                                        //     data: {},
-                                        //     type: 'get',
-                                        //     success: function(user) {
-                                        //         participants.push(user);
-                                        $('div#participantList').append($(`<div class="media">
+            projTitle.val(currProj.title);
+            projAbstract.val(currProj.abstract);
+            projImg.val(currProj.imgURL);
+            projResArea.val(currProj.researchArea);
+            projStudent.val(currProj.availableSpots);
+            projAid.val(currProj.financialAid);
+            projComments.val(currProj.comments);
+            projThanks.val(currProj.specialThanks);
+            projConcl.val(currProj.conclusion);
+            projRes.val(currProj.results);
+            projStart.val(currProj.startDate);
+            projEnd.val(currProj.endDate);
+
+            _programFinished.prop('checked', JSON.parse(currProj.finished));
+            isPHD.val((JSON.parse(currProj.PhD)) ? 1 : 2);
+            if ((currProj.program) == "Computer Science/Engineering") {
+              _program.val(1);
+            } else if ((currProj.program) == "Computational chemistry") {
+              _program.val(2);
+            } else if ((currProj.program) == "Physics") {
+              _program.val(3);
+            } else if ((currProj.program) == "Mathematics") {
+              _program.val(4);
+            } else if ((currProj.program) == "Marine Biology") {
+              _program.val(5);
+            }
+            var participants = [];
+            if (currProj.participantsData != null) {
+              currProj.participantsData.forEach(function (participant) {
+                // $.ajax({
+                //     url: `/users/${participant}`,
+                //     data: {},
+                //     type: 'get',
+                //     success: function(user) {
+                //         participants.push(user);
+                $('div#participantList').append($(`<div class="media">
                                                 <img class="d-flex mr-3" height="100px" src="${participant.imgURL}">
                                                 <div class="media-body">
                                                     <h5 class="mt-0 font-weight-bold">${participant.email}</h5>
@@ -418,293 +422,342 @@
                                                     </button>
                                                 </div>
                                             </div>`));
-                                        //     },
-                                        //     error: function(request, status, error) {
-                                        //         $("p#errorSpace").html(request.responseText);
-                                        //     }
-                                        // });
-                                        //end of AJAX
-                                    });
+                //     },
+                //     error: function(request, status, error) {
+                //         $("p#errorSpace").html(request.responseText);
+                //     }
+                // });
+                //end of AJAX
+              });
 
-                                    currProj.participants = participants;
-                                    console.log("participant  ", participants);
-                                } else {
-                                    console.log("No participants");
-                                }
-                                addParticipantRows();
-
-
-
-                                if (currProj.skills)
-                                {
-                                    for (let i = 0; i < currProj.skills.length; i++)
-                                    {
-                                        let eng = $(`#english_${i}`);
-                                        let math = $(`#maths_${i}`);
-                                        let comp = $(`#comp_${i}`);
-                                        let music = $(`#music_${i}`);
-                                        let none = $(`#noSkills_${i}`);
-                                        
-                                        console.log("ENGL",  currProj.skills[i], Object.assign({}, eng));
+              currProj.participants = participants;
+              console.log("participant  ", participants);
+            } else {
+              console.log("No participants");
+            }
+            addParticipantRows();
 
 
-                                        //eng.prop('checked',  true);
-                                        eng.prop('checked',  JSON.parse(currProj.skills[i].english));
-                                        math.prop('checked',   JSON.parse(currProj.skills[i].maths));
-                                        comp.prop('checked',    JSON.parse(currProj.skills[i].comp));
-                                        music.prop('checked',  JSON.parse(currProj.skills[i].music));
-                                        none.prop('checked',  JSON.parse(currProj.skills[i].noSkills));
-                                    }
-                                }
-                                
-                            }
-                        },
-                        error: function(request, status, error) {
-                            $("p#errorSpace").html(request.responseText);
-                        }
-                    });
+
+            if (currProj.skills) {
+              for (let i = 0; i < currProj.skills.length; i++) {
+                let eng = $(`#english_${i}`);
+                let math = $(`#maths_${i}`);
+                let comp = $(`#comp_${i}`);
+                let music = $(`#music_${i}`);
+                let none = $(`#noSkills_${i}`);
+
+                console.log("ENGL", currProj.skills[i], Object.assign({}, eng));
+
+
+                //eng.prop('checked',  true);
+                eng.prop('checked', JSON.parse(currProj.skills[i].english));
+                math.prop('checked', JSON.parse(currProj.skills[i].maths));
+                comp.prop('checked', JSON.parse(currProj.skills[i].comp));
+                music.prop('checked', JSON.parse(currProj.skills[i].music));
+                none.prop('checked', JSON.parse(currProj.skills[i].noSkills));
+              }
+            }
+
+          }
+        },
+        error: function (request, status, error) {
+          $("p#errorSpace").html(request.responseText);
+        }
+      });
+    }
+
+    $(document).ready(function () {
+
+      $("#deleteBtn").click(function () {
+
+        var confirmDelete;
+        var confirmDelete = confirm("Are you sure you wish to delete the Project? ");
+        if (confirmDelete == true) {
+          console.log("Project will be deleted");
+        } else {
+          console.log("User chose not to delete the Project");
+          return;
+        }
+
+
+        var projectId = getParameterByName('id');
+        $.ajax({
+          url: `/projects/${projectId}`,
+          data: {},
+          type: 'delete',
+          success: function (manager) {
+            alert("Project was deleted");
+            goTo(`/`);
+          },
+          error: function (request, status, error) {
+            $("p#errorSpace").html(request.responseText);
+          }
+        });
+      });
+      $("#saveBtn").click(function () {
+        var properInput = false;
+
+        var mandatoryFields = false;
+        var alertMessage1 = "Please fillout the following mandatory fields: ";
+
+        var numCheck = false;
+        var alertMessage2 = "The following fields are supposed to be positve numbers (ie: 1200,2,5, etc.): ";
+
+        var dateCheck = false;
+        var alertMessage3 = "Please follow the date format dd/mm/yyyy for the following fields: ";
+
+
+        if (properInput == false) {
+          /// IN THIS AREA IS WHERE WE CHECKED EVERYTHING HAS BEEN FILLED OUT
+          if (mandatoryFields == false) {
+            if (projTitle.val() == "" || projTitle.val() == null) {
+              alertMessage1 = alertMessage1 + "*Project Title* ";
+            }
+            if (projAbstract.val() == "" || projAbstract.val() == null) {
+              alertMessage1 = alertMessage1 + " *Project Abstract* ";
+            }
+            if (projResArea.val() == "" || projResArea.val() == null) {
+              alertMessage1 = alertMessage1 + " *Specific Research Area* ";
+            }
+            if (projStudent.val() == "" || projStudent.val() == null) {
+              alertMessage1 = alertMessage1 + " *Number of Students* ";
+            }
+            if (projAid.val() == "" || projAid.val() == null) {
+              alertMessage1 = alertMessage1 + " *Financial Aid* ";
+            }
+            if (alertMessage1 == "Please fillout the following mandatory fields: ") {
+              mandatoryFields = true;
+              console.log("All mandatory fields have been filled out");
+            } else {
+              alert(alertMessage1);
+              return;
+            }
+          } //end of mandatroyFields
+
+          if (numCheck == false) {
+            var studentIsNum = /^\d+$/.test(projStudent.val());
+            if (!studentIsNum) { // check if projStudent is a number
+              alertMessage2 = alertMessage2 + " *Number of Students*";
+            }
+            var aidIsNum = /^\d+$/.test(projAid.val());
+            if (!aidIsNum) { // check if projAid is a number
+              if (projAid.val() > 0) {
+                console.log("Financial aid is a positive number")
+              } else {
+                alertMessage2 = alertMessage2 + " *Financial AID*";
+              }
+            }
+            if (alertMessage2 == "The following fields are supposed to be positve numbers (ie: 1200,2,5, etc.): ") {
+              numCheck = true;
+              console.log("Financial AID and Num of Students have been filled out as numbers")
+            } else {
+              alert(alertMessage2);
+              return;
+            }
+          } //end of numCheck
+
+          ////check date format
+          //var shortDateRex = /^\d{1,2}(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\d{2}$/;
+          var shortDate = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+          if (dateCheck == false) {
+            if (projStart.val() == null) {
+              projStart.val() = "";
+            }
+            if (projStart.val() != "") {
+              var testDate1 = projStart.val().match(shortDate);
+              if (testDate1 == null) {
+                alertMessage3 = alertMessage3 + " *Start Date*";
+              } else {
+                if (testDate1.length == 1) {
+                  var dateSections = projStart.val().split("/");
+                  if ((dateSections[0] >= 1 && dateSections[0] <= 31) && (dateSections[1] >= 1 && dateSections[1] <= 12) && (dateSections[2] > 0)) {
+                    console.log("Project Start has the correct format: " + projStart.val());
+                  } else {
+                    alertMessage3 = alertMessage3 + " *Start Date*";
+                  }
                 }
+              }
+            }
 
-                $(document).ready(function() {
+            if (projEnd.val() == null) {
+              projEnd.val() = "";
+            }
+            if (projEnd.val() != "") {
+              var testDate2 = projEnd.val().match(shortDate);
+              if (testDate2 == null) {
+                alertMessage3 = alertMessage3 + " *Due Date*"
+              } else {
+                if (testDate2.length == 1) {
+                  var dateSections = projEnd.val().split("/");
+                  if ((dateSections[0] >= 1 && dateSections[0] <= 31) && (dateSections[1] >= 1 && dateSections[1] <= 12) && (dateSections[2] > 0)) {
+                    console.log("Project end has the correct format: " + projEnd.val());
+                  } else {
+                    alertMessage3 = alertMessage3 + " *Due Date*"
+                  }
+                }
+              }
+            }
+            if (alertMessage3 == "Please follow the date format dd/mm/yyyy for the following fields: ") {
+              dateCheck = true;
+            } else {
+              alert(alertMessage3);
+              return;
+            }
+          } // end of date check
 
-                    $("#deleteBtn").click(function() {
+          //// removing special characters from input boxes
+          // var replaced = str.replace('\n', '');
+          // var desired = stringToReplace.replace(/[^\w\s]/g, '')
+          var projTitleVariable = projTitle.val().replace(/'|"|\n|<|>/gi, "   ");
+          projTitle.val(projTitleVariable);
+          var projAbstractVariable = projAbstract.val().replace(/'|"|\n|<|>/gi, "   ");
+          projAbstract.val(projAbstractVariable);
+          var projResAreaVariable = projResArea.val().replace(/'|"|\n|<|>/gi, "   ");
+          projResArea.val(projResAreaVariable);
+          var projImgVariable = projImg.val().replace(/'|"|\n|<|>/gi, "   ");
+          projImg.val(projImgVariable);
+          var projCommentsVariable = projComments.val().replace(/'|"|\n|<|>/gi, "   ");
+          projComments.val(projCommentsVariable);
+          var projResVariable = projRes.val().replace(/'|"|\n|<|>/gi, "   ");
+          projRes.val(projResVariable);
+          var projConclVariable = projConcl.val().replace(/'|"|\n|<|>/gi, "   ");
+          projConcl.val(projConclVariable);
+          var projThanksVariable = projThanks.val().replace(/'|"|\n|<|>/gi, "   ");
+          projThanks.val(projThanksVariable);
+        } // end of if (properInput == false)
 
-                        var confirmDelete;
-                        var confirmDelete = confirm("Are you sure you wish to delete the Project? ");
-                        if (confirmDelete == true) {
-                            console.log("Project will be deleted");
-                        } else {
-                            console.log("User chose not to delete the Project");
-                            return;
-                        }
-
-
-                        var projectId = getParameterByName('id');
-                        $.ajax({
-                            url: `/projects/${projectId}`,
-                            data: {},
-                            type: 'delete',
-                            success: function(manager) {
-                                alert("Project was deleted");
-                                goTo(`/`);
-                            },
-                            error: function(request, status, error) {
-                                $("p#errorSpace").html(request.responseText);
-                            }
-                        });
-                    });
-                    $("#saveBtn").click(function() {
-                        var properInput = false;
-
-                        var mandatoryFields = false;
-                        var alertMessage1 = "Please fillout the following mandatory fields: ";
-
-                        var numCheck = false;
-                        var alertMessage2 = "The following fields are supposed to be positve numbers (ie: 1200,2,5, etc.): ";
-
-                        var dateCheck = false;
-                        var alertMessage3 = "Please follow the date format dd/mm/yyyy for the following fields: ";
-
-
-                        if (properInput == false) {
-                            /// IN THIS AREA IS WHERE WE CHECKED EVERYTHING HAS BEEN FILLED OUT
-                            if (mandatoryFields == false) {
-                                if (projTitle.val() == "" || projTitle.val() == null) {
-                                    alertMessage1 = alertMessage1 + "*Project Title* ";
-                                }
-                                if (projAbstract.val() == "" || projAbstract.val() == null) {
-                                    alertMessage1 = alertMessage1 + " *Project Abstract* ";
-                                }
-                                if (projResArea.val() == "" || projResArea.val() == null) {
-                                    alertMessage1 = alertMessage1 + " *Specific Research Area* ";
-                                }
-                                if (projStudent.val() == "" || projStudent.val() == null) {
-                                    alertMessage1 = alertMessage1 + " *Number of Students* ";
-                                }
-                                if (projAid.val() == "" || projAid.val() == null) {
-                                    alertMessage1 = alertMessage1 + " *Financial Aid* ";
-                                }
-                                if (alertMessage1 == "Please fillout the following mandatory fields: ") {
-                                    mandatoryFields = true;
-                                    console.log("All mandatory fields have been filled out");
-                                } else {
-                                    alert(alertMessage1);
-                                    return;
-                                }
-                            } //end of mandatroyFields
-
-                            if (numCheck == false) {
-                                var studentIsNum = /^\d+$/.test(projStudent.val());
-                                if (!studentIsNum) { // check if projStudent is a number
-                                    alertMessage2 = alertMessage2 + " *Number of Students*";
-                                }
-                                var aidIsNum = /^\d+$/.test(projAid.val());
-                                if (!aidIsNum) { // check if projAid is a number
-                                    if (projAid.val() > 0) {
-                                        console.log("Financial aid is a positive number")
-                                    } else {
-                                        alertMessage2 = alertMessage2 + " *Financial AID*";
-                                    }
-                                }
-                                if (alertMessage2 == "The following fields are supposed to be positve numbers (ie: 1200,2,5, etc.): ") {
-                                    numCheck = true;
-                                    console.log("Financial AID and Num of Students have been filled out as numbers")
-                                } else {
-                                    alert(alertMessage2);
-                                    return;
-                                }
-                            } //end of numCheck
-
-                            ////check date format
-                            //var shortDateRex = /^\d{1,2}(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\d{2}$/;
-                            var shortDate = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
-                            if (dateCheck == false) {
-                                if (projStart.val() == null) {
-                                    projStart.val() = "";
-                                }
-                                if (projStart.val() != "") {
-                                    var testDate1 = projStart.val().match(shortDate);
-                                    if (testDate1 == null) {
-                                        alertMessage3 = alertMessage3 + " *Start Date*";
-                                    } else {
-                                        if (testDate1.length == 1) {
-                                            var dateSections = projStart.val().split("/");
-                                            if ((dateSections[0] >= 1 && dateSections[0] <= 31) && (dateSections[1] >= 1 && dateSections[1] <= 12) && (dateSections[2] > 0)) {
-                                                console.log("Project Start has the correct format: " + projStart.val());
-                                            } else {
-                                                alertMessage3 = alertMessage3 + " *Start Date*";
-                                            }
-                                        }
-                                    }
-                                }
-
-                                if (projEnd.val() == null) {
-                                    projEnd.val() = "";
-                                }
-                                if (projEnd.val() != "") {
-                                    var testDate2 = projEnd.val().match(shortDate);
-                                    if (testDate2 == null) {
-                                        alertMessage3 = alertMessage3 + " *Due Date*"
-                                    } else {
-                                        if (testDate2.length == 1) {
-                                            var dateSections = projEnd.val().split("/");
-                                            if ((dateSections[0] >= 1 && dateSections[0] <= 31) && (dateSections[1] >= 1 && dateSections[1] <= 12) && (dateSections[2] > 0)) {
-                                                console.log("Project end has the correct format: " + projEnd.val());
-                                            } else {
-                                                alertMessage3 = alertMessage3 + " *Due Date*"
-                                            }
-                                        }
-                                    }
-                                }
-                                if (alertMessage3 == "Please follow the date format dd/mm/yyyy for the following fields: ") {
-                                    dateCheck = true;
-                                } else {
-                                    alert(alertMessage3);
-                                    return;
-                                }
-                            } // end of date check
-
-                            //// removing special characters from input boxes
-                            // var replaced = str.replace('\n', '');
-                            // var desired = stringToReplace.replace(/[^\w\s]/g, '')
-                            var projTitleVariable = projTitle.val().replace(/'|"|\n|<|>/gi, "   ");
-                            projTitle.val(projTitleVariable);
-                            var projAbstractVariable = projAbstract.val().replace(/'|"|\n|<|>/gi, "   ");
-                            projAbstract.val(projAbstractVariable);
-                            var projResAreaVariable = projResArea.val().replace(/'|"|\n|<|>/gi, "   ");
-                            projResArea.val(projResAreaVariable);
-                            var projImgVariable = projImg.val().replace(/'|"|\n|<|>/gi, "   ");
-                            projImg.val(projImgVariable);
-                            var projCommentsVariable = projComments.val().replace(/'|"|\n|<|>/gi, "   ");
-                            projComments.val(projCommentsVariable);
-                            var projResVariable = projRes.val().replace(/'|"|\n|<|>/gi, "   ");
-                            projRes.val(projResVariable);
-                            var projConclVariable = projConcl.val().replace(/'|"|\n|<|>/gi, "   ");
-                            projConcl.val(projConclVariable);
-                            var projThanksVariable = projThanks.val().replace(/'|"|\n|<|>/gi, "   ");
-                            projThanks.val(projThanksVariable);
-                        } // end of if (properInput == false)
-
-                        //// confirm that the project has ended
-                        if (_programFinished.is(':checked')) {
-                            var confirmPdone;
-                            var confirmPdone = confirm("Are you sure the Project is done and you wish to archive it? ");
-                            if (confirmPdone == true) {
-                                console.log("Project will be archived");
-                            } else {
-                                console.log("User may double check the project");
-                                return;
-                            }
-                        }
+        //// confirm that the project has ended
+        if (_programFinished.is(':checked')) {
+          var confirmPdone;
+          var confirmPdone = confirm("Are you sure the Project is done and you wish to archive it? ");
+          if (confirmPdone == true) {
+            console.log("Project will be archived");
+          } else {
+            console.log("User may double check the project");
+            return;
+          }
+        }
 
 
 
-                        //else { // prevents the project from saving while I test out the if (properInput == false){
+        //else { // prevents the project from saving while I test out the if (properInput == false){
 
-                        var newProjData = {
-                            "title": projTitle.val(),
-                            "abstract": projAbstract.val(),
-                            "imgURL": projImg.val(),
-                            "managerId": currUser._id,
-                            "collaborators": [],
-                            "PhD": isPHD.val() == 1 ? true : false,
-                            "program": $("#form-contact-program option:selected").text(),
-                            "researchArea": projResArea.val(),
-                            "availableSpots": projStudent.val(),
-                            "financialAid": projAid.val(),
-                            "comments": projComments.val(),
-                            "finished": _programFinished.is(':checked'),
-                            "conclusion": projConcl.val(),
-                            "results": projRes.val(),
-                            "specialThanks": projThanks.val(),
-                            "participants": [],
-                            "startDate": projStart.val(),
-                            "endDate": projEnd.val(),
-                            "notifications": [],
-                            "skills": getSkills()
-                            // {
-                            //     "english": _english.is(':checked'),
-                            //     "maths": _maths.is(':checked'),
-                            //     "comp": _comp.is(':checked'),
-                            //     "music": _music.is(':checked'),
-                            //     "noSkills": _noSkills.is(':checked')
-                            // }
-                        }
-                        console.log("UPDATING PROJECT!", newProjData, queryURL, queryType);
-                        $.ajax({
-                            url: queryURL,
-                            data: newProjData,
-                            type: queryType,
-                            success: function(newProject) {
-                                console.log(newProject);
-                                if (currProj == null) {
-                                    goTo(`/research?id=${newProject._id}`);
-                                } else {
-                                    goTo(`/research?id=${currProj._id}`);
-                                }
-                            },
-                            error: function(request, status, error) {
-                                $("p#errorSpace").html(request.responseText);
-                            }
-                        });
+        var newProjData = {
+          "title": projTitle.val(),
+          "abstract": projAbstract.val(),
+          "imgURL": projImg.val(),
+          "managerId": currUser._id,
+          "collaborators": [],
+          "PhD": isPHD.val() == 1 ? true : false,
+          "program": $("#form-contact-program option:selected").text(),
+          "researchArea": projResArea.val(),
+          "availableSpots": projStudent.val(),
+          "financialAid": projAid.val(),
+          "comments": projComments.val(),
+          "finished": _programFinished.is(':checked'),
+          "conclusion": projConcl.val(),
+          "results": projRes.val(),
+          "specialThanks": projThanks.val(),
+          "participants": [],
+          "startDate": projStart.val(),
+          "endDate": projEnd.val(),
+          "notifications": [],
+          "skills": getSkills()
+          // {
+          //     "english": _english.is(':checked'),
+          //     "maths": _maths.is(':checked'),
+          //     "comp": _comp.is(':checked'),
+          //     "music": _music.is(':checked'),
+          //     "noSkills": _noSkills.is(':checked')
+          // }
+        }
+        console.log("UPDATING PROJECT!", newProjData, queryURL, queryType);
+        $.ajax({
+          url: queryURL,
+          data: newProjData,
+          type: queryType,
+          success: function (newProject) {
+            console.log(newProject);
+            if (currProj == null) {
+              goTo(`/research?id=${newProject._id}`);
+            } else {
+              goTo(`/research?id=${currProj._id}`);
+            }
+          },
+          error: function (request, status, error) {
+            $("p#errorSpace").html(request.responseText);
+          }
+        });
 
-                        //  }// end of the else that prevented the project saving
-                    }); // end of $("#saveBtn").click(function () {
-                });
-            </script>
-            <script>
-                $(document).ready(function() {
-                    $('.mdb-select').materialSelect();
-                    
-                });
-                // Tooltips Initialization
-                $(function() {
-                    $('[data-toggle="tooltip"]').tooltip()
-                })
-            </script>
+        //  }// end of the else that prevented the project saving
+      }); // end of $("#saveBtn").click(function () {
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+      $('.mdb-select').materialSelect();
+
+    });
+    // Tooltips Initialization
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+
+
+    function startIntro() {
+      var intro = introJs();
+      intro.setOptions({
+        steps: [
+          {
+            element: document.querySelector("#section_1"),
+            intro: "Change your project title, description and project image.",
+            position: 'top'
+          },
+          {
+            element: document.querySelector("#section_2"),
+            intro: "Change the degree you expect for the project participants to have and the project main topic.",
+            position: 'top'
+          },
+          {
+            element: document.querySelector("#section_3"),
+            intro: "Change the specific area of research of the project, and the number of participants.",
+            position: 'top'
+          },
+          {
+            element: document.querySelector("#section_4"),
+            intro: "Change the the financial aid available, the skills for the ideal candidates, and the additional project information.",
+            position: 'top'
+          },
+          {
+            element: document.querySelector("#section_5"),
+            intro: "Change the start date, and due date",
+            position: 'top'
+          },
+          {
+            element: document.querySelector("#section_6"),
+            intro: "Change the Results, Conclusions and Special Thanks.",
+            position: 'top'
+          },
+          {
+            element: document.querySelector("#section_7"),
+            intro: "In this section you will be able to see the accepted participants to this project.",
+            position: 'top'
+          },
+          {
+            element: document.querySelector("#section_8"),
+            intro: "Save, Delete or mark the project as finished.",
+            position: 'top'
+          }
+        ]
+      });
+      intro.start();
+    }
+
+  </script>
 </body>
 <footer>
-    <% include ../partials/footer %>
+  <% include ../partials/footer %>
 </footer>
 
 </html>
