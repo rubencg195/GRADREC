@@ -23,3 +23,9 @@ Click on the following links to view the available content.
 ## DEMO
 
 Demo Web Page: http://sc-1.cs.mun.ca/ 
+
+## What the documentation needs to have.
+Distribution of the points.
+brief description of what can be found where.
+brief summary of the functionality implemented. 
+Documentation = final version
