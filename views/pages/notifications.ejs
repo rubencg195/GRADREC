@@ -8,97 +8,97 @@
 </head>
 
 <body style="background-color: rgb(230, 230, 230); padding-bottom: 110px;">
-    <div class="fixed-top">
-        <% include ../partials/navbar %>
-    </div>
-    <main class="flex-center flex-column animated fadeIn mb-4 container" id="mainContainer">
+
+    <% include ../partials/navbar %>
+
+        <main class="flex-center flex-column animated fadeIn mb-4 container" id="mainContainer">
 
 
-    </main>
-    <% include ../partials/mdscripts %>
-        <script>
-            if (window.currUser) {
-                console.log("Exist");
-            } else {
-                window.location.href = '/login';
-                console.log("not login");
-            }
-        </script>
-        <script>
-            function acceptStudent(projectId, studentId) {
-                $.ajax({
-                    url: `/projects/${projectId}/participant/${studentId}`,
-                    data: window.currApplication,
-                    type: 'put',
-                    success: function(notification) {
-                        alert(`Application Accepted`);
-                        console.log("Application Accepted", notification);
-                        document.location.reload(true)
-                    },
-                    error: function(request, status, error) {
-                        msgError.html(request.responseText);
-                    }
-                });
-            }
+        </main>
+        <% include ../partials/mdscripts %>
+            <script>
+                if (window.currUser) {
+                    console.log("Exist");
+                } else {
+                    window.location.href = '/login';
+                    console.log("not login");
+                }
+            </script>
+            <script>
+                function acceptStudent(projectId, studentId) {
+                    $.ajax({
+                        url: `/projects/${projectId}/participant/${studentId}`,
+                        data: window.currApplication,
+                        type: 'put',
+                        success: function(notification) {
+                            alert(`Application Accepted`);
+                            console.log("Application Accepted", notification);
+                            document.location.reload(true)
+                        },
+                        error: function(request, status, error) {
+                            msgError.html(request.responseText);
+                        }
+                    });
+                }
 
-            function denyStudent(notId) {
-                $.ajax({
-                    url: `/notifications/${notId}`,
-                    data: {
-                        replied: false,
-                        answer: true
-                    },
-                    type: 'put',
-                    success: function(notification) {
-                        alert(`Application Denied`);
-                        console.log("Application Denied", notification);
-                        document.location.reload(true)
-                    },
-                    error: function(request, status, error) {
-                        msgError.html(request.responseText);
-                    }
-                });
-            }
-
-
-            $(document).ready(function() {
-                        console.log("ready!");
-
-                        $.ajax({
-                                    url: "/notifications",
-                                    data: {
-                                        type: "APPLY_REQUEST"
-                                    },
-                                    type: "get",
-                                    async: false,
-                                    success: function(notifications) {
-
-                                            let emptyCheck = true;
-                                            for (var not of notifications) {
+                function denyStudent(notId) {
+                    $.ajax({
+                        url: `/notifications/${notId}`,
+                        data: {
+                            replied: false,
+                            answer: true
+                        },
+                        type: 'put',
+                        success: function(notification) {
+                            alert(`Application Denied`);
+                            console.log("Application Denied", notification);
+                            document.location.reload(true)
+                        },
+                        error: function(request, status, error) {
+                            msgError.html(request.responseText);
+                        }
+                    });
+                }
 
 
-                                                var $card;
-                                                if (not.projectManagerId != window.currUser._id) {
-                                                    emptyCheck = true;
-                                                    continue;
-                                                }
-                                                emptyCheck = false;
-                                                var title;
-                                                var img;
-                                                var date = not.createDate;
-                                                var type = not.type;
+                $(document).ready(function() {
+                            console.log("ready!");
 
-                                                $.ajax({
-                                                            url: `/users/${not.userId}`,
-                                                            data: {},
-                                                            type: "get",
-                                                            async: false,
-                                                            success: function(user) {
-                                                                    console.log("NOT", not.projectName, not, user);
+                            $.ajax({
+                                        url: "/notifications",
+                                        data: {
+                                            type: "APPLY_REQUEST"
+                                        },
+                                        type: "get",
+                                        async: false,
+                                        success: function(notifications) {
 
-                                                                    type = "APPLICATION REQUEST";
-                                                                    img = "https://png.pngtree.com/svg/20170517/apply_1359349.png";
-                                                                    $card = `<div class="jumbotron text-center hoverable p-4">
+                                                let emptyCheck = true;
+                                                for (var not of notifications) {
+
+
+                                                    var $card;
+                                                    if (not.projectManagerId != window.currUser._id) {
+                                                        emptyCheck = true;
+                                                        continue;
+                                                    }
+                                                    emptyCheck = false;
+                                                    var title;
+                                                    var img;
+                                                    var date = not.createDate;
+                                                    var type = not.type;
+
+                                                    $.ajax({
+                                                                url: `/users/${not.userId}`,
+                                                                data: {},
+                                                                type: "get",
+                                                                async: false,
+                                                                success: function(user) {
+                                                                        console.log("NOT", not.projectName, not, user);
+
+                                                                        type = "APPLICATION REQUEST";
+                                                                        img = "https://png.pngtree.com/svg/20170517/apply_1359349.png";
+                                                                        $card = `<div class="jumbotron text-center hoverable p-4">
                                       <div class="row">
                                         <div class="col-xs-1 col-md-2 offset-md-1 mx-3 my-3">
                                           <div class="view overlay">
@@ -154,7 +154,7 @@
         });
 
     });
-        </script>
+            </script>
 </body>
 <footer class="fixed-bottom">
     <% include ../partials/footer %>
