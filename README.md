@@ -18,7 +18,7 @@ GRADREC (Graduate Recruitment) is a web-based system that enables faculty member
 2. [Register](SoftwareEngineering/register.md)
 3. [Create-Edit Profile](SoftwareEngineering/profile.md)
 4. [Log out](SoftwareEngineering/logout.md)
-5. [Student Pages]
+5. [Student Pages] (readme.md)
   5.1 [Home Page](SoftwareEngineering/studentHomePage.md)
   5.2 [Apply to Project (Option 1)] (SoftwareEngineering/studentHomePage.md)
   5.3 [Send Message (Apply to Project Option 2)] (SoftwareEngineering/sendMessage.md)
