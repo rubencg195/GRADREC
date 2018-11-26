@@ -70,6 +70,9 @@ mongodb.MongoClient.connect("mongodb://admin:admin1234@ds121282.mlab.com:21282/g
     app.get('/chat', function (req, res) {
         res.render('pages/chat', { query: req.query });
     });
+    app.get('/example', function (req, res) {
+        res.render('pages/example', {query : req.query});
+    });
     //===========================================================
 
 
