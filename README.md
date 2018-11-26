@@ -31,11 +31,11 @@ Demo Web Page: http://sc-1.cs.mun.ca/
 2. [Register](SoftwareEngineering/register.md)
 3. [Create-Edit Profile](SoftwareEngineering/profile.md)
 4. [Log out](SoftwareEngineering/logout.md)
-5. [Student Pages](https://github.com/rubencg195/GRADREC)
+5. [For Student](https://github.com/rubencg195/GRADREC)
 
    5.1 [Home Page](SoftwareEngineering/studentHomePage.md)
    
-   5.2 [Apply to Project (Option 1)](SoftwareEngineering/studentHomePage.md)
+   5.2 [Apply to Project (Option 1)](SoftwareEngineering/applyStudent.md)
    
    5.3 [Send Message (Apply to Project Option 2)](SoftwareEngineering/sendMessage.md)
    
@@ -43,7 +43,7 @@ Demo Web Page: http://sc-1.cs.mun.ca/
    
    5.5 [Notifications](SoftwareEngineering/notifications.md)
    
-6. [Professor Pages](https://github.com/rubencg195/GRADREC)
+6. [For Professor](https://github.com/rubencg195/GRADREC)
 
    6.1 [Home Page (Same as student, but contains a "Create Project" option in the Navbar)](SoftwareEngineering/studentHomePage.md)
 
