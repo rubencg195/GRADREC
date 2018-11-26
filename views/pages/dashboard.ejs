@@ -72,8 +72,7 @@
     </div>
   </div>
 
-  <a class="btn-floating btn-lg red" style="position:absolute; right:30px; bottom:30px" onclick="startIntro()"><i
-    class="fa fa-question-circle "></i></a>
+  <a id='helpBtn' class="btn-floating btn-lg red" style="position:absolute; right:30px; bottom:30px" onclick="startIntro()"><i class="fa fa-question-circle "></i></a>
   <script>
     if (window.currUser) {
       console.log("Exist");
@@ -219,7 +218,7 @@
 
                 //console.log("Notifications for", proj.title ,  notifications, callToAction);
                 if (proj.finished == "false" || proj.finished == false) {
-                  var $newCard = $(`<div class="card mb-3 text-center hoverable" >
+                  var $newCard = $(`<div class="card mb-3 text-center hoverable" id="project_card" >
                                                     <div class="card-body">
                                                         <div class="row" >
                                                             <div class="col-md-4 offset-md-1 mx-3 my-3" onclick="goTo('/research?id=${proj._id}', '${proj._id}'  )">
@@ -236,7 +235,7 @@
                                                                     <a class="green-text">
                                                                         <h6 class="font-bold pb-1"><i class="fa fa-desktop"> PROJECT </i>  </h6>
                                                                     </a>
-                                                                    <h4 class="mb-4"><strong id='project_titw'> ${proj.title} </strong></h4>
+                                                                    <h4 class="mb-4"><strong id='project_title'> ${proj.title} </strong></h4>
                                                                     <p> ${proj.abstract} </p>
                                                                     <p><a><strong>${proj.startDate} - ${proj.endDate}</strong></a></p>
                                                                 </div>
@@ -267,10 +266,45 @@
       intro.setOptions({
         steps: [
           {
-            element: document.querySelector('#defaultLoginFormEmail'),
-            intro: "Apply to a Project",
+            element: document.querySelector('#homeLink'),
+            intro: "Go to the main page to see all the projects",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#seeProfile'),
+            intro: "See and Update your profile",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#viewMessages'),
+            intro: "View your last messages and reply through your inbox page .",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#createNewProject'),
+            intro: "Create a new project.",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#viewNotifications'),
+            intro: "View the status for your latest applications.",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#project_card'),
+            intro: "Apply to a Project. Edit the project as the owner. Delete the project as the owner.",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#logoutBtn'),
+            intro: "Login or Logout from your account.",
+            position: 'bottom'
+          },
+          {
+            element: document.querySelector('#helpBtn'),
+            intro: "Click here for more help.",
             position: 'left'
-          }
+          },
         ]
       });
       intro.start();
