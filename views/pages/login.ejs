@@ -17,23 +17,24 @@
 
             <!-- Email -->
             <input type="email" name="defaultLoginFormEmail" id="defaultLoginFormEmail" class="form-control mb-4"
-                placeholder="E-mail">
+                placeholder="E-mail" data-intro="Enter your personal email address" data-step='1'>
 
             <!-- Password -->
             <input type="password" name="defaultLoginFormPassword" id="defaultLoginFormPassword" class="form-control mb-4"
                 placeholder="Password">
-           
+
             <p class="red-text" id="errorSpace"></p>
             <!-- Sign in button  type="submit" -->
             <a id="submitBtn" class="btn red white-text btn-block my-4 " id="signInBtn">Sign in</a>
 
             <!-- Register -->
             <p>Not a member?
-                <a href="/signup">Register</a>
+                <a href="/signup" id="notMember">Register</a>
             </p>
         </form>
         <!-- Default form login -->
-
+        <a class="btn-floating btn-lg red" style="position:absolute; right:30px; bottom:30px" onclick="startIntro()"><i
+                class="fa fa-question-circle "></i></a>
     </main>
     <% include ../partials/mdscripts %>
     <script>
@@ -51,65 +52,94 @@
 
             $("#submitBtn").click(function (event) {
                 signIn(event);
-            }); 
-            $(document).keypress(function(e) {
-                if(e.which == 13) {
+            });
+            $(document).keypress(function (e) {
+                if (e.which == 13) {
                     signIn(e);
                 }
             });
         });
 
-        function signIn(event)
-        {
+        function signIn(event) {
             event.preventDefault();
-                var _username = $('input#defaultLoginFormEmail').val();
-                var _password = $('input#defaultLoginFormPassword').val();
+            var _username = $('input#defaultLoginFormEmail').val();
+            var _password = $('input#defaultLoginFormPassword').val();
 
-                if (!_username || !_password) {
-                    console.log("EMPYT");
-                    $("p#errorSpace").html("Fill up the fields");
-                    return;
-                }
-                $.ajax
-                    ({
-                        url: '/users',
-                        data: {
-                            email: _username
-                        },
-                        type: 'get',
-                        success: function (data) {
-                            console.log("GET Response", data);
+            if (!_username || !_password) {
+                console.log("EMPYT");
+                $("p#errorSpace").html("Fill up the fields");
+                return;
+            }
+            $.ajax
+                ({
+                    url: '/users',
+                    data: {
+                        email: _username
+                    },
+                    type: 'get',
+                    success: function (data) {
+                        console.log("GET Response", data);
 
-                            if (!data || data.length == 0) {
-                                $("p#errorSpace").html("User does not exist");
-                                return;
-                            }
-
-                            if (data[0].password != _password) {
-                                $("p#errorSpace").html("Password Incorrect");
-                                return;
-                            }
-                            // Save data to sessionStorage
-                            console.log("Saving User Local Session ", data[0]);
-                            sessionStorage.setItem('curentUser', JSON.stringify(data[0]));
-
-                            // Get saved data from sessionStorage
-                            window.currUser = sessionStorage.getItem('curentUser');
-                            console.log("Retrieving from User Local Session ", JSON.parse(currUser));
-
-                            window.location.href = '/';
-                            // Remove saved data from sessionStorage
-                            //sessionStorage.removeItem('key');
-
-                            // Remove all saved data from sessionStorage
-                            //sessionStorage.clear();
-                            //var _username = document.getElementById('input#defaultLoginFormEmail').value ;
-
-                        },
-                        error: function (request, status, error) {
-                            $("p#errorSpace").html(request.responseText);
+                        if (!data || data.length == 0) {
+                            $("p#errorSpace").html("User does not exist");
+                            return;
                         }
-                    });
+
+                        if (data[0].password != _password) {
+                            $("p#errorSpace").html("Password Incorrect");
+                            return;
+                        }
+                        // Save data to sessionStorage
+                        console.log("Saving User Local Session ", data[0]);
+                        sessionStorage.setItem('curentUser', JSON.stringify(data[0]));
+
+                        // Get saved data from sessionStorage
+                        window.currUser = sessionStorage.getItem('curentUser');
+                        console.log("Retrieving from User Local Session ", JSON.parse(currUser));
+
+                        window.location.href = '/';
+                        // Remove saved data from sessionStorage
+                        //sessionStorage.removeItem('key');
+
+                        // Remove all saved data from sessionStorage
+                        //sessionStorage.clear();
+                        //var _username = document.getElementById('input#defaultLoginFormEmail').value ;
+
+                    },
+                    error: function (request, status, error) {
+                        $("p#errorSpace").html(request.responseText);
+                    }
+                });
+        }
+
+
+        function startIntro() {
+            var intro = introJs();
+            intro.setOptions({
+                steps: [
+                    {
+                        element: document.querySelector('#defaultLoginFormEmail'),
+                        intro: "Enter your email address.",
+                        position: 'left'
+                    },
+                    {
+                        element: document.querySelectorAll('#defaultLoginFormPassword')[0],
+                        intro: "Enter your password",
+                        position: 'right'
+                    },
+                    {
+                        element: document.querySelectorAll('#signInBtn')[0],
+                        intro: 'Click sign in to enter your account',
+                        position: 'right'
+                    },
+                    {
+                        intro: "If you don't have an account, you can create one",
+                        element: document.querySelectorAll('#notMember')[0],
+                        position: 'bottom'
+                    }
+                ]
+            });
+            intro.start();
         }
 
 

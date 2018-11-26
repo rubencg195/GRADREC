@@ -45,8 +45,8 @@
         ({
           url: `/notifications/${notId}`,
           data: {
-            replied : false,
-            answer : true
+            replied: false,
+            answer: true
           },
           type: 'put',
           success: function (notification) {
@@ -73,14 +73,13 @@
           type: "get",
           async: false,
           success: function (notifications) {
+            console.log("NOT", notifications);
 
             let emptyCheck = true;
             for (var not of notifications) {
-              console.log("NOT", not.projectName, not);
-              
+
               var $card;
-              if (not.projectManagerId != window.currUser._id)
-              {
+              if (not.projectManagerId != window.currUser._id) {
                 emptyCheck = true;
                 continue;
               }
@@ -128,7 +127,7 @@
                                             </div>
                                             <br/>
                                           </div>
-                                          ${( JSON.parse(not.answer) ) ? ( JSON.parse(not.replied) ? `<a class="btn btn-link green-text" disabled>ACCEPTED</a>` : `<a class="btn btn-link red-text" disabled>DENIED</a>`) : `<a class="btn red white-text" onclick="acceptStudent('${not.projectId}', '${not.userId}')" >ACCEPT</a><a class="btn grey white-text" onclick="denyStudent('${not._id}')" >DENY</a>`}
+                                          ${(JSON.parse(not.answer)) ? (JSON.parse(not.replied) ? `<a class="btn btn-link green-text" disabled>ACCEPTED</a>` : `<a class="btn btn-link red-text" disabled>DENIED</a>`) : `<a class="btn red white-text" onclick="acceptStudent('${not.projectId}', '${not.userId}')" >ACCEPT</a><a class="btn grey white-text" onclick="denyStudent('${not._id}')" >DENY</a>`}
                                           <a class="btn grey lighten-2  black-text" data-toggle="collapse" href="#collapse_${user._id}_${not.projectId}" aria-expanded="false" aria-controls="collapseExample">
                                               More Information
                                           </a>
@@ -142,8 +141,7 @@
                 });
 
             }
-            if (emptyCheck)
-            {
+            if (emptyCheck) {
               $card = `<div class="d-flex p-2">
                 <div class="row">         
                     <h1 class="grey-text" style="font-family: Arial Black,Arial Bold,Gadget,sans-serif;">No Notifications at this time</h1>
