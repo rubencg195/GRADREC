@@ -43,7 +43,7 @@
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="md-form mb-0">
-                                            <p>MSc or PhD: <i class="fa fa-question-circle-o" aria-hidden="true" data-toggle="tooltip" title="Is this project aimed at Masters or PhD students"></i></p>
+                                            <p>Target Participant (MSc or PhD): <i class="fa fa-question-circle-o" aria-hidden="true" data-toggle="tooltip" title="Is this project aimed at Masters or PhD students"></i></p>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -211,7 +211,7 @@
                     let num = $('#form-contact-num_of_students').val();
                     for (let i =0; i < num; i++)
                     {   
-                        $( "#participantRows" ).append("<p>Participant " + (i+1) + "</p>");
+                        $( "#participantRows" ).append("<strong>Participant " + (i+1) + "</strong>");
 
                          let row = `<div class="row">
                         <div class="col-md-12">
@@ -367,26 +367,7 @@
                                 projRes.val(currProj.results);
                                 projStart.val(currProj.startDate);
                                 projEnd.val(currProj.endDate);
-                                
-                                if (currProj.skills)
-                                {
-                                    for (let i = 0; i < currProj.skills.length; i++)
-                                    {
-                                        let _english = $(`#english_${i}`);
-                                        let _maths = $(`#maths_${i}`);
-                                        let _comp = $(`#comp_${i}`);
-                                        let _music = $(`#music_${i}`);
-                                        let _noSkills = $(`#noSkills_${i}`);
 
-                                        _english.prop('checked', (!currProj.skills) ? false : JSON.parse(currProj.skills[i].english));
-                                        _maths.prop('checked  ', (!currProj.skills) ? false : JSON.parse(currProj.skills[i].maths));
-                                        _comp.prop('checked', (!currProj.skills) ? false : JSON.parse(currProj.skills[i].comp));
-                                        _music.prop('checked', (!currProj.skills) ? false : JSON.parse(currProj.skills[i].music));
-                                        _noSkills.prop('checked', (!currProj.skills) ? false : JSON.parse(currProj.skills[i].noSkills));
-                                    }
-                                }
-                                
-                                
                                 _programFinished.prop('checked', JSON.parse(currProj.finished));
                                 isPHD.val((JSON.parse(currProj.PhD)) ? 1 : 2);
                                 if ((currProj.program) == "Computer Science/Engineering") {
@@ -446,6 +427,30 @@
                                     console.log("No participants");
                                 }
                                 addParticipantRows();
+
+
+                                if (currProj.skills)
+                                {
+                                    for (let i = 0; i < currProj.skills.length; i++)
+                                    {
+                                        let eng = $(`#english_${i}`);
+                                        let math = $(`#maths_${i}`);
+                                        let comp = $(`#comp_${i}`);
+                                        let music = $(`#music_${i}`);
+                                        let none = $(`#noSkills_${i}`);
+                                        
+                                        console.log("ENGL",  currProj.skills[i], Object.assign({}, eng));
+
+
+                                        //eng.prop('checked',  true);
+                                        eng.prop('checked',  JSON.parse(currProj.skills[i].english));
+                                        math.prop('checked',   JSON.parse(currProj.skills[i].maths));
+                                        comp.prop('checked',    JSON.parse(currProj.skills[i].comp));
+                                        music.prop('checked',  JSON.parse(currProj.skills[i].music));
+                                        none.prop('checked',  JSON.parse(currProj.skills[i].noSkills));
+                                    }
+                                }
+                                
                             }
                         },
                         error: function(request, status, error) {

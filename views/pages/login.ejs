@@ -17,7 +17,7 @@
 
             <!-- Email -->
             <input type="email" name="defaultLoginFormEmail" id="defaultLoginFormEmail" class="form-control mb-4"
-                placeholder="E-mail">
+                placeholder="E-mail" data-intro="Enter your personal email address" data-step='1'>
 
             <!-- Password -->
             <input type="password" name="defaultLoginFormPassword" id="defaultLoginFormPassword" class="form-control mb-4"
@@ -29,11 +29,11 @@
 
             <!-- Register -->
             <p>Not a member?
-                <a href="/signup">Register</a>
+                <a href="/signup" id="notMember">Register</a>
             </p>
         </form>
         <!-- Default form login -->
-
+        <a class="btn-floating btn-lg red" style="position:absolute; right:30px; bottom:30px" onclick="startIntro()"><i class="fa fa-question-circle "></i></a>
     </main>
     <% include ../partials/mdscripts %>
     <script>
@@ -111,6 +111,36 @@
                         }
                     });
         }
+
+
+        function startIntro(){
+            var intro = introJs();
+              intro.setOptions({
+                steps: [
+                  {
+                    element: document.querySelector('#defaultLoginFormEmail'),
+                    intro: "Enter your email address.",
+                    position: 'left'                    
+                  },
+                  {
+                    element: document.querySelectorAll('#defaultLoginFormPassword')[0],
+                    intro: "Enter your password",
+                    position: 'right'
+                  },
+                  {
+                    element: document.querySelectorAll('#notMember')[0],
+                    intro: "If you don't have an account, you can create one",
+                    position: 'right'
+                  },
+                  {
+                    element: document.querySelectorAll('#signInBtn')[0],
+                    intro: 'Click sign in to enter your account',
+                    position: 'bottom'
+                  }
+                ]
+              });
+              intro.start();
+          }
 
 
 
