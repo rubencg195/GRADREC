@@ -103,7 +103,7 @@
                         <p class="font-weight-normal"><a><strong>${lastMsg.projectName}</strong></a> and <a><strong>${lastMsg.firstName} ${lastMsg.lastName}</strong></a>, ${new Date(lastMsg.createDate).toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} </p>
                         <p class="font-weight-normal"> <strong>Email:</strong> ${lastMsg.createDate} </p>
                         <br/>
-                        <a class="btn red white-text" href="/chat?projectId=${lastMsg.projectId}&from=${lastMsg.from}&to=${lastMsg.to}&origin=${lastMsg.origin}" >Reply</a>
+                        <a class="btn red darken-3 white-text" href="/chat?projectId=${lastMsg.projectId}&from=${lastMsg.from}&to=${lastMsg.to}&origin=${lastMsg.origin}" >Reply</a>
                       </div>
                     </div>
                   </div>`;
