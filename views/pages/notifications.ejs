@@ -75,7 +75,7 @@
 
                                             let emptyCheck = true;
                                             for (var not of notifications) {
-                                                console.log("NOT", not.projectName, not);
+
 
                                                 var $card;
                                                 if (not.projectManagerId != window.currUser._id) {
@@ -94,7 +94,7 @@
                                                             type: "get",
                                                             async: false,
                                                             success: function(user) {
-                                                                    console.log("NOT", not.projectName, not);
+                                                                    console.log("NOT", not.projectName, not, user);
 
                                                                     type = "APPLICATION REQUEST";
                                                                     img = "https://png.pngtree.com/svg/20170517/apply_1359349.png";
@@ -119,7 +119,7 @@
                                               <p><strong>Description:</strong> ${user.summary} </p>
                                               <p><strong>University:</strong> ${user.university} </p>
                                               <p><strong>Degree:</strong> ${user.degree} </p>
-                                              <p><strong>Program:</strong> ${user.program} </p>
+                                              <p><strong>E-mail:</strong> ${user.email} </p>
                                               <p><strong>Address:</strong> ${user.address} </p>
                                               <p><strong>Other Certificate:</strong> ${user.otherCert} </p>                                                    
                                             </div>
