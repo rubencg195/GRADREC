@@ -20,11 +20,6 @@ Demo Web Page: http://sc-1.cs.mun.ca/
 
 ## DOCUMENTATION
 
-### Class Assignments 
-
-1. [Assignment 1](SoftwareEngineering/Assignment_1_Group_1.pdf)
-2. [Assignment 2](SoftwareEngineering/Assignment_2_Group1.pdf)
-
 ### Map Site and Functionality
 
 1. [Login](SoftwareEngineering/login.md)
@@ -52,4 +47,11 @@ Demo Web Page: http://sc-1.cs.mun.ca/
    6.3 [Messages (Same as the Student's page)](SoftwareEngineering/messages.md)
 
    6.4 [Notifications](SoftwareEngineering/notifications.md)
+   
+7. [Diagrams and Use Cases](https://github.com/rubencg195/GRADREC)
 
+   7.1. [Assignment 1](SoftwareEngineering/Assignment_1_Group_1.pdf)
+   
+   7.2. [Assignment 2](SoftwareEngineering/Assignment_2_Group1.pdf)
+   
+   7.3. [Latest: Diagrams](SoftwareEngineering/diagrams.md)
