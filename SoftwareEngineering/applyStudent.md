@@ -4,4 +4,4 @@ Since the home page displays all available projects to the student, the student 
 
 To go back to the index [click here](https://github.com/rubencg195/GRADREC)
 
-![alt text](applyToProject.JPG "Register") 
+![alt text](applyToProject.JPG "Apply to Project - Option 1") 
