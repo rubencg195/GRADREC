@@ -43,7 +43,7 @@ Demo Web Page: http://sc-1.cs.mun.ca/
    
    5.5 [Notifications](SoftwareEngineering/notifications.md)
    
-6. [For Professor](https://github.com/rubencg195/GRADREC)
+6. [For Project Managers or Professors](https://github.com/rubencg195/GRADREC)
 
    6.1 [Home Page (Same as student, but contains a "Create Project" option in the Navbar)](SoftwareEngineering/studentHomePage.md)
 
