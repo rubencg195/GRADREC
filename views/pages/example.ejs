@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ../partials/mdhead %>
+    <link rel="icon" href="http://cc-arcc.ca/wp-content/uploads/2016/03/mun-logo.jpg">
+    <title>Page Title</title>
+</head>
+
+<body>
+    <% include ../partials/navbar %>
+    <main class="container">
+
+        <h1>My First Heading</h1>
+        <p>My first paragraph.</p>
+    </main>
+
+
+
+    <% include ../partials/mdscripts %>
+    <script>
+        if (window.currUser) {
+            console.log("Exist");
+        } else {
+            console.log("not login");
+            window.location.href = '/login';
+        }
+    </script>
+    <script>
+
+    </script>
+</body>
+<footer class="fixed-bottom">
+    <% include ../partials/footer %>
+</footer>
+
+</html>
