@@ -4,4 +4,4 @@ The login page consists of a basic and self explanatory e-mail and password form
 To go back to the index [click here](https://github.com/rubencg195/GRADREC)
 
 
-![alt text](login.JPG "Sign in Page 1") 
+![alt text](login.JPG "Sign in") 
