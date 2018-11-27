@@ -54,4 +54,4 @@ Demo Web Page: http://sc-1.cs.mun.ca/
    
    7.2. [Assignment 2](SoftwareEngineering/Assignment_2_Group1.pdf)
    
-   7.3. [Updated Use-Cases and Diagrams](SoftwareEngineering/diagrams.md)
+   7.3. [Updated Use-Cases and Diagrams](SoftwareEngineering/UpdatedUseCases.pdf)
