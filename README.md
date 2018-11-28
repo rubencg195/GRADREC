@@ -8,7 +8,7 @@ GRADREC (Graduate Recruitment) is a web-based system that enables faculty member
 
 1. Install npm and nodejs
 
-2. Open CMD in the project home directory.
+2. Open the **terminal** in the project home directory.
 
 3. Clone the repository with the command _git clone https://github.com/rubencg195/GRADREC_
 
