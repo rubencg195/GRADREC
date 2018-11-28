@@ -20,6 +20,22 @@ GRADREC (Graduate Recruitment) is a web-based system that enables faculty member
 
 7. Enter your browser of choice in the URL **_localhost:3331_**
 
+8. Enter your password to login or go to the **/signup** URL to register.
+
+   8.1 Credentials
+   
+       8.1.1. Student
+       
+              8.1.1.1. **USER**: alpha@mun.ca
+              
+              8.1.1.2. **PASSWORD**: 1234
+     
+       8.1.2. Administrator
+       
+              8.1.1.1. **USER**: admin@mun.ca
+              
+              8.1.1.2. **PASSWORD**: admin       
+
 ## DEMO
 
 Demo Web Page: http://sc-1.cs.mun.ca/ 
