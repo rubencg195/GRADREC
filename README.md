@@ -6,19 +6,19 @@ GRADREC (Graduate Recruitment) is a web-based system that enables faculty member
 
 ## INITIAL SETUP
 
-1. Install npm and nodejs
+1. Install *npm* and *nodejs*
 
 2. Open the **terminal** in the project home directory.
 
-3. Clone the repository with the command _git clone https://github.com/rubencg195/GRADREC_
+3. Clone the repository with the command **_git clone https://github.com/rubencg195/GRADREC_**
 
 4. enter the new created folder called **GRADREC**
 
-5. Run the following command _npm install_
+5. Run the following command **_npm install_**
 
-6. Run the command _npm start_ to initiate the server
+6. Run the command **_npm start_** to initiate the server
 
-7. Enter your browser of choice in the URL _localhost:3331_
+7. Enter your browser of choice in the URL **_localhost:3331_**
 
 ## DEMO
 
@@ -32,7 +32,7 @@ Demo Web Page: http://sc-1.cs.mun.ca/
 2. [Register](SoftwareEngineering/register.md)
 3. [Create-Edit Profile](SoftwareEngineering/profile.md)
 4. [Log out](SoftwareEngineering/logout.md)
-5. [For Student](https://github.com/rubencg195/GRADREC)
+5. For Student
 
    5.1 [Home Page](SoftwareEngineering/studentHomePage.md)
    
@@ -44,7 +44,7 @@ Demo Web Page: http://sc-1.cs.mun.ca/
    
    5.5 [Notifications](SoftwareEngineering/notifications.md)
    
-6. [For Project Managers or Professors](https://github.com/rubencg195/GRADREC)
+6. For Project Managers or Professors
 
    6.1 [Home Page (Same as student, but contains a "Create Project" option in the Navbar)](SoftwareEngineering/studentHomePage.md)
 
@@ -54,7 +54,7 @@ Demo Web Page: http://sc-1.cs.mun.ca/
 
    6.4 [Notifications](SoftwareEngineering/notifications.md)
    
-7. [Diagrams and Use Cases](https://github.com/rubencg195/GRADREC)
+7. Diagrams and Use Cases
 
    7.1. [Assignment 1](SoftwareEngineering/Assignment_1_Group_1.pdf)
    
