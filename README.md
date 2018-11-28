@@ -78,12 +78,12 @@ Demo Web Page: http://sc-1.cs.mun.ca/
    
    7.3. [Updated Use-Cases and Diagrams](SoftwareEngineering/UpdatedUseCases.pdf)
 
-8. Points Distribution
+8. Points Distribution (**40 pts**)
 
-   8.1. Ruben Chevez  (**100%**)
+   8.1. Ruben Chevez  (**10 pts**)
    
-   8.2. Carlos Salcedo (**100%**)
+   8.2. Carlos Salcedo (**10 pts**)
 
-   8.3. Lucas Critch (**100%**)
+   8.3. Lucas Critch (**10 pts**)
 
-   8.4. Tian Wang (**100%**)
+   8.4. Tian Wang (**10 pts**)
