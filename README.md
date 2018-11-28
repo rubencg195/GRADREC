@@ -55,3 +55,13 @@ Demo Web Page: http://sc-1.cs.mun.ca/
    7.2. [Assignment 2](SoftwareEngineering/Assignment_2_Group1.pdf)
    
    7.3. [Updated Use-Cases and Diagrams](SoftwareEngineering/UpdatedUseCases.pdf)
+
+8. Points Distribution
+
+   8.1. Ruben Chevez  (**100%**)
+   
+   8.2. Carlos Salcedo (**100%**)
+
+   8.3. Lucas Critch (**100%**)
+
+   8.4. Tian Wang (**100%**)
