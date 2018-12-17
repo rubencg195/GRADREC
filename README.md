@@ -40,6 +40,8 @@ GRADREC (Graduate Recruitment) is a web-based system that enables faculty member
 
 Demo Web Page: http://sc-1.cs.mun.ca/ 
 
+![alt text](/SoftwareEngineering/studentHomePage.JPG "Home Page") 
+
 ## DOCUMENTATION
 
 ### Map Site and Functionality
