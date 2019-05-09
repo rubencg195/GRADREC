@@ -4,6 +4,8 @@
 
 GRADREC (Graduate Recruitment) is a web-based system that enables faculty members to advertise Master/PhD positions, provide information about their research projects and the availability of financial aid.  Our goal is to become a world leader at connecting high skilled researchers with highly motivated students to create next generation projects and research.
 
+Disclaimer: This was a class project for the Software Engineering course for graduate students at Memorial University of Newfoundland. We used NodeJS and MongoDB for the back-end, HTML, CSS, and JavaScript for the front end. 
+
 ## INITIAL SETUP
 
 1. Install *npm* and *nodejs*
@@ -37,8 +39,6 @@ GRADREC (Graduate Recruitment) is a web-based system that enables faculty member
               8.1.1.2. PASSWORD: admin       
 
 ## DEMO
-
-Demo Web Page: http://sc-1.cs.mun.ca/ 
 
 ![alt text](/SoftwareEngineering/studentHomePage.JPG "Home Page") 
 
